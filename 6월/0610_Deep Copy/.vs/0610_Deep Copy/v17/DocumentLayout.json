@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0AAA8684-479F-4046-9977-5DF4EFEA1E2D}|ConsoleApplication1\\ConsoleApplication1.vcxproj|C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0AAA8684-479F-4046-9977-5DF4EFEA1E2D}|ConsoleApplication1\\ConsoleApplication1.vcxproj|solutionrelative:ConsoleApplication1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AAA8684-479F-4046-9977-5DF4EFEA1E2D}|ConsoleApplication1\\ConsoleApplication1.vcxproj|C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\Review.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0AAA8684-479F-4046-9977-5DF4EFEA1E2D}|ConsoleApplication1\\ConsoleApplication1.vcxproj|solutionrelative:ConsoleApplication1\\Review.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\main.cpp",
+              "RelativeDocumentMoniker": "ConsoleApplication1\\main.cpp",
+              "ToolTip": "C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\main.cpp",
+              "RelativeToolTip": "ConsoleApplication1\\main.cpp",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAACgAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T01:34:51.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Review.cpp",
+              "DocumentMoniker": "C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\Review.cpp",
+              "RelativeDocumentMoniker": "ConsoleApplication1\\Review.cpp",
+              "ToolTip": "C:\\Users\\SN_06\\Desktop\\\uBC15\uC131\uC6B0\\6\uC6D4\\0610_Deep Copy\\ConsoleApplication1\\Review.cpp",
+              "RelativeToolTip": "ConsoleApplication1\\Review.cpp",
+              "ViewState": "AQIAABIAAAAAAAAAAADwvyEAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-10T00:38:51.449Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
