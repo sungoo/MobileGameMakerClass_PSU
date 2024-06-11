@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Class Homework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Class Homework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\World\\World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\World\\World.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Class Homework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Class Homework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Mage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|solutionrelative:Contents\\Creature\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{228F1D90-9F68-42FD-A6A8-B066EB473719}|Class Homework.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Monster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -78,15 +78,15 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Player.h",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Player.h",
-              "RelativeDocumentMoniker": "Contents\\Creature\\Player.h",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Player.h",
-              "RelativeToolTip": "Contents\\Creature\\Player.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAjAAAA",
+              "DocumentIndex": 5,
+              "Title": "World.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.h",
+              "RelativeDocumentMoniker": "Contents\\World\\World.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.h",
+              "RelativeToolTip": "Contents\\World\\World.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-10T04:15:22.581Z",
+              "WhenOpened": "2024-06-10T05:17:50.844Z",
               "EditorCaption": ""
             },
             {
@@ -103,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Mage.h",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Mage.h",
               "RelativeDocumentMoniker": "Contents\\Creature\\Mage.h",
@@ -111,12 +111,11 @@
               "RelativeToolTip": "Contents\\Creature\\Mage.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-10T06:32:29.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T06:32:29.033Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Knight.h",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Knight.h",
               "RelativeDocumentMoniker": "Contents\\Creature\\Knight.h",
@@ -124,38 +123,36 @@
               "RelativeToolTip": "Contents\\Creature\\Knight.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-10T04:14:38.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T04:14:38.745Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "World.h",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.h",
-              "RelativeDocumentMoniker": "Contents\\World\\World.h",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.h",
-              "RelativeToolTip": "Contents\\World\\World.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-10T05:17:50.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 4,
               "Title": "Creature.h",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.h",
               "RelativeDocumentMoniker": "Contents\\Creature\\Creature.h",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.h",
               "RelativeToolTip": "Contents\\Creature\\Creature.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAALAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-10T02:36:02.637Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Player.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Player.h",
+              "RelativeDocumentMoniker": "Contents\\Creature\\Player.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Player.h",
+              "RelativeToolTip": "Contents\\Creature\\Player.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-10T04:15:22.581Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -173,11 +170,11 @@
         },
         {
           "DockedWidth": 241,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "pch.h",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\pch.h",
               "RelativeDocumentMoniker": "pch.h",
@@ -186,8 +183,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAADwvw4AAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-10T05:18:05.279Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -203,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Mage.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Mage.cpp",
               "RelativeDocumentMoniker": "Contents\\Creature\\Mage.cpp",
@@ -211,70 +207,69 @@
               "RelativeToolTip": "Contents\\Creature\\Mage.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-10T06:34:42.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T06:34:42.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Archer.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Archer.cpp",
               "RelativeDocumentMoniker": "Contents\\Creature\\Archer.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Archer.cpp",
               "RelativeToolTip": "Contents\\Creature\\Archer.cpp",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T04:41:19.651Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Knight.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Knight.cpp",
               "RelativeDocumentMoniker": "Contents\\Creature\\Knight.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Knight.cpp",
               "RelativeToolTip": "Contents\\Creature\\Knight.cpp",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T04:35:28.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Creature.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.cpp",
               "RelativeDocumentMoniker": "Contents\\Creature\\Creature.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\Creature\\Creature.cpp",
               "RelativeToolTip": "Contents\\Creature\\Creature.cpp",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABgAAAA0AAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T04:07:28.419Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Class Homework.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Class Homework.cpp",
               "RelativeDocumentMoniker": "Class Homework.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Class Homework.cpp",
               "RelativeToolTip": "Class Homework.cpp",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAswDAAAAAAAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAswC4AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T02:33:04.519Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "World.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.cpp",
               "RelativeDocumentMoniker": "Contents\\World\\World.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Class Homework\\Contents\\World\\World.cpp",
               "RelativeToolTip": "Contents\\World\\World.cpp",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAACYAAAAqAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACAAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T05:17:56.007Z",
               "EditorCaption": ""

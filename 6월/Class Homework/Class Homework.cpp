@@ -40,10 +40,11 @@ int main()
     World* world = new World();
 
     while (true) {
-        world->Battle1();
-        
+
         if (world->End())
             break;
+
+        world->Battle1();
     }
 
     delete world;

@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "Creature.h"
 
-Creature::Creature(string name, int hp, int afk) :
-	name(name), cur_hp(hp), atk(afk)
+Creature::Creature(string name, int Max_hp, int afk) :
+	name(name), MaxHP(Max_hp), atk(afk)
 {
+	cur_hp = Max_hp;
 }
 
 Creature::~Creature()

@@ -8,7 +8,7 @@ protected://맴버변수 // 속성
 	int atk;
 
 public://맴버함수 // 기능
-	Creature(string name, int hp, int afk);
+	Creature(string name, int Max_hp, int afk);
 	virtual ~Creature();
 
 	void printInfo();

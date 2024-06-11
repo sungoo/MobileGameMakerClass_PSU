@@ -30,7 +30,7 @@ void World::SelectPlayer(string name, int num, Creature** creature)
 		cout << "입력이 잘못되었습니다. 다시 입력해주세요." << endl;
 		break;
 	case World::KNIGHT:
-		*creature = new Knight(name, 500, 15);
+		*creature = new Knight(name, 250, 40);
 		break;
 	case World::ARCHER:
 		*creature = new Archer(name, 300, 30);
