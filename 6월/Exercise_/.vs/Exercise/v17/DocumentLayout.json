@@ -1,0 +1,249 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Exercise_A.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Exercise_A.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Arrow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Arrow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Archer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Mage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Pet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Pet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Mage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EA65996-E594-46D6-8EAD-7FC7ED84BF4E}|Exercise_10\\Exercise_10.vcxproj|solutionrelative:Exercise_10\\Archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 103,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Player.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.h",
+              "RelativeToolTip": "Exercise_10\\Player.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:36.363Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Archer.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Archer.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.h",
+              "RelativeToolTip": "Exercise_10\\Archer.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:45.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Arrow.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Arrow.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.h",
+              "RelativeToolTip": "Exercise_10\\Arrow.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:44.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Knight.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Knight.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.h",
+              "RelativeToolTip": "Exercise_10\\Knight.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:43.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Mage.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Mage.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.h",
+              "RelativeToolTip": "Exercise_10\\Mage.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:43.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Pet.h",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.h",
+              "RelativeDocumentMoniker": "Exercise_10\\Pet.h",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.h",
+              "RelativeToolTip": "Exercise_10\\Pet.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T06:27:42.267Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 215,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercise_A.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Exercise_A.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Exercise_A.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Exercise_A.cpp",
+              "RelativeToolTip": "Exercise_10\\Exercise_A.cpp",
+              "ViewState": "AQIAABIAAAAAAAAAAADwvxkAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:08.347Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Player.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Player.cpp",
+              "RelativeToolTip": "Exercise_10\\Player.cpp",
+              "ViewState": "AQIAACEAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:26.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Pet.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Pet.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Pet.cpp",
+              "RelativeToolTip": "Exercise_10\\Pet.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:25.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Mage.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Mage.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Mage.cpp",
+              "RelativeToolTip": "Exercise_10\\Mage.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:24.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Knight.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Knight.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Knight.cpp",
+              "RelativeToolTip": "Exercise_10\\Knight.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:23.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Arrow.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Arrow.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Arrow.cpp",
+              "RelativeToolTip": "Exercise_10\\Arrow.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAADwvxkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:21.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Archer.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.cpp",
+              "RelativeDocumentMoniker": "Exercise_10\\Archer.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\Exercise_\\Exercise_10\\Archer.cpp",
+              "RelativeToolTip": "Exercise_10\\Archer.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T06:27:21.052Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
