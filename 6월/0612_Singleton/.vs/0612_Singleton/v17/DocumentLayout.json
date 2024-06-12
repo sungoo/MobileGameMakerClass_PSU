@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8BF06B69-008D-4C51-9E4D-22811614EF13}|0612_Singleton.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Singleton.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8BF06B69-008D-4C51-9E4D-22811614EF13}|0612_Singleton.vcxproj|solutionrelative:Singleton.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BF06B69-008D-4C51-9E4D-22811614EF13}|0612_Singleton.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Static.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8BF06B69-008D-4C51-9E4D-22811614EF13}|0612_Singleton.vcxproj|solutionrelative:Static.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 159,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Singleton.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Singleton.cpp",
+              "RelativeDocumentMoniker": "Singleton.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Singleton.cpp",
+              "RelativeToolTip": "Singleton.cpp",
+              "ViewState": "AQIAACkAAAAAAAAAAAAmwDwAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T01:19:57.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Static.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Static.cpp",
+              "RelativeDocumentMoniker": "Static.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0612_Singleton\\Static.cpp",
+              "RelativeToolTip": "Static.cpp",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAD8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T00:06:01.061Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
