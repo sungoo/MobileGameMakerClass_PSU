@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Mage.h"
 
-Mage::Mage(string name, int hp, int mp, int atk):
-	Player(name, hp, atk),
+Mage::Mage(string name, string major, int hp, int mp, int atk):
+	Player(name, major, hp, atk),
 	mp(mp)
 {
 }
@@ -22,4 +22,15 @@ void Mage::Attack(Creature* other)
 
 	mp -= 5;
 	other->Damaged(atk);
+}
+
+void Mage::printInfo()
+{
+	cout << "--------------상태---------------" << endl;
+	cout << "이름 : " << name << endl;
+	cout << "클래스 : " << major << endl;
+	cout << "체력 : " << cur_hp << endl;
+	cout << "공격력 : " << atk << endl;
+	cout << "마력 : " << mp << endl;
+	cout << "---------------------------------" << endl;
 }

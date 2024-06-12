@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Monster.h"
 
-Monster::Monster(string name, int hp, int afk):
-	Creature(name, hp, afk)
+Monster::Monster(string name, string major, int hp, int afk):
+	Creature(name, major, hp, afk)
 {
 }
 

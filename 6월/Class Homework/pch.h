@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//폴더화 시켰을 때ㅑ
+//폴더화 시켰을 때
 //프로젝트 속성 -> VC++디렉토리 -> 포함디렉토리 편집 -> $(ProjectDir) 추가
 #include "Contents/Creature/Creature.h"
 #include "Contents/Creature/Player.h"

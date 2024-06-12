@@ -4,7 +4,7 @@ class Monster :
     public Creature
 {
 public:
-    Monster(string name, int hp, int afk);
+    Monster(string name, string major, int hp, int afk);
     virtual ~Monster();
 
     // Creature을(를) 통해 상속됨

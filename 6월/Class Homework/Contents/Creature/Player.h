@@ -5,7 +5,7 @@ protected:
 	int exp;
 
 public:
-	Player(string name, int hp, int afk);
+	Player(string name, string major, int hp, int afk);
 	virtual ~Player();
 
 };

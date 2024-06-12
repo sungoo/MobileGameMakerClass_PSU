@@ -1,8 +1,13 @@
 #pragma once
+#define CREATURE_NUM 10
+
 class World
 {
 	Creature* player;
 	Creature* computer;
+	//나중엔 몬스터 묶음만 따로 만들고 처리하는 클래스를 만드는게 좋을듯..
+	Creature* goblins[CREATURE_NUM];
+	int MonsterLeft;
 
 public:
 	enum PlayerType {
@@ -10,6 +15,7 @@ public:
 		KNIGHT,
 		ARCHER,
 		MAGE,
+		GOBLINE,
 	};
 
 	World();
@@ -27,7 +33,13 @@ private:
 public:
 	bool End();
 
+	void PrintPlayerInfo();
+	void PrintCpuInfo();
+	void PrintMonsterInfo(int it);
+
 	void Battle1();
 	void Battle2();//과제
+
+	void MonsterLeftUpdate();
 };
 

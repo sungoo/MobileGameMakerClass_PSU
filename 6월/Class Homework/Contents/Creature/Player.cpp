@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Player.h"
 
-Player::Player(string name, int hp, int afk):
-	Creature(name, hp, afk),
+Player::Player(string name, string major, int hp, int afk):
+	Creature(name, major, hp, afk),
 	exp(0)
 {
 }

@@ -39,6 +39,10 @@ int main()
 
     World* world = new World();
 
+    world->PrintPlayerInfo();
+    world->PrintCpuInfo();
+    cout << endl;
+
     while (true) {
 
         if (world->End())
