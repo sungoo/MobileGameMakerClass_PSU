@@ -31,7 +31,8 @@ private:
 	void SelectPlayer(string name, int num, Creature** creature);
 	void Input();
 public:
-	bool End();
+	int End();
+	void Run(int choose);
 
 	void PrintPlayerInfo();
 	void PrintCpuInfo();
@@ -41,5 +42,6 @@ public:
 	void Battle2();//°úÁ¦
 
 	void MonsterLeftUpdate();
+	bool GoblinsClear();
 };
 

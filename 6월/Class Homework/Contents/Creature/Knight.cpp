@@ -39,3 +39,9 @@ void Knight::printInfo()
 	if (furi) cout << "±¤Àü»ç ¸ðµå!" << endl;
 	cout << "---------------------------------" << endl;
 }
+
+void Knight::Revival()
+{
+	cur_hp = MaxHP;
+	furi = false;
+}

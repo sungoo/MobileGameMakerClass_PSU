@@ -62,6 +62,8 @@ void World::Input()
 	int goblinNum = 4;
 	string name;
 
+	cin.clear();
+
 	if (player == nullptr) {
 		cout << "이름 입력 : ";
 		cin >> name;
@@ -77,17 +79,19 @@ void World::Input()
 	switch (choose)
 	{
 	case 1:
-		if (computer == nullptr) {
-			comNum = rand() % 3 + 1;
-			SelectPlayer("computer", comNum, &computer);
+		if (computer != nullptr) {
+			delete computer;
+			computer = nullptr;
 		}
-//		Battle1();
+		comNum = rand() % 3 + 1;
+		SelectPlayer("computer", comNum, &computer);
+		Run(1);
 		break;
 	case 2:
 		for (int i = 0; i < CREATURE_NUM; i++) {
 			SelectPlayer("Gobline", goblinNum, &goblins[i]);
 		}
-//		Battle2();
+		Run(2);
 		break;
 	default:
 		cout << "입력이 잘못되었습니다." << endl;
@@ -95,12 +99,39 @@ void World::Input()
 	}
 }
 
-bool World::End()
+int World::End()
 {
-	if (player->IsDead() || computer->IsDead())
-		return true;
-	else
-		return false;
+	if (player->IsDead()) 
+		return 1;
+	if (computer->IsDead())
+		return 2;
+	if (GoblinsClear())
+		return 3;
+	return 0;
+}
+
+void World::Run(int choose)
+{
+	while (true)
+	{
+		if (End() != 0)
+			break;
+		//choose에 따라 Battle While 돌리기
+		switch (choose)
+		{
+		case 1://vs CPU
+			Battle1();
+			break;
+		case 2://vs Goblins
+			Battle2();
+			break;
+		}
+	}
+	if (End() == 2)
+		return;
+	player->Revival();
+	computer->Revival();
+	Input();
 }
 
 void World::PrintPlayerInfo()
@@ -144,4 +175,11 @@ void World::MonsterLeftUpdate()
 	}
 
 	MonsterLeft = left;
+}
+
+bool World::GoblinsClear()
+{
+	if (MonsterLeft == 0)
+		return true;
+	return false;
 }

@@ -20,6 +20,7 @@ public://맴버함수 // 기능
 	void PreAttack(Creature* other);
 
 	bool IsDead() { return cur_hp <= 0; }
+	virtual void Revival();
 
 	string getName();
 	string getMajor();

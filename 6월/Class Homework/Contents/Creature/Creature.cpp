@@ -42,6 +42,11 @@ void Creature::PreAttack(Creature* other)
 	cout << name << "이 " << other->name << "에게 공격을 시도합니다." << endl;
 }
 
+void Creature::Revival()
+{
+	cur_hp = MaxHP;
+}
+
 string Creature::getName()
 {
 	return name;
