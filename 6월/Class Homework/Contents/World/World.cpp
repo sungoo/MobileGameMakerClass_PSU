@@ -58,19 +58,40 @@ void World::Input()
 {
 	int pNum = 0;
 	int comNum = 0;
+	int choose = 0;
 	int goblinNum = 4;
 	string name;
 
-	cout << "이름 입력 : ";
-	cin >> name;
-	cout << "1~3 까지의 클래스 입력\n1 . Knight\t2 . Archer\t3 . Mage : ";
-	cin >> pNum;
-	comNum = rand() % 3 + 1;
+	if (player == nullptr) {
+		cout << "이름 입력 : ";
+		cin >> name;
+		cout << "1~3 까지의 클래스 입력\n1 . Knight\t2 . Archer\t3 . Mage : ";
+		cin >> pNum;
 
-	SelectPlayer(name, pNum, &player);
-	SelectPlayer("computer", comNum, &computer);
-	for (int i = 0; i < CREATURE_NUM; i++) {
-		SelectPlayer("Gobline", goblinNum, &goblins[i]);
+		SelectPlayer(name, pNum, &player);
+	}
+	
+	cout << "전투 선택 : 1 . vs 컴퓨터\t2 . vs 고블린 : ";
+	cin >> choose;
+
+	switch (choose)
+	{
+	case 1:
+		if (computer == nullptr) {
+			comNum = rand() % 3 + 1;
+			SelectPlayer("computer", comNum, &computer);
+		}
+//		Battle1();
+		break;
+	case 2:
+		for (int i = 0; i < CREATURE_NUM; i++) {
+			SelectPlayer("Gobline", goblinNum, &goblins[i]);
+		}
+//		Battle2();
+		break;
+	default:
+		cout << "입력이 잘못되었습니다." << endl;
+		break;
 	}
 }
 
