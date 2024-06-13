@@ -85,6 +85,11 @@ void World::Input()
 		}
 		comNum = rand() % 3 + 1;
 		SelectPlayer("computer", comNum, &computer);
+
+		player->printInfo();
+		computer->printInfo();
+		cout << "Get Ready for the Fight!" << endl << endl;
+
 		Run(1);
 		break;
 	case 2:
