@@ -4,7 +4,7 @@
 World::World():
 	player(nullptr),
 	computer(nullptr),
-	goblins(),
+	goblins(nullptr),
 	MonsterLeft(CREATURE_NUM)
 {
 	Input();
@@ -18,9 +18,7 @@ World::~World()
 	if (computer != nullptr)
 		delete computer;
 	if (goblins != nullptr) {
-		for (int i = 0; i < CREATURE_NUM; i++) {
-			delete goblins[i];
-		}
+		delete goblins;
 	}
 }
 
@@ -94,7 +92,7 @@ void World::Input()
 		break;
 	case 2:
 		for (int i = 0; i < CREATURE_NUM; i++) {
-			SelectPlayer("Gobline", goblinNum, &goblins[i]);
+			SelectPlayer("Gobline", goblinNum, &goblins);
 		}
 		Run(2);
 		break;
@@ -106,12 +104,17 @@ void World::Input()
 
 int World::End()
 {
+	if (player == nullptr || computer == nullptr || goblins == nullptr)
+		return -1;
 	if (player->IsDead()) 
 		return 1;
 	if (computer->IsDead())
 		return 2;
-	if (GoblinsClear())
+	if (goblins->IsDead()) {
+		
 		return 3;
+	}
+		
 	return 0;
 }
 
@@ -135,7 +138,10 @@ void World::Run(int choose)
 	if (End() == 2)
 		return;
 	player->Revival();
-	computer->Revival();
+	if (computer != nullptr)
+		computer->Revival();
+	if (goblins != nullptr)
+		goblins->Revival();
 	Input();
 }
 
@@ -149,14 +155,17 @@ void World::PrintCpuInfo()
 	computer->printInfo();
 }
 
+
+
 void World::PrintMonsterInfo(int it)
 {
-	cout << "--------------상대---------------" << endl;
+	/*cout << "--------------상대---------------" << endl;
 	cout << "이름 : " << goblins[it]->getName() << endl;
 	cout << "마리당 체력 : " << goblins[it]->getC_hp() << endl;
 	cout << "마리당 공격력 : " << goblins[it]->getAtk() << endl;
 	cout << "남은 수 : " << MonsterLeft << endl;
-	cout << "---------------------------------" << endl;
+	cout << "---------------------------------" << endl;*/
+	goblins->printInfo();
 }
 
 void World::Battle1()
@@ -169,17 +178,21 @@ void World::Battle1()
 
 void World::Battle2()
 {
+	player->Attack(goblins);
+	if (goblins->IsDead())
+		return;
+	goblins->Attack(player);
 }
 
 void World::MonsterLeftUpdate()
 {
-	int left = 0;
+	/*int left = 0;
 	for (auto g : goblins) {
 		if (!g->IsDead())
 			left++;
 	}
 
-	MonsterLeft = left;
+	MonsterLeft = left;*/
 }
 
 bool World::GoblinsClear()

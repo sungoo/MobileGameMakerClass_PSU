@@ -2,9 +2,11 @@
 #include "Creature.h"
 
 Creature::Creature(string name, string major, int Max_hp, int afk) :
-	name(name), major(major), MaxHP(Max_hp), atk(afk)
+	name(name), major(major), BaseHP(Max_hp), BaseATK(afk)
 {
+	MaxHP = BaseHP;
 	cur_hp = Max_hp;
+	atk = BaseATK;
 }
 
 Creature::~Creature()

@@ -4,8 +4,10 @@ class Creature
 protected://맴버변수 // 속성
 	string name;
 	string major;
+	int BaseHP;//레벨 1의 기본값
 	int MaxHP;
 	int cur_hp;
+	int BaseATK;//레벨 1의 기본값
 	int atk;
 
 public://맴버함수 // 기능

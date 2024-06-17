@@ -32,13 +32,10 @@ public:
 		for (int i = 0; i < _size; i++) {
 			newVector[i] = _data[i];
 		}
-		//기존 벡터의 포인터와 새 벡터의 포인터 서로 교환.
-		T* temp = _data;
+		//기존 벡터 지우기
+		delete[] _data;
+		//새 벡터를 가리키게 설정
 		_data = newVector;
-		newVector = temp;
-		//기존 벡터 정보 (현재는 newVector에 담김) delete
-		delete[] newVector;
-		
 		
 		_capacity = capacity;
 	}
@@ -53,6 +50,8 @@ public:
 		_size++;
 	}
 	void PopBack() {
+		if (_size == 0)
+			return;
 		_data[_size - 1] = NULL;
 		_size--;
 	}
@@ -67,6 +66,8 @@ public:
 	const int& Capacity() { return _capacity; }
 
 	T operator[](int index) {
+		if (index <0 || index >= _size)
+			return NULL;
 		return _data[index];
 	}
 };

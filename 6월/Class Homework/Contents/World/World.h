@@ -6,7 +6,7 @@ class World
 	Creature* player;
 	Creature* computer;
 	//나중엔 몬스터 묶음만 따로 만들고 처리하는 클래스를 만드는게 좋을듯..
-	Creature* goblins[CREATURE_NUM];
+	Creature* goblins;
 	int MonsterLeft;
 
 public:
