@@ -111,7 +111,7 @@ int World::End()
 	if (computer->IsDead())
 		return 2;
 	if (goblins->IsDead()) {
-		
+		//dynamic_cast<Player*>(player)->GainExp(dynamic_cast<Monster*>(goblins)->GetEXP());
 		return 3;
 	}
 		
