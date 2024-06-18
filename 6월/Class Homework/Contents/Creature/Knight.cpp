@@ -22,10 +22,10 @@ void Knight::Attack(Creature* other)
 
 	if (furi) {
 		//현재 체력 50% 미만
-		other->Damaged(atk * 2);
+		other->Damaged(atk * 2, this);
 	}
 	else {
-		other->Damaged(atk);
+		other->Damaged(atk, this);
 	}
 }
 

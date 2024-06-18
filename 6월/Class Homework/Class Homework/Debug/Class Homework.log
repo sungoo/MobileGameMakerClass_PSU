@@ -1,2 +1,3 @@
 ﻿  World.cpp
-  Class Homework.vcxproj -> D:\C++\MobileGameMakerClass\6월\Class Homework\Debug\Class Homework.exe
+E:\박성우\6월\Class Homework\Contents\World\World.cpp(24,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Class Homework.vcxproj -> E:\박성우\6월\Class Homework\Debug\Class Homework.exe

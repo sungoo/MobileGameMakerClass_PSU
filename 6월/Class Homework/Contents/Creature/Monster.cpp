@@ -7,17 +7,12 @@ Monster::Monster(string name, string major, int hp, int afk):
 }
 
 Monster::Monster(string name, string major, int hp, int atk, int exp):
-	Creature(name, major, hp, atk), _exp(exp)
+	Creature(name, major, hp, atk)
 {
 }
 
 Monster::~Monster()
 {
-}
-
-int Monster::GetEXP()
-{
-	return _exp;
 }
 
 void Monster::Attack(Creature* other)

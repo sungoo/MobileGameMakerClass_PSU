@@ -18,10 +18,10 @@ void Archer::Attack(Creature* other)
 
 	if (ratio < critRate) {
 		cout << "크리티컬! ";
-		other->Damaged(atk * 3);
+		other->Damaged(atk * 3, this);
 	}
 	else {
-		other->Damaged(atk);
+		other->Damaged(atk, this);
 	}
 }
 

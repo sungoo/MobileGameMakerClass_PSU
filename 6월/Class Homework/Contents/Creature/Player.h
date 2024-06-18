@@ -14,5 +14,7 @@ public:
 	void LevelUp();
 	void UpdateStatue();
 	virtual void Revival();//부활시키기
+
+	void MultiAttack(vector<Creature*> arr, int size);
 };
 

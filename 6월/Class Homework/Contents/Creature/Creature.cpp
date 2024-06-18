@@ -2,7 +2,7 @@
 #include "Creature.h"
 
 Creature::Creature(string name, string major, int Max_hp, int afk) :
-	name(name), major(major), BaseHP(Max_hp), BaseATK(afk)
+	name(name), major(major), BaseHP(Max_hp), BaseATK(afk), isActive(true)
 {
 	MaxHP = BaseHP;
 	cur_hp = Max_hp;
@@ -11,6 +11,11 @@ Creature::Creature(string name, string major, int Max_hp, int afk) :
 
 Creature::~Creature()
 {
+}
+
+void Creature::Init()
+{
+	cur_hp = MaxHP;
 }
 
 void Creature::printInfo()
@@ -23,9 +28,17 @@ void Creature::printInfo()
 	cout << "---------------------------------" << endl;
 }
 
-void Creature::Damaged(int amount)
+void Creature::Damaged(int amount, Creature* attacker = nullptr)
 {
 	cur_hp -= amount;
+
+	if (attacker != nullptr && dynamic_cast<Monster*>(this) != nullptr) {
+		Player* p = dynamic_cast<Player*>(attacker);
+		if (p != nullptr) {
+			p->GainExp(_giveExp);
+			p->LevelUp();
+		}
+	}
 
 	cout << name << "에게 " << amount << "데미지!!" << endl;
 
@@ -42,6 +55,11 @@ void Creature::Damaged(int amount)
 void Creature::PreAttack(Creature* other)
 {
 	cout << name << "이 " << other->name << "에게 공격을 시도합니다." << endl;
+}
+
+bool Creature::IsDead()
+{
+	return cur_hp <= 0;
 }
 
 void Creature::Revival()

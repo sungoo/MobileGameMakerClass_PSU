@@ -22,7 +22,7 @@ void Mage::Attack(Creature* other)
 	this->Creature::PreAttack(other);
 
 	cur_mp -= 5;
-	other->Damaged(atk);
+	other->Damaged(atk, this);
 }
 
 void Mage::printInfo()

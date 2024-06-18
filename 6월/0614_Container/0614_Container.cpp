@@ -20,12 +20,12 @@ int main()
     //정적배열
     int arr[5] = { 1,2,3,4,5 };
     vector<int> v;
-    Vector<double> myv;
+    Vector<int> myv;
     ////몇 개의 배열을 만들건지 미리 주문해두기
     myv.Reserve(10);
     //v.resize(1000);//0~999까지 기본값으로 초기화
     for (int i = 0; i < 50; i++) {
-        v.push_back(i);
+        myv.PushBack(i);
         cout << myv.Capacity() << endl;//벡터의 실제 크기
         cout << myv.Size() << endl;//현재 유효값이 들어간 벡터의 크기
         cout << "========================================" << endl;

@@ -19,6 +19,8 @@ Player::~Player()
 
 void Player::GainExp(int much)
 {
+	if (much <= 0)
+		return;
 	_currExp += much;
 }
 
@@ -51,4 +53,11 @@ void Player::UpdateStatue()
 void Player::Revival()
 {
 	cur_hp = MaxHP;
+}
+
+void Player::MultiAttack(vector<Creature*> arr, int size)
+{
+	for (int i = 0; i < size; i++) {
+		Attack(arr[i]);
+	}
 }
