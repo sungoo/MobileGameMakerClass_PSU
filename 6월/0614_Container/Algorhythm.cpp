@@ -25,7 +25,7 @@ int main() {
 	mVec.push_back(1);
 
 	mVec.push_back(21);
-	mVec.push_back(1);
+	mVec.push_back(4);
 	mVec.push_back(6);
 	mVec.push_back(8);
 	mVec.push_back(1);
@@ -115,20 +115,31 @@ int main() {
 
 	//8_ 중복 원소 제거하기
 	cout << "중복 원소 제거" << endl;
-	vector<int> newVec;
+	
+	auto it = std::unique(mVec.begin(), mVec.end());
 
-	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
-		if (std::find(newVec.begin(), newVec.end(), *mit) != newVec.end()) {
-			newVec.push_back(*mit);
-		}
-	}
-	for (auto it = newVec.begin(); it != newVec.end(); it++) {
-		cout << *it << ' ';
+	mVec.resize(std::distance(mVec.begin(), it));
+
+	for (mit = mVec.begin(); mit != it; mit++) {
+		cout << *mit << ' ';
 	}
 	cout << endl;
 	//9_ 원소가 12인 것 지우기
+	cout << "remove 12" << endl;
+	it = std::remove(mVec.begin(), mVec.end(), 12);
+	for (mit = mVec.begin(); mit != it; mit++) {
+		cout << *mit << ' ';
+	}
+	cout << endl;
 
 	//10_ 원소가 10보다 작은거 지우기
+	finder_2.compareNum = 10;
+	cout << "remove x < 10" << endl;
+	it = std::remove_if(mVec.begin(), mVec.end(), finder_2);
+	for (mit = mVec.begin(); mit != it; mit++) {
+		cout << *mit << ' ';
+	}
+	cout << endl;
 
 	return 0;
 }
