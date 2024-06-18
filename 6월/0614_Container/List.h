@@ -1,32 +1,66 @@
 #pragma once
 
+template <typename T>
 struct Node {
-	Node* next = nullptr;
-	int data;
-	Node* prev = nullptr;
+	Node<T>* next = nullptr;
+	T data = NULL;
+	Node<T>* prev = nullptr;
 
 	Node(){}
-	Node(int data) { this->data = data; }
+	Node(const T& data) { this->data = data; }
 };
 
+template <typename T>
 class List
 {
 	int _size;
-	Node* _head;
+	Node<T>* _head;
 
 public:
 	List() :
 		_size(0)
 	{
-		_head = new Node();
+		_head = new Node<T>();
 		_head->next = _head;
 		_head->prev = _head;
 	}
 
-	void PushBack(int val) {
-		Node* newNode = new Node(val);
-		Node* next = _head;
-		Node* prev = _head->prev;
+	class Iterator {
+		Node<T>* nodePtr;
+	public:
+		Iterator() : nodePtr(nullptr) {}
+		Iterator(Node<T>* otherPtr) : nodePtr(otherPtr) {}
+		//Iterator 만들기에 필요한 것들
+		//복사대입생성자
+		Iterator(const Iterator& other) { nodePtr = other.nodePtr; }
+		//복사대입연산자
+		Iterator& operator=(const Iterator& other) { nodePtr = other.nodePtr; return *this; }
+		//!= 비교연산자
+		bool operator !=(const Iterator& other) { return nodePtr != other.nodePtr; }
+		bool operator ==(const Iterator& other) { return nodePtr == other.nodePtr; }
+		//++ 증감연산자
+		Iterator& operator++() {
+			nodePtr = nodePtr->next;
+
+			return *this;
+		}
+		Iterator operator++(int) {
+			Iterator result = *this;
+
+			nodePtr = nodePtr->next;
+
+			return result;
+		}
+		//* 간접연산자
+		T& operator*() {
+			return (*nodePtr).data;
+		}
+	};
+
+	void PushBack(const T& val) {
+		Node<T>* newNode = new Node<T>(val);
+		Node<T>* next = _head;
+		Node<T>* prev = _head->prev;
 
 		newNode->next = next;
 		next->prev = newNode;
@@ -37,10 +71,10 @@ public:
 		_size++;
 	}
 
-	void PushFront(int val) {
-		Node* newNode = new Node(val);
-		Node* next = _head->next;
-		Node* prev = _head;
+	void PushFront(const T& val) {
+		Node<T>* newNode = new Node<T>(val);
+		Node<T>* next = _head->next;
+		Node<T>* prev = _head;
 
 		newNode->next = next;
 		next->prev = newNode;
@@ -51,8 +85,8 @@ public:
 		_size++;
 	}
 
-	Node* FindNode(int index) {
-		Node* finding = _head->next;
+	Node<T>* FindNode(int index) {
+		Node<T>* finding = _head->next;
 
 		for (int i = 0; i < index; i++) {
 			if (finding->next == _head) break;
@@ -62,14 +96,14 @@ public:
 		return finding;
 	}
 
-	int operator[](int index) {
+	const T& operator[](unsigned int index) {
 		return FindNode(index)->data;
 	}
 
-	void Insert(int value, Node* prev) {
-		Node* newNode = new Node(value);
+	void Insert(const T& value, Node<T>* prev) {
+		Node<T>* newNode = new Node<T>(value);
 
-		Node* next = prev->next;
+		Node<T>* next = prev->next;
 
 		newNode->next = next;
 		next->prev = newNode;
@@ -83,9 +117,9 @@ public:
 	void PopBack() {
 		if (_size == 0) return;
 
-		Node* taget = _head->prev;
+		Node<T>* taget = _head->prev;
 
-		Node* prev = taget->prev;
+		Node<T>* prev = taget->prev;
 		
 		prev->next = _head;
 		_head->prev = prev;
@@ -97,9 +131,9 @@ public:
 	void PopFront() {
 		if (_size == 0) return;
 
-		Node* taget = _head->next;
+		Node<T>* taget = _head->next;
 
-		Node* next = taget->next;
+		Node<T>* next = taget->next;
 
 		next->prev = _head;
 		_head->next = next;
@@ -116,5 +150,8 @@ public:
 	}
 
 	int Size() { return _size; }
+
+	List<T>::Iterator begin() { return List<T>::Iterator(_head->next); }
+	List<T>::Iterator end() { return List<T>::Iterator(_head); }
 };
 

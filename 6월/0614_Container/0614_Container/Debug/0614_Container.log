@@ -1,2 +1,3 @@
-﻿  0614_Container.cpp
-  0614_Container.vcxproj -> D:\C++\MobileGameMakerClass\6월\0614_Container\Debug\0614_Container.exe
+﻿  Algorhythm.cpp
+E:\박성우\6월\0614_Container\Algorhythm.cpp(35,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  0614_Container.vcxproj -> E:\박성우\6월\0614_Container\Debug\0614_Container.exe
