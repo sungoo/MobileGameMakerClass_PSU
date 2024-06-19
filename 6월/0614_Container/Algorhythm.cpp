@@ -30,8 +30,8 @@ int main() {
 	vector<int> mVec;
 
 	mVec.push_back(3);
-	mVec.push_back(5);
-	mVec.push_back(7);
+	mVec.push_back(1);
+	mVec.push_back(1);
 	mVec.push_back(9);
 	mVec.push_back(11);
 
@@ -116,25 +116,26 @@ int main() {
 	cout << "5 이상 원소의 개수 : " << cnt << endl;
 
 	//7_ 모든 원소에 3 곱하기
-	/*cout << "모든 원소 3 곱하기" << endl;
+	cout << "모든 원소 3 곱하기" << endl;
 	for_each(mVec.begin(), mVec.end(), X3);
 	
 	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
 		cout << *mit << ' ';
 	}
-	cout << endl;*/
+	cout << endl;
 
 	//8_ 중복 원소 제거하기
 	cout << "중복 원소 제거" << endl;
 	
+	//unique는 정렬하고 써야함
+	std::sort(mVec.begin(), mVec.end());
 	auto it = std::unique(mVec.begin(), mVec.end());
-
-	mVec.resize(std::distance(mVec.begin(), it));
 
 	for (mit = mVec.begin(); mit != it; mit++) {
 		cout << *mit << ' ';
 	}
 	cout << endl;
+
 	//9_ 원소가 12인 것 지우기
 	cout << "remove 12" << endl;
 	it = std::remove(mVec.begin(), mVec.end(), 12);
@@ -144,13 +145,13 @@ int main() {
 	cout << endl;
 
 	//10_ 원소가 10보다 작은거 지우기
-	/*finder_2.compareNum = 10;
+	finder_2.compareNum = 10;
 	cout << "remove x < 10" << endl;
 	it = std::remove_if(mVec.begin(), mVec.end(), finder_2);
 	for (mit = mVec.begin(); mit != it; mit++) {
 		cout << *mit << ' ';
 	}
-	cout << endl;*/
+	cout << endl;
 
 	//알고리즘을 쓰지 말고 이터레이터로 11지우기
 
