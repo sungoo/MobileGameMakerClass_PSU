@@ -14,6 +14,17 @@ void X3(int& val) {
 	val *= 3;
 }
 
+struct Item {
+	int price = 0;
+	int atk = 0;
+	int tier = 0;
+
+	//비교를 위한 비교연산자 오버로딩 : 객체지향적으로는 별로임..
+	/*bool operator<(Item a){
+		return this->tier < a.tier;
+	}*/
+};
+
 int main() {
 
 	vector<int> mVec;
@@ -22,14 +33,14 @@ int main() {
 	mVec.push_back(5);
 	mVec.push_back(7);
 	mVec.push_back(9);
-	mVec.push_back(1);
+	mVec.push_back(11);
 
 	mVec.push_back(21);
 	mVec.push_back(4);
 	mVec.push_back(6);
 	mVec.push_back(8);
 	mVec.push_back(1);
-
+#pragma region Algorithm
 	//1_ 1이 있는지 찾기. 그리고 index 혹은 iterator자리 반환
 	int index = 0;
 	for (index; index < mVec.size(); index++) {
@@ -105,13 +116,13 @@ int main() {
 	cout << "5 이상 원소의 개수 : " << cnt << endl;
 
 	//7_ 모든 원소에 3 곱하기
-	cout << "모든 원소 3 곱하기" << endl;
+	/*cout << "모든 원소 3 곱하기" << endl;
 	for_each(mVec.begin(), mVec.end(), X3);
 	
 	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
 		cout << *mit << ' ';
 	}
-	cout << endl;
+	cout << endl;*/
 
 	//8_ 중복 원소 제거하기
 	cout << "중복 원소 제거" << endl;
@@ -133,13 +144,46 @@ int main() {
 	cout << endl;
 
 	//10_ 원소가 10보다 작은거 지우기
-	finder_2.compareNum = 10;
+	/*finder_2.compareNum = 10;
 	cout << "remove x < 10" << endl;
 	it = std::remove_if(mVec.begin(), mVec.end(), finder_2);
 	for (mit = mVec.begin(); mit != it; mit++) {
 		cout << *mit << ' ';
 	}
+	cout << endl;*/
+
+	//알고리즘을 쓰지 말고 이터레이터로 11지우기
+
+	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
+		if (*mit == 11) {
+			mit = mVec.erase(mit) - 1;//11을 지우고 그 자리에 복사된 21을 가리키게 됨 => -1해서 21을 다시한번 체크하고 넘어가게 하기
+			continue;
+		}
+	}
+	
+	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
+		cout << *mit << ' ';
+	}
 	cout << endl;
+#pragma endregion
+	//////////////////////////////////////////////////////////////////
+	//Sort
+	vector<Item> items;
+	items.resize(mVec.size());
+
+	for (int i = 0; i < items.size(); i++) {
+		items[i].tier = 21 - mVec[i];
+		items[i].atk = mVec[i] * 3;
+		items[i].price = mVec[i] * 100;
+	}
+	//items 를 내림차순으로 tier 정렬
+	struct Srt {
+		bool operator()(const Item& a, const Item& b) {
+			return a.tier < b.tier;
+		}
+	};
+	Srt st;
+	std::sort(items.begin(), items.end(), st);
 
 	return 0;
 }
