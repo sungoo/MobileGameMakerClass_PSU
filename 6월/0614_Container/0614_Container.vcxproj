@@ -130,7 +130,10 @@
     <ClCompile Include="0614_Container.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Algorhythm.cpp" />
+    <ClCompile Include="Algorhythm.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mapAndUMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h">
