@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\SmartPointer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|solutionrelative:SmartPointer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\Shift.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|solutionrelative:Shift.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\lambda.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|solutionrelative:lambda.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\0619_ModernCpp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1BFE1389-A9C1-473D-B40D-134DA1521F55}|0619_ModernCpp.vcxproj|solutionrelative:0619_ModernCpp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -19,12 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SmartPointer.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\SmartPointer.cpp",
+              "RelativeDocumentMoniker": "SmartPointer.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\SmartPointer.cpp",
+              "RelativeToolTip": "SmartPointer.cpp",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAYwHAAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T01:45:44.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Shift.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\Shift.cpp",
+              "RelativeDocumentMoniker": "Shift.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\Shift.cpp",
+              "RelativeToolTip": "Shift.cpp",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAowGcAAACOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T00:52:34.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "lambda.cpp",
+              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\lambda.cpp",
+              "RelativeDocumentMoniker": "lambda.cpp",
+              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\lambda.cpp",
+              "RelativeToolTip": "lambda.cpp",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAADcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T00:15:27.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "0619_ModernCpp.cpp",
               "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\0619_ModernCpp.cpp",
               "RelativeDocumentMoniker": "0619_ModernCpp.cpp",
               "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0619_ModernCpp\\0619_ModernCpp.cpp",
               "RelativeToolTip": "0619_ModernCpp.cpp",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAxAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAABkAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-19T01:38:18.521Z",
               "EditorCaption": ""
