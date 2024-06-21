@@ -71,10 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,6 +147,8 @@
     <ClCompile Include="Contents\Creature\Knight.cpp" />
     <ClCompile Include="Contents\Creature\Monster.cpp" />
     <ClCompile Include="Contents\Creature\Mage.cpp" />
+    <ClCompile Include="Contents\Creature\Goblin.cpp" />
+    <ClCompile Include="Contents\Creature\HopGoblin.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
@@ -154,6 +162,8 @@
     <ClInclude Include="Contents\Creature\Knight.h" />
     <ClInclude Include="Contents\Creature\Monster.h" />
     <ClInclude Include="Contents\Creature\Mage.h" />
+    <ClInclude Include="Contents\Creature\Goblin.h" />
+    <ClInclude Include="Contents\Creature\HopGoblin.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Contents\Creature\Player.h" />
     <ClInclude Include="Contents\World\World.h" />

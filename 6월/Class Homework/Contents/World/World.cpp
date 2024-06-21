@@ -4,16 +4,22 @@
 World::World():
 	player(nullptr),
 	computer(nullptr),
-	goblin(nullptr),
 	MonsterLeft(CREATURE_NUM)
 {
-	int select = Input();
+	//make cpu object
+	ResetCPU();
 
+	//make goblins object
 	goblins.reserve(CREATURE_NUM);
-	for (int i = 0; i < goblins.size(); i++) {
-		Monster* monster = new Monster("Gobline", "Gobline", 50, 10);
+	for (int i = 0; i < CREATURE_NUM; i++) {
+		Monster* monster = new Goblin("Gobline", "Gobline", 50, 10, 10);
+		goblins.push_back(monster);
 	}
 
+	//make player object
+	int select = Input();
+
+	//rivival all
 	Init();
 
 	Run(select);
@@ -25,9 +31,6 @@ World::~World()
 		delete player;
 	if (computer != nullptr)
 		delete computer;
-	if (goblin != nullptr) {
-		delete goblin;
-	}
 	//vector가 먼저 초기화되어버리면, 그 안에 고블린 포인터들을 해제할 수 없으므로,
 	//vector 소멸 이전에 미리 내용물 해제시키기
 	for (int i = 0; i < goblins.size(); i++) {
@@ -37,15 +40,28 @@ World::~World()
 
 void World::Init()
 {//플레이어, 컴퓨터, 고블린 초기화
-	player->Revival();
-	computer->Revival();
+	if(player != nullptr)
+		player->Revival();
+	if(computer != nullptr)
+		computer->Revival();
+
 	for (int i = 0; i < CREATURE_NUM; i++) {
-		goblins[i]->Revival();
+		if(goblins[i] != nullptr)
+			goblins[i]->Revival();
 	}
+	MonsterLeftUpdate();
 }
 
 void World::ResetCPU()
 {
+	int comNum = 0;
+
+	if (computer != nullptr) {
+		delete computer;
+		computer = nullptr;
+	}
+	comNum = rand() % 3 + 1;
+	SelectPlayer("computer", comNum, &computer);
 }
 
 void World::SelectPlayer(string name, int num, Creature** creature)
@@ -54,7 +70,7 @@ void World::SelectPlayer(string name, int num, Creature** creature)
 	switch (pClass)
 	{
 	case World::NONE:
-		cout << "입력이 잘못되었습니다. 다시 입력해주세요." << endl;
+		cout << "개체 생성에 오류가 발생했습니다." << endl;
 		break;
 	case World::KNIGHT:
 		*creature = new Knight(name, "Knight", 250, 40);
@@ -65,11 +81,8 @@ void World::SelectPlayer(string name, int num, Creature** creature)
 	case World::MAGE:
 		*creature = new Mage(name, "Mage", 200, 20, 50);
 		break;
-	case World::GOBLINE:
-		*creature = new Monster(name, "Gobline", 50, 10);
-		break;
 	default:
-		cout << "입력이 잘못되었습니다. 다시 입력해주세요." << endl;
+		cout << "개체 생성에 오류가 발생했습니다." << endl;
 		break;
 	}
 }
@@ -77,9 +90,7 @@ void World::SelectPlayer(string name, int num, Creature** creature)
 int World::Input()
 {
 	int pNum = 0;
-	int comNum = 0;
 	int choose = 0;
-	int goblinNum = 4;
 	string name;
 
 	cin.clear();
@@ -92,6 +103,8 @@ int World::Input()
 
 		SelectPlayer(name, pNum, &player);
 	}
+
+	ResetCPU();
 	
 	cout << "전투 선택 : 1 . vs 컴퓨터\t2 . vs 고블린 : ";
 	cin >> choose;
@@ -99,30 +112,15 @@ int World::Input()
 	switch (choose)
 	{
 	case 1:
-		if (computer != nullptr) {
-			delete computer;
-			computer = nullptr;
-		}
-		comNum = rand() % 3 + 1;
-		SelectPlayer("computer", comNum, &computer);
-
-		player->printInfo();
-		computer->printInfo();
-		cout << "Get Ready for the Fight!" << endl << endl;
-
-		return 1;
-		break;
 	case 2:
-		for (int i = 0; i < CREATURE_NUM; i++) {
-			SelectPlayer("Gobline", goblinNum, &goblin);
-		}
-		return 2;
 		break;
 	default:
 		cout << "입력이 잘못되었습니다." << endl;
+		return 0;
 		break;
 	}
-	return 0;
+	cout << "Get Ready for the Fight!" << endl << endl;
+	return choose;
 }
 
 int World::End()
@@ -131,10 +129,10 @@ int World::End()
 		return 1;
 	if (computer->IsDead())
 		return 2;
-	if (goblin->IsDead()) {
+	if (GoblinsClear()) {
 		return 3;
 	}
-	if (player == nullptr || computer == nullptr || goblin == nullptr)
+	if (player == nullptr || computer == nullptr)
 		return -1;
 		
 	return 0;
@@ -142,28 +140,38 @@ int World::End()
 
 void World::Run(int choose)
 {
-	while (true)
+	if (End() == -1)
+		return;
+	//choose에 따라 Battle While 돌리기
+	switch (choose)
 	{
-		if (End() != -1)
-			break;
-		//choose에 따라 Battle While 돌리기
-		switch (choose)
+	case 1://vs CPU
+			player->printInfo();
+			computer->printInfo();
+		while (!player->IsDead() && !computer->IsDead())
 		{
-		case 1://vs CPU
 			Battle1();
-			break;
-		case 2://vs Goblins
-			Battle2();
-			break;
-		default:
-			break;
 		}
-
+		break;
+	case 2://vs Goblins
+			player->printInfo();
+		while (!player->IsDead() && !GoblinsClear())
+		{
+			PrintMonsterInfo(MonsterLeft - 1);
+			Battle2();
+		}
+		break;
+	default:
+		break;
 	}
 	if (End() == 2)
 		return;
+
 	Init();
-	Input();
+
+	int newChoose = Input();
+
+	Run(newChoose);
 }
 
 void World::PrintPlayerInfo()
@@ -176,17 +184,16 @@ void World::PrintCpuInfo()
 	computer->printInfo();
 }
 
-
-
 void World::PrintMonsterInfo(int it)
 {
-	/*cout << "--------------상대---------------" << endl;
+	if (goblins[it] == nullptr)
+		return;
+	cout << "--------------상대---------------" << endl;
 	cout << "이름 : " << goblins[it]->getName() << endl;
 	cout << "마리당 체력 : " << goblins[it]->getC_hp() << endl;
 	cout << "마리당 공격력 : " << goblins[it]->getAtk() << endl;
 	cout << "남은 수 : " << MonsterLeft << endl;
-	cout << "---------------------------------" << endl;*/
-	goblin->printInfo();
+	cout << "---------------------------------" << endl;
 }
 
 void World::Battle1()
@@ -199,21 +206,26 @@ void World::Battle1()
 
 void World::Battle2()
 {
-	player->Attack(goblin);
-	if (goblin->IsDead())
-		return;
-	goblin->Attack(player);
+	int target = MonsterLeft - 1;
+	player->Attack(goblins[target]);
+	if (goblins[target]->IsDead()) {
+		target--;
+		MonsterLeftUpdate();
+		if (target < 0)
+			return;
+	}
+	goblins[target]->Attack(player);
 }
 
 void World::MonsterLeftUpdate()
 {
-	/*int left = 0;
+	int left = 10;
 	for (auto g : goblins) {
-		if (!g->IsDead())
-			left++;
+		if (g->IsDead())
+			left--;
 	}
 
-	MonsterLeft = left;*/
+	MonsterLeft = left;
 }
 
 bool World::GoblinsClear()

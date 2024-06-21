@@ -19,5 +19,5 @@ void Monster::Attack(Creature* other)
 {
 	this->Creature::PreAttack(other);
 
-	other->Damaged(atk);
+	other->Damaged(atk, this);
 }

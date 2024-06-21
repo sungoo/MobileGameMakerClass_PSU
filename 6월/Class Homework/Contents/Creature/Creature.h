@@ -1,4 +1,5 @@
 #pragma once
+
 class Creature
 {
 protected://맴버변수 // 속성
@@ -21,7 +22,7 @@ public://맴버함수 // 기능
 	virtual void printInfo();
 
 	virtual void Attack(Creature* other) abstract; //순수가상함수
-	virtual void Damaged(int amount, Creature* attacker = nullptr);
+	virtual void Damaged(int amount, Creature* attacker);
 
 	void PreAttack(Creature* other);
 

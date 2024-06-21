@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -14,5 +15,8 @@ using namespace std;
 #include "Contents/Creature/Knight.h"
 #include "Contents/Creature/Archer.h"
 #include "Contents/Creature/Mage.h"
+
+#include "Contents/Creature/Goblin.h"
+#include "Contents/Creature/HopGoblin.h"
 
 #include "Contents/World/World.h"

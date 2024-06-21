@@ -5,9 +5,6 @@ class World
 {
 	Creature* player;
 	Creature* computer;
-	//나중엔 몬스터 묶음만 따로 만들고 처리하는 클래스를 만드는게 좋을듯..
-	Creature* goblin;
-
 	vector<Creature*> goblins;
 	int MonsterLeft;
 
@@ -17,7 +14,6 @@ public:
 		KNIGHT,
 		ARCHER,
 		MAGE,
-		GOBLINE,
 	};
 
 	World();
@@ -38,7 +34,7 @@ public:
 	void PrintMonsterInfo(int it);
 
 	void Battle1();
-	void Battle2();//과제
+	void Battle2();
 
 	void MonsterLeftUpdate();
 
