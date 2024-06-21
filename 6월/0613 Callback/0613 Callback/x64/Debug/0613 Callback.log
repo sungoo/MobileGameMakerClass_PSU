@@ -1,5 +1,0 @@
-﻿  ItemPractice.cpp
-E:\박성우\6월\0613 Callback\ItemPractice.cpp(115,1): warning C4172: 지역 변수 또는 임시: finding의 주소를 반환하고 있습니다.
-E:\박성우\6월\0613 Callback\ItemPractice.cpp(73,1): warning C4172: 지역 변수 또는 임시: finding의 주소를 반환하고 있습니다.
-E:\박성우\6월\0613 Callback\ItemPractice.cpp(94,1): warning C4172: 지역 변수 또는 임시: finding의 주소를 반환하고 있습니다.
-  0613 Callback.vcxproj -> E:\박성우\6월\0613 Callback\x64\Debug\0613 Callback.exe
