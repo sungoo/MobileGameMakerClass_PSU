@@ -48,6 +48,9 @@
     <ClCompile Include="Contents\Creature\HopGoblin.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Contents\World\World_Raid.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Contents\Creature\Creature.h">
@@ -78,6 +81,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Creature\HopGoblin.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\World\World_Raid.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
