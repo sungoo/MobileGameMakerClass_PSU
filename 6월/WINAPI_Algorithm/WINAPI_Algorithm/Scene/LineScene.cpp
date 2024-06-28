@@ -17,6 +17,16 @@ void LineScene::Update()
 {
 	_line2->_end = mousePos;
 
+	Vector2 a = (_line2->_end, _line2->_start);
+	Vector2 b = (_line1->_end, _line1->_start);
+
+	Vector2 bNormal = b.NormalVector2();//b의 단위벡터
+
+	float line2Length = a.Dot(bNormal);//그림자의 길이
+
+	Vector2 line3Delta = bNormal * line2Length;
+	_line3->_end = _line3->_start + line3Delta;
+
 	_line1->Update();
 	_line2->Update();
 	_line3->Update();

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Circle.h"
+#include "CircleCollider.h"
 
 CircleCollider::CircleCollider(Vector2 center, float radius)
 : _center(center), _radius(radius)

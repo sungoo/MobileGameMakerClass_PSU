@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Rect.h"
+#include "RectCollider.h"
 
 #define GREEN_COLOR		0
 #define RED_COLOR		1

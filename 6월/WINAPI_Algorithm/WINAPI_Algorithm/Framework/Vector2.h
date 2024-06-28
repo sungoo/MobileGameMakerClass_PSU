@@ -25,6 +25,14 @@ public:
 		return result;
 	}
 
+	Vector2 operator-() {
+		Vector2 result;
+		result._x = _y;
+		result._y = _x;
+
+		return result;
+	}
+
 	Vector2 operator*(float value)
 	{
 		Vector2 result;
@@ -85,6 +93,8 @@ public:
 	void Normalize();
 
 	Vector2 NormalVector2();
+
+	bool IsBetween(Vector2 v1, Vector2 v2);
 
 	float _x;
 	float _y;
