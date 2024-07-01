@@ -6,6 +6,7 @@ Collider::Collider(Vector2 center)
 {
 	_pens.push_back(CreatePen(PS_SOLID, 3, GREEN));
 	_pens.push_back(CreatePen(PS_SOLID, 3, RED));
+	_pens.push_back(CreatePen(PS_SOLID, 3, BLUE));
 
 	SetColor(GREEN_COLOR);
 }

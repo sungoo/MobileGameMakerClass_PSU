@@ -15,9 +15,9 @@
 CannonScene::CannonScene()
 {
 	_cannon1 = make_shared<Cannon>();
-	_cannon2 = make_shared<Cannon>(Vector2(130, 550));
+	_cannon2 = make_shared<Cannon>(Vector2(130, WIN_HEIGHT*0.5f));
 
-	_cannon1->isControlled = true;
+	_cannon1->ItsTurn();
 
 	//attack2
 	/*for (auto bullet : _cannon1->GetBullets()) {
@@ -37,6 +37,24 @@ void CannonScene::Update()
 	//attack1
 	for (auto bullet : _cannon1->GetBullets()) {
 		bullet->Attack_Cannon(_cannon2);
+	}
+	for (auto bullet : _cannon2->GetBullets()) {
+		bullet->Attack_Cannon(_cannon1);
+	}
+
+	if (!_cannon1->Dead() && !_cannon2->Dead()) {
+		if (_cannon1->isControlled) {
+			if (_cannon1->turnOver) {
+				_cannon1->TurnEnd();
+				_cannon2->ItsTurn();
+			}
+		}
+		if (_cannon2->isControlled) {
+			if (_cannon2->turnOver) {
+				_cannon2->TurnEnd();
+				_cannon1->ItsTurn();
+			}
+		}
 	}
 }
 

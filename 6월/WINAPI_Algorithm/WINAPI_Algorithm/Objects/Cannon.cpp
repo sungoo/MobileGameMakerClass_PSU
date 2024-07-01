@@ -37,6 +37,15 @@ Cannon::~Cannon()
 
 void Cannon::Update()
 {
+	if (!isActive)
+		return;
+	if (!isControlled) {
+		_body->SetGreen();
+	}
+	else {
+		_body->SetBlue();
+	}
+	
 	if (isControlled) {
 		Move();
 		Fire();
@@ -50,6 +59,8 @@ void Cannon::Update()
 
 void Cannon::Render(HDC hdc)
 {
+	if (!isActive)
+		return;
 	_barrel->Render(hdc);
 	_body->Render(hdc);
 	for (int i = 0; i < _bulletNum; i++)
@@ -102,8 +113,39 @@ void Cannon::Fire()
 
 		if (iter != _bullets.end()) {
 			(*iter)->Fire(_barrel->GetBarrelEnd(), _barrel->GetDirection());
+			_shootCNT++;
+			if (_shootCNT >= _bulletNum)
+				turnOver = true;
 		}
 	}
+}
+
+void Cannon::Damaged()
+{
+	hp -= 1;
+	if (Dead()) {
+		isActive = false;
+	}
+}
+
+bool Cannon::Dead()
+{
+	if (hp < 0) {
+		return true;
+	}
+	return false;
+}
+
+void Cannon::ItsTurn()
+{
+	isControlled = true;
+	turnOver = false;
+	_shootCNT = 0;
+}
+
+void Cannon::TurnEnd()
+{
+	isControlled = false;
 }
 
 const shared_ptr<Collider> Cannon::GetCollider()

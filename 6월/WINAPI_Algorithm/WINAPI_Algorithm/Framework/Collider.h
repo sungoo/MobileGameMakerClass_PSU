@@ -2,6 +2,7 @@
 
 #define GREEN_COLOR		0
 #define RED_COLOR		1
+#define BLUE_COLOR		2
 
 class RectCollider;
 class CircleCollider;
@@ -32,6 +33,7 @@ public:
 
 	void SetGreen() { SetColor(GREEN_COLOR); }
 	void SetRed() { SetColor(RED_COLOR); }
+	void SetBlue() { SetColor(BLUE_COLOR); }
 
 	Vector2 _center;
 

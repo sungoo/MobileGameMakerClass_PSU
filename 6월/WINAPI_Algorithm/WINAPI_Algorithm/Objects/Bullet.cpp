@@ -29,12 +29,12 @@ void Bullet::OutControll()
 
 void Bullet::Attack_Cannon(shared_ptr<class Cannon> cannon)
 {
-	if (!_isActive)
+	if (!_isActive || cannon->Dead())
 		return;
 	if (cannon->GetCollider()->IsCollision(_col)) {
 		cannon->GetCollider()->SetRed();
-
 		SetActive(false);
+		cannon->Damaged();
 	}
 }
 
@@ -66,14 +66,14 @@ void Bullet::Update()
 	_col->_center += _direction * _speed;
 
 	//TODO : 중력 작용
-	//_col->_center += _downVector;
-	//_downVector += Vector2(0, 1) * GRAVITY;
+	_col->_center += _downVector;
+	_downVector += Vector2(0, 1) * GRAVITY;
 
 	//TODO : 화면 밖으로 나갔을 때 사라짐
 	//outControll : 반사를 위한 함수
-	OutControll();
+	//OutControll();
 	lifeTime -= 0.1f;
-	if (lifeTime < 0.0f /* || IsOut()*/) {
+	if (lifeTime < 0.0f || IsOut()) {
 		_isActive = false;
 		lifeTime = LIFETIME;
 	}
