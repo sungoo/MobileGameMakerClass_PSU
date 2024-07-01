@@ -2,18 +2,13 @@
 #include "CircleCollider.h"
 
 CircleCollider::CircleCollider(Vector2 center, float radius)
-: _center(center), _radius(radius)
+: Collider(center), _radius(radius)
 {
-	_pens.push_back(CreatePen(PS_SOLID, 3, GREEN));
-	_pens.push_back(CreatePen(PS_SOLID, 3, RED));
-
-	SetColor(GREEN_COLOR);
+	_type = ColliderType::CIRCLE;
 }
 
 CircleCollider::~CircleCollider()
 {
-	for (auto pen : _pens)
-		DeleteObject(pen);
 }
 
 void CircleCollider::Update()
@@ -50,32 +45,34 @@ bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
 {
 	// 과제
 	// AABB(회전하지 않는다는 조건), OBB(회전이 가능하다)
-	Vector2 circleCenter = _center; 
-	float radius = _radius; 
+	Vector2 circleCenter = _center;
+	float radius = _radius;
 
 	Vector2 rectCenter = other->_center;
 	Vector2 rectHalfSize = other->_halfSize;
 
-	// (변) 사각형의 각 상하좌우 길이를 R 만큼 늘여서, 그 안에 원의 중심이 들어가는지를 체크 = 점충돌
-	//위 아래 충돌
-	if (circleCenter._x <other->Right() && circleCenter._x > other->Left()) {
+	// 위 아래 충돌 체크
+	if (circleCenter._x < other->Right() && circleCenter._x > other->Left())
+	{
 		Vector2 newHalfSize = Vector2(rectHalfSize._x, rectHalfSize._y + radius);
-		RectCollider newrect = RectCollider(other->_center, newHalfSize);
+		RectCollider newRect = RectCollider(other->_center, newHalfSize);
 
-		if (newrect.IsCollision(circleCenter))
-			return true;
-	}
-	//좌 우 충돌
-	else if (circleCenter._y < other->Bottom() && circleCenter._y > other->Top()) {
-		Vector2 newHalfSize = Vector2(rectHalfSize._x + radius, rectHalfSize._y);
-		RectCollider newrect = RectCollider(other->_center, newHalfSize); 
-
-		if (newrect.IsCollision(circleCenter)) 
+		if (newRect.IsCollision(circleCenter))
 			return true;
 	}
 	
-	// (모서리) 모서리를 중심점으로 하는 사분원을 만들고, 그 안에 원의 중심이 들어가는지를 체크 = 원충돌
-	else {
+	// 좌 우 충돌 체크
+	else if (circleCenter._y < other->Bottom() && circleCenter._y > other->Top())
+	{
+		Vector2 newHalfSize = Vector2(rectHalfSize._x + radius, rectHalfSize._y);
+		RectCollider newRect = RectCollider(other->_center, newHalfSize);
+
+		if (newRect.IsCollision(circleCenter))
+			return true;
+	}
+
+	else
+	{
 		bool check1 = IsCollision(Vector2(other->Left(), other->Top()));
 		bool check2 = IsCollision(Vector2(other->Left(), other->Bottom()));
 		bool check3 = IsCollision(Vector2(other->Right(), other->Top()));
@@ -85,9 +82,4 @@ bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
 	}
 
 	return false;
-}
-
-void CircleCollider::SetColor(ColorNum num)
-{
-	_curPen = _pens[num];
 }

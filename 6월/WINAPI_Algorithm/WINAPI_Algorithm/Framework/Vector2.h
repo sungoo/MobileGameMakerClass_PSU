@@ -25,14 +25,6 @@ public:
 		return result;
 	}
 
-	Vector2 operator-() {
-		Vector2 result;
-		result._x = _y;
-		result._y = _x;
-
-		return result;
-	}
-
 	Vector2 operator*(float value)
 	{
 		Vector2 result;
@@ -70,6 +62,20 @@ public:
 	Vector2& operator++()
 	{
 		(*this)++;
+		return (*this);
+	}
+
+	Vector2& operator+=(const Vector2& other) {
+		this->_x += other._x;
+		this->_y += other._y;
+
+		return (*this);
+	}
+
+	Vector2& operator-=(const Vector2& other) {
+		this->_x -= other._x;
+		this->_y -= other._y;
+
 		return (*this);
 	}
 
