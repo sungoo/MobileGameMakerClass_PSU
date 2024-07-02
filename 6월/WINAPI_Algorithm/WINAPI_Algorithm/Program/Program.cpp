@@ -6,14 +6,26 @@
 #include "Scene/LineScene.h"
 #include "Scene/Line2Scene.h"
 #include "Scene/CannonScene.h"
+#include "Scene/MazeScene.h"
+#include "Scene/AlcanoidScene.h"
 
+HDC Program::backBuffer = nullptr;
 Program::Program()
 {
-	_scene = make_shared<CannonScene>();
+	srand(time(nullptr));
+	_scene = make_shared<AlcanoidScene>();
+
+	HDC hdc = GetDC(hWnd);
+
+	backBuffer = CreateCompatibleDC(hdc);
+	_hBitMap = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT);
+	SelectObject(backBuffer, _hBitMap);
 }
 
 Program::~Program()
 {
+	DeleteObject(backBuffer);
+	DeleteObject(_hBitMap);
 }
 
 void Program::Update()
@@ -23,5 +35,16 @@ void Program::Update()
 
 void Program::Render(HDC hdc)
 {
-	_scene->Render(hdc);
+	PatBlt(backBuffer, 0, 0, WIN_WIDTH, WIN_HEIGHT, BLACKNESS);
+
+	_scene->Render(backBuffer);
+
+	BitBlt(
+		hdc,
+		0, 0,
+		WIN_WIDTH, WIN_HEIGHT,
+		backBuffer,
+		0, 0,
+		SRCCOPY
+	);
 }

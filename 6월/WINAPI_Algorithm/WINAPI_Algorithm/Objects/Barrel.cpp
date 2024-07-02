@@ -7,6 +7,14 @@ Barrel::Barrel()
 	_line->_end = _line->_start + _direction * _barrelLength;
 }
 
+Barrel::Barrel(Vector2 dir, float length)
+{
+	_direction = dir;
+	_barrelLength = length;
+	_line = make_shared<Line>(Vector2(), Vector2());
+	_line->_end = _line->_start + _direction * _barrelLength;
+}
+
 Barrel::~Barrel()
 {
 }

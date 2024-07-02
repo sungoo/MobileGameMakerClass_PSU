@@ -8,6 +8,7 @@ class Barrel
 
 public:
 	Barrel();
+	Barrel(Vector2 dir, float length);
 	~Barrel();
 
 	void Update();

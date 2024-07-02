@@ -79,6 +79,14 @@ public:
 		return (*this);
 	}
 
+	bool operator==(const Vector2& other) {
+		return this->_x == other._x && this->_y == other._y;
+	}
+
+	bool operator!=(const Vector2& other) {
+		return this->_x != other._x || this->_y != other._y;
+	}
+
 	float Dot(const Vector2& other)
 	{
 		float result = 0.0f;

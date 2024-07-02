@@ -147,6 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Alcanoid\Ball.h" />
+    <ClInclude Include="Scene\AlcanoidScene.h" />
+    <ClInclude Include="Maze\Maze.h" />
+    <ClInclude Include="Maze\Block.h" />
+    <ClInclude Include="Maze\Player.h" />
+    <ClInclude Include="Scene\MazeScene.h" />
     <ClInclude Include="Objects\Bullet.h" />
     <ClInclude Include="Objects\Barrel.h" />
     <ClInclude Include="Objects\Cannon.h" />
@@ -163,12 +169,19 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Alcanoid\Ship.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Framework\Vector2.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="WINAPI_Algorithm.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Alcanoid\Ball.cpp" />
+    <ClCompile Include="Scene\AlcanoidScene.cpp" />
+    <ClCompile Include="Maze\Maze.cpp" />
+    <ClCompile Include="Maze\Block.cpp" />
+    <ClCompile Include="Maze\Player.cpp" />
+    <ClCompile Include="Scene\MazeScene.cpp" />
     <ClCompile Include="Objects\Bullet.cpp" />
     <ClCompile Include="Objects\Barrel.cpp" />
     <ClCompile Include="Objects\Cannon.cpp" />
@@ -194,6 +207,7 @@
     </ClCompile>
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\Vector2.cpp" />
+    <ClCompile Include="Alcanoid\Ship.cpp" />
     <ClCompile Include="WINAPI_Algorithm.cpp" />
   </ItemGroup>
   <ItemGroup>

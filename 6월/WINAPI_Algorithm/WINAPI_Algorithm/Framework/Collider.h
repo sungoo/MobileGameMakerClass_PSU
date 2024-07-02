@@ -31,9 +31,9 @@ public:
 	virtual bool IsCollision(shared_ptr<CircleCollider> other) abstract;
 	virtual bool IsCollision(shared_ptr<RectCollider> other) abstract;
 
-	void SetGreen() { SetColor(GREEN_COLOR); }
-	void SetRed() { SetColor(RED_COLOR); }
-	void SetBlue() { SetColor(BLUE_COLOR); }
+	virtual void SetGreen() { SetColor(GREEN_COLOR); }
+	virtual void SetRed() { SetColor(RED_COLOR); }
+	virtual void SetBlue() { SetColor(BLUE_COLOR); }
 
 	Vector2 _center;
 
