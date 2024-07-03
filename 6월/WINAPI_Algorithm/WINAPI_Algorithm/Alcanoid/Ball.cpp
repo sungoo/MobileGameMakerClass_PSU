@@ -11,17 +11,26 @@ Ball::~Ball()
 
 void Ball::Update()
 {
+	if (!_isActive)
+		return;
+
 	_col->Update();
 	_col->_center += _direction * _speed;
 }
 
 void Ball::Render(HDC hdc)
 {
+	if (!_isActive)
+		return;
+
 	_col->Render(hdc);
 }
 
 void Ball::Fire(Vector2 startPOS, Vector2 direction)
 {
+	if (_isActive)
+		return;
+
 	_col->_center = startPOS;
 	_direction.Normalize();
 	_direction = direction;

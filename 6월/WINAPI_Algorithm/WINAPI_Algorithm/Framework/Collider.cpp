@@ -21,7 +21,7 @@ bool Collider::IsCollision(shared_ptr<Collider> col)
 {
 	switch (col->_type)
 	{
-	case ColliderType::NONE:
+	case ColliderType::ABLE:
 	{
 		return false;
 	}

@@ -11,7 +11,7 @@ using ColorNum = int;
 
 enum class ColliderType
 {
-	NONE,
+	ABLE,
 	CIRCLE,
 	RECT
 };
@@ -40,7 +40,7 @@ public:
 protected:
 	void SetColor(ColorNum num);
 
-	ColliderType _type = ColliderType::NONE;
+	ColliderType _type = ColliderType::ABLE;
 	vector<HPEN> _pens;
 	HPEN _curPen;
 };

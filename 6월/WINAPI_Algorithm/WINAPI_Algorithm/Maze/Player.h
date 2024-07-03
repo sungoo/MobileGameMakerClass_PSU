@@ -6,12 +6,13 @@ class Block;
 class Player
 {
 public:
+
 	Player(shared_ptr<Maze> maze);
 	~Player();
 
 	void BeginPlay();
 
-	void FindPath();
+	void RightHand();
 	bool Cango(int y, int x);
 
 	void Update();
@@ -20,6 +21,7 @@ public:
 
 private:
 	Vector2 _pos = { 1, 1 };
+	Vector2 _dir = Vector2(0, 1);
 
 	vector<Vector2> _path;
 	int _pathIndex = 0;
