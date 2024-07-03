@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Alcanoid\Ball.h" />
+    <ClInclude Include="Alcanoid\Alca_Block.h" />
     <ClInclude Include="Scene\AlcanoidScene.h" />
     <ClInclude Include="Maze\Maze.h" />
     <ClInclude Include="Maze\Block.h" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alcanoid\Ball.cpp" />
+    <ClCompile Include="Alcanoid\Alca_Block.cpp" />
     <ClCompile Include="Scene\AlcanoidScene.cpp" />
     <ClCompile Include="Maze\Maze.cpp" />
     <ClCompile Include="Maze\Block.cpp" />
