@@ -13,7 +13,7 @@ HDC Program::backBuffer = nullptr;
 Program::Program()
 {
 	srand(time(nullptr));
-	_scene = make_shared<AlcanoidScene>();
+	_scene = make_shared<MazeScene>();
 
 	HDC hdc = GetDC(hWnd);
 

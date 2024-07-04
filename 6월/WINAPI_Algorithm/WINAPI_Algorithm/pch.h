@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <memory>
 #include <time.h>
+#include <stack>
 
 using namespace std;
 
