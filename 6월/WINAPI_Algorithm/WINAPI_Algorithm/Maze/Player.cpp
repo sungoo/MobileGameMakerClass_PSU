@@ -18,7 +18,7 @@ void Player::BeginPlay()
 {
 	_maze->SetPlayerPos(_pos);
 	_pos = _maze->GetStartPos();
-	BFS(_pos);
+	DFS(_pos);
 }
 
 void Player::RightHand()
@@ -156,7 +156,7 @@ void Player::DFS(Vector2 start)
 		if (here == endPos)
 			break;
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 4; i++) {
 			Vector2 there = here + frontPos[i];
 
 			//there가 갈 수 있는 블럭인지 확인
@@ -175,15 +175,15 @@ void Player::DFS(Vector2 start)
 	_path.push_back(check);
 	while (true)
 	{
+		if (s.empty()) break;
 		if (check == start) break;
 
-		check = parent[check._y][check._x];
+		check = s.top();
 		_path.push_back(check);
+		s.pop();
 	}
 
 	std::reverse(_path.begin(), _path.end());
-
-	}
 }
 
 void Player::BFS(Vector2 start)
