@@ -13,6 +13,9 @@ public:
 	void BeginPlay();
 
 	void RightHand();
+	void DFS(Vector2 start);
+	void BFS(Vector2 start);
+	void Djikstra(Vector2 start);
 	bool Cango(int y, int x);
 
 	void Update();

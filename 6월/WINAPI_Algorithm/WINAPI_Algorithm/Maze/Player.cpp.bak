@@ -122,68 +122,6 @@ void Player::RightHand()
 
 void Player::DFS(Vector2 start)
 {
-	Vector2 frontPos[8] =
-	{
-		Vector2{0,1},//UP
-		Vector2{-1,0},//LEFT
-		Vector2{0,-1},//DOWN
-		Vector2{1,0},//RIGHT
-
-		Vector2{-1,1},//UP-LEFT
-		Vector2{-1,-1},//LEFT-BOTTOM
-		Vector2{1,1},//BOTTOM-RIGHT
-		Vector2{1,-1}//RIGHT-UP
-	};
-
-	vector<vector<bool>> discovered = vector<vector<bool>>(MAXCOUNT_Y, vector<bool>(MAXCOUNT_X, false));
-
-	Vector2 pos = start;
-	Vector2 endPos = _maze->GetEndPos();
-
-	discovered[start._y][start._x] = true;
-
-	stack<Vector2> s;
-	s.push(start);
-
-	while (true)
-	{
-		if (s.empty()) break;
-
-		Vector2 here = s.top();
-		s.pop();
-
-		//지금 스택의 top이 도착점이면
-		if (here == endPos)
-			break;
-
-		for (int i = 0; i < 8; i++) {
-			Vector2 there = here + frontPos[i];
-
-			//there가 갈 수 있는 블럭인지 확인
-			if (!Cango(there._y, there._x)) continue;
-
-			// there가 방문되어있었는지 확인
-			if (discovered[there._y][there._x] == true)
-				continue;
-
-			s.push(there);
-			discovered[there._y][there._x] = true;
-		}
-	}
-
-	Vector2 check = endPos;
-	_path.push_back(check);
-	while (true)
-	{
-		if (check == start) break;
-
-		check = parent[check._y][check._x];
-		_path.push_back(check);
-	}
-
-	std::reverse(_path.begin(), _path.end());
-
-	}
 }
 
 void Player::BFS(Vector2 start)
@@ -195,10 +133,10 @@ void Player::BFS(Vector2 start)
 		Vector2{0,-1},//DOWN
 		Vector2{1,0},//RIGHT
 
-		Vector2{-1,1},//UP-LEFT
+		Vector2{1,1},//UP-LEFT
 		Vector2{-1,-1},//LEFT-BOTTOM
-		Vector2{1,1},//BOTTOM-RIGHT
-		Vector2{1,-1}//RIGHT-UP
+		Vector2{1,-1},//BOTTOM-RIGHT
+		Vector2{-1,1}//RIGHT-UP
 	};
 
 	vector<vector<bool>> discovered = vector<vector<bool>>(MAXCOUNT_Y, vector<bool>(MAXCOUNT_X, false));
@@ -229,28 +167,11 @@ void Player::BFS(Vector2 start)
 
 			//there가 갈 수 있는 블럭인지 확인
 			if (!Cango(there._y, there._x)) continue;
-			
-			// there가 방문되어있었는지 확인
-			if(discovered[there._y][there._x] == true)
-				continue;
 
-			q.push(there);
-			discovered[there._y][there._x] = true;
-			parent[there._y][there._x] = here;
+			if (discovered[there._y][there._x] == true) continue;
+
 		}
 	}
-
-	Vector2 check = endPos;
-	_path.push_back(check);
-	while (true)
-	{
-		if(check == start) break;
-
-		check = parent[check._y][check._x];
-		_path.push_back(check);
-	}
-
-	std::reverse(_path.begin(), _path.end());
 }
 
 void Player::Djikstra(Vector2 start)

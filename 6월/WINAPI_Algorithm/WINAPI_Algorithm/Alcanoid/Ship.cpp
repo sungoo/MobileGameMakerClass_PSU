@@ -41,7 +41,7 @@ void Ship::Update()
 void Ship::Render(HDC hdc)
 {
 	_body->Render(hdc);
-	//_shootLine->Render(hdc);
+	_shootLine->Render(hdc);
 	_ball->Render(hdc);
 }
 
