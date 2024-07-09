@@ -42,5 +42,14 @@
     <ClCompile Include="Djikstra.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MST.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DisjointSet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmTest_GameSortcut.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

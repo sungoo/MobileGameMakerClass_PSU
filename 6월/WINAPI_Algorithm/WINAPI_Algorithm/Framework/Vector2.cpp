@@ -13,6 +13,14 @@ float Vector2::Distance(Vector2 other) const
 	return temp.Length();
 }
 
+int Vector2::ManhattanDistance(Vector2 other)
+{
+	int xDistance = int(_x - other._x);
+	int yDistance = int(_y - other._y);
+
+	return abs(xDistance) + abs(yDistance);
+}
+
 void Vector2::Normalize()
 {
 	float length = Length();

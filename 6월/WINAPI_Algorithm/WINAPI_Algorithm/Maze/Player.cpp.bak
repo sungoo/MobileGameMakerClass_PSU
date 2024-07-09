@@ -20,8 +20,7 @@ void Player::BeginPlay()
 	_pos = _maze->GetStartPos();
 
 	_visited = vector<vector<bool>>(MAXCOUNT_Y, vector<bool>(MAXCOUNT_X, false));
-	DFS(_pos);
-	//AStart(_pos, _maze->GetEndPos());
+	AStart(_pos, _maze->GetEndPos());
 }
 
 void Player::RightHand()
@@ -140,7 +139,6 @@ void Player::DFS(Vector2 here)
 
 	_visited[here._y][here._x] = true;
 	_path.push_back(here);
-	_maze->SetBlockType(here._y, here._x, Block::BlockType::PLAYER_FOOTAGE);
 
 	for (int i = 0; i < 8; i++) {
 		//인접해있는지
@@ -208,7 +206,6 @@ void Player::BFS(Vector2 start)
 				continue;
 
 			q.push(there);
-			_maze->SetBlockType(there._y, there._x, Block::BlockType::PLAYER_FOOTAGE);
 			discovered[there._y][there._x] = true;
 			parent[there._y][there._x] = here;
 		}
@@ -291,10 +288,10 @@ void Player::Djikstra(Vector2 start)
 			thereV.g = newG;
 
 			pq.push(thereV);
-			_maze->SetBlockType(there._y, there._x, Block::BlockType::PLAYER_FOOTAGE);
 			best[there._y][there._x] = newG;
 			parent[there._y][there._x] = here.pos;
 
+			//_maze->SetBlockType(there._y, there._x, Block::BlockType::PLAYER_FOOTAGE);
 		}
 	}
 
@@ -370,10 +367,10 @@ void Player::AStart(Vector2 start, Vector2 end)
 			else
 				newCost = here.g + 14;
 
-			int h = there.ManhattanDistance(_maze->GetEndPos()) * 10.0f;
+			int h = here.pos.ManhattanDistance(_maze->GetEndPos()) * 10.0f;
 			int f = newCost + h;
 
-			if (f >= best[there._y][there._x])
+			if (newCost >= best[there._y][there._x])
 				continue;
 
 			Vertex thereV;
