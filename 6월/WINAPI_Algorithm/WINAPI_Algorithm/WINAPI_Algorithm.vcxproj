@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Alcanoid\Ball.h" />
     <ClInclude Include="Alcanoid\Alca_Block.h" />
+    <ClInclude Include="Framework\DisjointSet.h" />
     <ClInclude Include="Scene\AlcanoidScene.h" />
     <ClInclude Include="Maze\Maze.h" />
     <ClInclude Include="Maze\Block.h" />

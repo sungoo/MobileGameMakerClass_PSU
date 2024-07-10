@@ -20,8 +20,8 @@ void Player::BeginPlay()
 	_pos = _maze->GetStartPos();
 
 	_visited = vector<vector<bool>>(MAXCOUNT_Y, vector<bool>(MAXCOUNT_X, false));
-	DFS(_pos);
-	//AStart(_pos, _maze->GetEndPos());
+	//Djikstra(_pos);
+	AStart(_pos, _maze->GetEndPos());
 }
 
 void Player::RightHand()

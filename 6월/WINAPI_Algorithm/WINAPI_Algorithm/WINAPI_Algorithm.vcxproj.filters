@@ -99,6 +99,9 @@
     <ClInclude Include="Alcanoid\Alca_Block.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\DisjointSet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WINAPI_Algorithm.cpp">
