@@ -57,5 +57,11 @@
     <ClCompile Include="AlgorithmTest_Ayya.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeSort.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
