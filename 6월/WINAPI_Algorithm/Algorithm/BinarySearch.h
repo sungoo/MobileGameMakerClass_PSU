@@ -29,12 +29,13 @@ public:
 	Node* Min(Node* node);
 	Node* Max(Node* node);
 	
+	void Delete(Node* node);
+
+private:
 	Node* Privious(Node* node);
 	Node* Next(Node* node);
-
-	void Delete(Node* node);
 	void Replace(Node* node1, Node* node2);
 
-	//////////////////////////////////
+public:
 	Node* _root = nullptr;
 };
