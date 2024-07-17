@@ -78,7 +78,19 @@
     <ClCompile Include="AlgorithmTest_FindPrime.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DP2.cpp">
+    <ClCompile Include="DP%282%29.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmTest_Phoncatmon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmTest_phoneNumbers.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmTest_TEST.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DP(3).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
