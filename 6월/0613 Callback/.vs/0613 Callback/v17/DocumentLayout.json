@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\ItemPractice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:ItemPractice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Template.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:Template.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Items.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:Items.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\0613 Callback.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\0613 Callback.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:0613 Callback.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Functor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\ItemPractice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:ItemPractice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Template.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:Template.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Items.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:Items.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Functor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2BFDCF90-F20B-424D-B6A9-76C63AB04279}|0613 Callback.vcxproj|solutionrelative:Functor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -30,28 +30,27 @@
       "DocumentGroups": [
         {
           "DockedWidth": 159,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Template.cpp",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Template.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Template.cpp",
               "RelativeDocumentMoniker": "Template.cpp",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Template.cpp",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Template.cpp",
               "RelativeToolTip": "Template.cpp",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAAC4AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-13T04:38:29.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-13T04:38:29.462Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ItemPractice.cpp",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\ItemPractice.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\ItemPractice.cpp",
               "RelativeDocumentMoniker": "ItemPractice.cpp",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\ItemPractice.cpp",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\ItemPractice.cpp",
               "RelativeToolTip": "ItemPractice.cpp",
               "ViewState": "AQIAAKIAAAAAAAAAAAAAALYAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -60,39 +59,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Items.cpp",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Items.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Items.cpp",
               "RelativeDocumentMoniker": "Items.cpp",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Items.cpp",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Items.cpp",
               "RelativeToolTip": "Items.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-13T01:21:15.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-13T01:21:15.946Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Functor.cpp",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Functor.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Functor.cpp",
               "RelativeDocumentMoniker": "Functor.cpp",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\Functor.cpp",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\Functor.cpp",
               "RelativeToolTip": "Functor.cpp",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAADoAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-13T01:06:07.533Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-13T01:06:07.533Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "0613 Callback.cpp",
-              "DocumentMoniker": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\0613 Callback.cpp",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\0613 Callback.cpp",
               "RelativeDocumentMoniker": "0613 Callback.cpp",
-              "ToolTip": "E:\\\uBC15\uC131\uC6B0\\6\uC6D4\\0613 Callback\\0613 Callback.cpp",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SGA_Study\\MobileGameMakerClass_PSU\\6\uC6D4\\0613 Callback\\0613 Callback.cpp",
               "RelativeToolTip": "0613 Callback.cpp",
-              "ViewState": "AQIAAEwAAAAAAAAAAAAawFgAAAAQAAAA",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAAA0AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-13T00:15:28.505Z",
               "EditorCaption": ""
