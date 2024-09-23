@@ -19,7 +19,7 @@ struct Item {
 	int atk = 0;
 	int tier = 0;
 
-	//ºñ±³¸¦ À§ÇÑ ºñ±³¿¬»êÀÚ ¿À¹ö·Îµù : °´Ã¼ÁöÇâÀûÀ¸·Î´Â º°·ÎÀÓ..
+	//ï¿½ñ±³¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ñ±³¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ : ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	/*bool operator<(Item a){
 		return this->tier < a.tier;
 	}*/
@@ -41,29 +41,29 @@ int main() {
 	mVec.push_back(8);
 	mVec.push_back(1);
 #pragma region Algorithm
-	//1_ 1ÀÌ ÀÖ´ÂÁö Ã£±â. ±×¸®°í index È¤Àº iteratorÀÚ¸® ¹ÝÈ¯
+	//1_ 1ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½. ï¿½×¸ï¿½ï¿½ï¿½ index È¤ï¿½ï¿½ iteratorï¿½Ú¸ï¿½ ï¿½ï¿½È¯
 	int index = 0;
 	for (index; index < mVec.size(); index++) {
 		if (mVec[index] == 1) break;
 	}
 	if (index == mVec.size())
-		cout << "ÀÎµ¦½º·Î 1 ¹ß°ß ¸øÇÔ." << endl;
+		cout << "ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½." << endl;
 	else
-		cout << "ÀÎµ¦½º·Î 1 ¹ß°ß. À§Ä¡ : " << index+1 << endl;
+		cout << "ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ß°ï¿½. ï¿½ï¿½Ä¡ : " << index+1 << endl;
 	
 	vector<int>::iterator mit = mVec.begin();
 	for (mit; mit != mVec.end(); mit++) {
 		if (*mit == 1) break;
 	}
 	if (mit == mVec.end())
-		cout << "ÀÌÅÍ·¹ÀÌÅÍ·Î 1 ¹ß°ß ¸øÇÔ." << endl;
+		cout << "ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Í·ï¿½ 1 ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½." << endl;
 	else
-		cout << "ÀÌÅÍ·¹ÀÌÅÍ·Î 1 ¹ß°ß. À§Ä¡ : " << &*mit << endl;
+		cout << "ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Í·ï¿½ 1 ï¿½ß°ï¿½. ï¿½ï¿½Ä¡ : " << &*mit << endl;
 
 	mit = std::find(mVec.begin(), mVec.end(), 1);
 	if (mit != mVec.end())
 		cout << *mit << endl;
-	//2_ 15º¸´Ù Å« ¼ö°¡ ÀÖ´ÂÁö Ã£°í index È¤Àº iterator ÀÚ¸® ¹ÝÈ¯
+	//2_ 15ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ index È¤ï¿½ï¿½ iterator ï¿½Ú¸ï¿½ ï¿½ï¿½È¯
 	struct Finder_1 {
 		bool operator()(const int& val) {
 			if (val > compareNum)
@@ -75,10 +75,10 @@ int main() {
 	Finder_1 finder_1;
 
 	finder_1.compareNum = 15;
-	mit = std::find_if(mVec.begin(), mVec.end(), finder_1);//find_if¿£ Àü¿ªÇÔ¼ö¿Í Á¤ÀûÇÔ¼ö¸¸ ³ÖÀ» ¼ö ÀÖÀ½
+	mit = std::find_if(mVec.begin(), mVec.end(), finder_1);//find_ifï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	cout << *mit << endl;
 
-	//3_ ¸ðµç ¼ö°¡ 50º¸´Ù ÀÛÀºÁö bool·Î ¾Ë¸®±â
+	//3_ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 50ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ boolï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½
 	struct Finder_2
 	{
 		bool operator()(const int& val) {
@@ -93,30 +93,30 @@ int main() {
 
 	bool istrue = std::all_of(mVec.begin(), mVec.end(), finder_2);
 	if (istrue)
-		cout << "¸ðµç ¼ö°¡ 50º¸´Ù ÀÛÀ½" << endl;
+		cout << "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 50ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 	else
-		cout << "50 ÀÌ»óÀÇ ¼ö°¡ ÀÖÀ½" << endl;
+		cout << "50 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 
-	//4_ ÇÏ³ª¶óµµ 30º¸´Ù Å« ¼ö°¡ ÀÖ´ÂÁö bool·Î ¾Ë¸®±â
+	//4_ ï¿½Ï³ï¿½ï¿½ï¿½ 30ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ boolï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½
 	finder_1.compareNum = 30;
 	istrue = std::any_of(mVec.begin(), mVec.end(), finder_1);
 	if (istrue)
-		cout << "30º¸´Ù Å« ¼ö°¡ ÀÖÀ½" << endl;
+		cout << "30ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 	else
-		cout << "30º¸´Ù Å« ¼ö°¡ ¾øÀ½" << endl;
+		cout << "30ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 
-	//5_ ¿ø¼Ò°¡ 3ÀÎ ¿ø¼ÒµéÀÇ °³¼ö¸¦ ¾Ë¾Æ³»±â
+	//5_ ï¿½ï¿½ï¿½Ò°ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½
 	
 	int cnt = std::count(mVec.begin(), mVec.end(), 3);
-	cout << "3ÀÎ ¿ø¼ÒÀÇ °³¼ö : " << cnt << endl;
+	cout << "3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " << cnt << endl;
 
-	//6_ ¿ø¼Ò°¡ 5 ÀÌ»óÀÎ °ÍÀÇ °³¼ö¸¦ ¾Ë¾Æ³»±â
+	//6_ ï¿½ï¿½ï¿½Ò°ï¿½ 5 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½
 	finder_1.compareNum = 4;
 	cnt = std::count_if(mVec.begin(), mVec.end(), finder_1);
-	cout << "5 ÀÌ»ó ¿ø¼ÒÀÇ °³¼ö : " << cnt << endl;
+	cout << "5 ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " << cnt << endl;
 
-	//7_ ¸ðµç ¿ø¼Ò¿¡ 3 °öÇÏ±â
-	cout << "¸ðµç ¿ø¼Ò 3 °öÇÏ±â" << endl;
+	//7_ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ 3 ï¿½ï¿½ï¿½Ï±ï¿½
+	cout << "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½Ï±ï¿½" << endl;
 	for_each(mVec.begin(), mVec.end(), X3);
 	
 	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
@@ -124,10 +124,10 @@ int main() {
 	}
 	cout << endl;
 
-	//8_ Áßº¹ ¿ø¼Ò Á¦°ÅÇÏ±â
-	cout << "Áßº¹ ¿ø¼Ò Á¦°Å" << endl;
+	//8_ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	cout << "ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 	
-	//unique´Â Á¤·ÄÇÏ°í ½á¾ßÇÔ
+	//uniqueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::sort(mVec.begin(), mVec.end());
 	auto it = std::unique(mVec.begin(), mVec.end());
 
@@ -136,7 +136,7 @@ int main() {
 	}
 	cout << endl;
 
-	//9_ ¿ø¼Ò°¡ 12ÀÎ °Í Áö¿ì±â
+	//9_ ï¿½ï¿½ï¿½Ò°ï¿½ 12ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	cout << "remove 12" << endl;
 	it = std::remove(mVec.begin(), mVec.end(), 12);
 	for (mit = mVec.begin(); mit != it; mit++) {
@@ -144,7 +144,7 @@ int main() {
 	}
 	cout << endl;
 
-	//10_ ¿ø¼Ò°¡ 10º¸´Ù ÀÛÀº°Å Áö¿ì±â
+	//10_ ï¿½ï¿½ï¿½Ò°ï¿½ 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	finder_2.compareNum = 10;
 	cout << "remove x < 10" << endl;
 	it = std::remove_if(mVec.begin(), mVec.end(), finder_2);
@@ -153,11 +153,11 @@ int main() {
 	}
 	cout << endl;
 
-	//¾Ë°í¸®ÁòÀ» ¾²Áö ¸»°í ÀÌÅÍ·¹ÀÌÅÍ·Î 11Áö¿ì±â
+	//ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Í·ï¿½ 11ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	for (mit = mVec.begin(); mit != mVec.end(); mit++) {
 		if (*mit == 11) {
-			mit = mVec.erase(mit) - 1;//11À» Áö¿ì°í ±× ÀÚ¸®¿¡ º¹»çµÈ 21À» °¡¸®Å°°Ô µÊ => -1ÇØ¼­ 21À» ´Ù½ÃÇÑ¹ø Ã¼Å©ÇÏ°í ³Ñ¾î°¡°Ô ÇÏ±â
+			mit = mVec.erase(mit) - 1;//11ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 21ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ => -1ï¿½Ø¼ï¿½ 21ï¿½ï¿½ ï¿½Ù½ï¿½ï¿½Ñ¹ï¿½ Ã¼Å©ï¿½Ï°ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½Ï±ï¿½
 			continue;
 		}
 	}
@@ -177,7 +177,7 @@ int main() {
 		items[i].atk = mVec[i] * 3;
 		items[i].price = mVec[i] * 100;
 	}
-	//items ¸¦ ³»¸²Â÷¼øÀ¸·Î tier Á¤·Ä
+	//items ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ tier ï¿½ï¿½ï¿½ï¿½
 	struct Srt {
 		bool operator()(const Item& a, const Item& b) {
 			return a.tier < b.tier;
