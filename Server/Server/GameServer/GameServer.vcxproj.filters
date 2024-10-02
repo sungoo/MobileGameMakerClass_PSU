@@ -24,6 +24,15 @@
     <ClCompile Include="UserManager.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="SpinLock.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Cash.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CPU Pipeline.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

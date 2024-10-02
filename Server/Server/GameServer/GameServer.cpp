@@ -2,90 +2,30 @@
 #include "AccountManager.h"
 #include "UserManager.h"
 
-//Lock 구현
-// 1. Spin Lock(Busy Waiting)
-// 2. Sleep 기반 Lock
-// 3. Event 기반 Lock
-// 
-// Spin Lock
+//메모리 모델
+// 1. 여러 쓰레드가 동일한 메모리(공용 변수)에 동시에 접근, 쓰기(write)할 때 생기는 문제들 파악
+// 2. 이 때 경합조건(Race Condition)
+// 3. Race Condition을 어떻게 막을 것이냐
+// ... Undefined Behavior(정의되지 않은 행동)
+//  => atomic
+//  => Lock(mutex) ... Mutual Exclusion(상호 베타)
+//
+// 우리의 메모리 정책
+// 1. atomic을 이용해서 코드 재배치를 막고, 가시성을 지킨다.
 
-class SpinLock
-{
-public:
-    void lock()
-    {
-        //둘의 경합이 동시에 일어났다.
+// atomic 연산에 한해, 모든 쓰레드가 동일 객체에 대해서 '동일한 수정 순서'를 관찰
+// => 가시성 해결
 
-        //check하고 setting하는 작업이 원자적으로 처리되어야 한다.
-        //=> Compare And Swap(CAS)
-
-        bool expected = false; //flag의 예상값은 false
-        bool desired = true; //flag가 true였으면 좋겠다.
-
-        //compare_exchange_strong의 의사코드
-        //if (flag == expected)
-        //{
-        //    expected = flag;
-        //    flag = desired;
-        //    return true;
-        //}
-        //else //flag가 desired와 같다
-        //{
-        //    expected = flag;
-        //    return false;
-        //}
-
-        while (flag.compare_exchange_strong(expected, desired)==false)
-        {
-            expected = false;
-
-            //Sleep Lock
-            this_thread::sleep_for(std::chrono::seconds(5));
-        }
-    }
-
-    void unlock()
-    {
-        flag = false;
-    }
-
-private:
-    atomic<bool> flag = false;
-};
-
-int32 sum = 0;
-SpinLock myLock;
-
-void Add()
-{
-    for (int32 i = 0; i < 1000000; i++)
-    {
-        //lock...flag -> false
-        std::lock_guard<SpinLock> lg(myLock);
-        //lock...flag -> true
-
-        sum++;
-    }
-}
-
-void Sub()
-{
-    for (int32 i = 0; i < 1000000; i++)
-    {
-        //lock...flag -> true
-        std::lock_guard<SpinLock> lg(myLock);
-        sum--;
-    }
-}
+// atomic ... 메모리 정책 설정
+// => 코드 재배치 해결
 
 int main()
 {
-    std::thread t1(Add);
-    std::thread t2(Sub);
+	atomic<bool> flag = false;
 
-    t1.join();
-    t2.join();
+	flag.store(true,memory_order::memory_order_seq_cst);
 
-    cout << sum << endl;
+	bool val = flag.load(memory_order::memory_order_seq_cst);
 
+	return 0;
 }
