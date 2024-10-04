@@ -4,23 +4,38 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{45515534-30c3-480e-84df-8932da56f881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{e13aac60-9630-474c-9791-d0b81c4c3164}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Types.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="LockBasedStack.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
     <ClInclude Include="CorePch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="LockBasedQueue.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="LockBasedStack.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
     <ClCompile Include="ServerCore.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="LockBasedQueue.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>

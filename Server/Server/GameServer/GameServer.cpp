@@ -2,47 +2,45 @@
 #include "AccountManager.h"
 #include "UserManager.h"
 
-atomic<int32> flag;
-int32 value;
+// Lock based Stack
+// Lock based Queue
 
-void Producer()
+LockBasedStack<int32> s;
+LockBasedQueue<int32> q;
+
+void Push()
 {
-	value = 10;
+	while (true)
+	{
+		int32 value = rand() % 100;
+		q.Push(value);
 
-	flag.store(1, memory_order_release); //seq_cst ... 이 위로 모든 값들이 보장된다.
+		this_thread::sleep_for(100ms);
+	}
 }
 
-void Consumer()
+void Pop()
 {
-	while (flag.load(memory_order_acquire) != 1) 
+	while (true)
 	{
-		//release는 이 위로 모든 값들 보장
-		//acquire는 이 아래로 모든 값들 보장
-		//항상 둘은 짝지어야 한다.
-	};
+		int32 data = 0;
 
-	cout << value << endl;
+		//s.WaitPop(data);
+
+		if(q.TryPop(data))
+			cout << data << endl;
+	}
 }
 
 int main()
 {
-	flag.store(0, memory_order_seq_cst);
-	value = 0;
-
-	thread t1(Producer);
-	thread t2(Consumer);
+	thread t1(Push);
+	thread t2(Pop);
+	thread t3(Pop);
 
 	t1.join();
 	t2.join();
-
-	//Memory 정책
-	// 1. seq_cst (sequential consistency) 순서적 일관성 => 매우 엄격
-	//  - 코드 재배치 x, 가시성 o
-	// 
-	// 2. acquire - release => 중도
-	// 
-	// 3. relaxed => 컴파일러 최적화 여지가 많다.
-	//
+	t3.join();
 
 	return 0;
 }

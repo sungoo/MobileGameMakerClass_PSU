@@ -39,6 +39,9 @@
     <ClCompile Include="MemoryOrder_Release_Acquire.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="TLS.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
