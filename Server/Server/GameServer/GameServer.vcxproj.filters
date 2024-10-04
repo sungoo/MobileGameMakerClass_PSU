@@ -33,6 +33,12 @@
     <ClCompile Include="CPU Pipeline.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="MemoryOrderAtomic.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryOrder_Release_Acquire.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

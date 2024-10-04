@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include "AccountManager.h"
 #include "UserManager.h"
 
@@ -14,7 +14,7 @@ void Producer()
 
 void Consumer()
 {
-	while (flag.load(memory_order_acquire) != 1) 
+	while (flag.load(memory_order_acquire) != 1)
 	{
 		//release는 이 위로 모든 값들 보장
 		//acquire는 이 아래로 모든 값들 보장
