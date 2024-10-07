@@ -2,6 +2,11 @@
 #include "AccountManager.h"
 #include "UserManager.h"
 
+#include "LockBasedQueue.h"
+#include "LockBasedStack.h"
+
+#include "ThreadManager.h"
+
 // Lock based Stack
 // Lock based Queue
 
@@ -34,13 +39,11 @@ void Pop()
 
 int main()
 {
-	thread t1(Push);
-	thread t2(Pop);
-	thread t3(Pop);
+	CoreGlobal::Create();
 
-	t1.join();
-	t2.join();
-	t3.join();
+	CoreGlobal::Instance()->TM()->Launch(&Push);
+	CoreGlobal::Instance()->TM()->Launch(&Pop);
+	CoreGlobal::Instance()->TM()->Launch(&Pop);
 
-	return 0;
+	CoreGlobal::Delete();
 }
