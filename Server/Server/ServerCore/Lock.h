@@ -29,3 +29,37 @@ private:
 
 };
 
+//RAII(Resource Acquisition Is Initialization) 패턴
+class ReadLockGuard
+{
+public:
+	ReadLockGuard(Lock& lock)
+	:_lock(lock)
+	{
+		_lock.ReadLock();
+	}
+
+	~ReadLockGuard()
+	{
+		_lock.ReadUnlock();
+	}
+private:
+	Lock& _lock;
+};
+
+class WriteLockGuard
+{
+public:
+	WriteLockGuard(Lock& lock)
+	:_lock(lock)
+	{
+		_lock.WriteLock();
+	}
+
+	~WriteLockGuard()
+	{
+		_lock.WriteUnlock();
+	}
+private:
+	Lock& _lock;
+};

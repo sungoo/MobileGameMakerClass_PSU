@@ -76,7 +76,7 @@ void Lock::ReadLock()
 	//같은 thread가 WriteLock을 재귀로 잡았을 때 통과
 	if (LThreadID == lockThreadID)
 	{
-		_writeCount++;
+		_lockFlag.fetch_add(1);
 		return;
 	}
 

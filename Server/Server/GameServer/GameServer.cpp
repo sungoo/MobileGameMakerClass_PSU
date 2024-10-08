@@ -2,48 +2,89 @@
 #include "AccountManager.h"
 #include "UserManager.h"
 
-#include "LockBasedQueue.h"
-#include "LockBasedStack.h"
-
 #include "ThreadManager.h"
+#include "Lock.h"
 
-// Lock based Stack
-// Lock based Queue
+const int MAX_NUMBER = 100'00000;
 
-LockBasedStack<int32> s;
-LockBasedQueue<int32> q;
-
-void Push()
+bool IsPrime(int num)
 {
-	while (true)
-	{
-		int32 value = rand() % 100;
-		q.Push(value);
+	int FindNum = (int)sqrt(num);
 
-		this_thread::sleep_for(100ms);
+	if (num == 2 || num == 3)
+		return true;
+
+	if (num < 2)
+		return false;
+
+	for (int i = 2; i <= FindNum; i++)
+	{
+		if (num % i == 0)
+			return false;
+	}
+	return true;
+}
+
+atomic<int> result = 0;
+
+void PrimeRange(int start, int end)
+{
+	//primeNum이면 result를 1 올린다.
+	for (int i = start; i < end; i++)
+	{
+		if (IsPrime(i))
+			result.fetch_add(1);
 	}
 }
 
-void Pop()
+int solution()
 {
-	while (true)
+	vector<thread> threads;
+
+	//스레드 개수 반환
+	int coreCount = thread::hardware_concurrency();
+
+	int work = MAX_NUMBER / coreCount;
+
+	/*int answer = 0;
+	for (int i = 2; i < MAX_NUMBER; i++)
 	{
-		int32 data = 0;
+		if (IsPrime(i))
+			answer++;
+	}*/
+	for (int i = 0; i < coreCount; i++)
+	{
+		//0 ~ MAX
+		int start = work * i;
+		int end = work * (i + 1);
+		if (end > MAX_NUMBER || i == coreCount - 1) end = MAX_NUMBER;
 
-		//s.WaitPop(data);
-
-		if(q.TryPop(data))
-			cout << data << endl;
+		threads.push_back(thread(PrimeRange, start, end));
 	}
+
+	for (auto& thread : threads)
+		thread.join();
+
+	return result;
 }
 
 int main()
 {
 	CoreGlobal::Create();
 
-	CoreGlobal::Instance()->TM()->Launch(&Push);
-	CoreGlobal::Instance()->TM()->Launch(&Pop);
-	CoreGlobal::Instance()->TM()->Launch(&Pop);
+	int64 start = ::GetTickCount64();
+
+	int answer = 0;
+
+	answer = 0;
+
+	answer = solution();
+
+	cout << answer << endl;
+
+	int64 end = ::GetTickCount64();
+
+	cout << "걸린 시간 : " << end - start << "ms" << endl;
 
 	CoreGlobal::Delete();
 }

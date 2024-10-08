@@ -42,6 +42,9 @@
     <ClCompile Include="TLS.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="TestRWLock.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
