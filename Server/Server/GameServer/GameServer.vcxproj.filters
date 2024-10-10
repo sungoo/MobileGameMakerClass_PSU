@@ -45,6 +45,9 @@
     <ClCompile Include="TestRWLock.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="FindPrime.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

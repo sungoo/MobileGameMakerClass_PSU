@@ -5,86 +5,37 @@
 #include "ThreadManager.h"
 #include "Lock.h"
 
-const int MAX_NUMBER = 100'00000;
-
-bool IsPrime(int num)
+void Login()
 {
-	int FindNum = (int)sqrt(num);
-
-	if (num == 2 || num == 3)
-		return true;
-
-	if (num < 2)
-		return false;
-
-	for (int i = 2; i <= FindNum; i++)
+	while (true)
 	{
-		if (num % i == 0)
-			return false;
-	}
-	return true;
-}
-
-atomic<int> result = 0;
-
-void PrimeRange(int start, int end)
-{
-	//primeNum이면 result를 1 올린다.
-	for (int i = start; i < end; i++)
-	{
-		if (IsPrime(i))
-			result.fetch_add(1);
+		AccountManager::GetInstance()->Login();
 	}
 }
 
-int solution()
+void Save()
 {
-	vector<thread> threads;
-
-	//스레드 개수 반환
-	int coreCount = thread::hardware_concurrency();
-
-	int work = MAX_NUMBER / coreCount;
-
-	/*int answer = 0;
-	for (int i = 2; i < MAX_NUMBER; i++)
+	while (true)
 	{
-		if (IsPrime(i))
-			answer++;
-	}*/
-	for (int i = 0; i < coreCount; i++)
-	{
-		//0 ~ MAX
-		int start = work * i;
-		int end = work * (i + 1);
-		if (end > MAX_NUMBER || i == coreCount - 1) end = MAX_NUMBER;
-
-		threads.push_back(thread(PrimeRange, start, end));
+		UserManager::GetInstance()->Save();
 	}
-
-	for (auto& thread : threads)
-		thread.join();
-
-	return result;
 }
 
 int main()
 {
 	CoreGlobal::Create();
 
-	int64 start = ::GetTickCount64();
+	AccountManager::Create();
+	UserManager::Create();
 
-	int answer = 0;
+	//dead lock
+	TM_M->Launch(Login);
+	TM_M->Launch(Save);
 
-	answer = 0;
+	CoreGlobal::Instance()->TM()->Join();
 
-	answer = solution();
-
-	cout << answer << endl;
-
-	int64 end = ::GetTickCount64();
-
-	cout << "걸린 시간 : " << end - start << "ms" << endl;
+	AccountManager::Delete();
+	UserManager::Delete();
 
 	CoreGlobal::Delete();
 }

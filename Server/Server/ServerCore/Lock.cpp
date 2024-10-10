@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Lock.h"
+#include "DeadLockProfiler.h"
 
 //Lock 정책
 // 1. Read는 상호베타적일 필요 없이 공유 Count만 올린다
@@ -16,8 +17,12 @@
 // 
 //[wwwwwwww] [wwwwwwww]
 
-void Lock::WriteLock()
+void Lock::WriteLock(const char* name)
 {
+#if _DEBUG
+	CoreGlobal::Instance()->DLP()->PushLock(name);
+#endif
+
 	const uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
 
 	//같은 thread가 WriteLock을 재귀로 잡았을 때 통과
@@ -53,8 +58,11 @@ void Lock::WriteLock()
 	}
 }
 
-void Lock::WriteUnlock()
+void Lock::WriteUnlock(const char* name)
 {
+#if _DEBUG
+	CoreGlobal::Instance()->DLP()->PopLock(name);
+#endif
 	//Write Lock 상태 ...-> Read..(X)
 	//Read Lock 상태 ... -> Write (X)
 	//ReadLock을 다 풀기 전에는 WirteUnlock 불가능
@@ -68,8 +76,11 @@ void Lock::WriteUnlock()
 		_lockFlag.store(EMPTY_FLAG);
 }
 
-void Lock::ReadLock()
+void Lock::ReadLock(const char* name)
 {
+#if _DEBUG
+	CoreGlobal::Instance()->DLP()->PushLock(name);
+#endif
 	//lock 건 애가 자기 자신이면 통과
 	const uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
 
@@ -101,8 +112,11 @@ void Lock::ReadLock()
 	}
 }
 
-void Lock::ReadUnlock()
+void Lock::ReadUnlock(const char* name)
 {
+#if _DEBUG
+	CoreGlobal::Instance()->DLP()->PopLock(name);
+#endif
 	//Read를 동시에 두 번 풀어주면 안되는데, 그렇게 되면 CRASH
 	if ((_lockFlag.fetch_sub(1) & READ_COUNT_MASK) == 0)
 		CRASH("MULTIPLE_UNLOCK");

@@ -7,6 +7,7 @@ struct Account
 
 class AccountManager
 {
+	USE_LOCK;
 private:
 	AccountManager(){}
 	~AccountManager(){}
@@ -28,7 +29,7 @@ public:
 	}
 	Account* GetAccount(int32 id)
 	{
-		std::lock_guard<std::mutex> lg(_mutex);
+		WRITE_LOCK;
 
 		return nullptr;
 	}
@@ -36,7 +37,6 @@ public:
 	void Login();
 
 private:
-	std::mutex _mutex;
 	static AccountManager* _instance;
 };
 
