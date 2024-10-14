@@ -22,3 +22,6 @@ using namespace std;
 
 //Multy Thread
 #include "Lock.h"
+
+//Memory
+#include "Memory.h"

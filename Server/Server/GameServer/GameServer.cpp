@@ -6,11 +6,41 @@
 #include "Lock.h"
 #include "RefCounting.h"
 
-using PlayerRef = TSharedPtr<class Player>;
+using PlayerRef = shared_ptr<class Player>;
+using InventoryRef = shared_ptr<class Inventory>;
 
-class Player : public RefCountable
+class Player
 {
 public:
+	Player() 
+		:_hp(0), _atk(0)
+	{
+		cout << "생성자 호출" << endl;
+	}
+	Player(int hp, int atk)
+		: _hp(hp), _atk(atk)
+	{
+		cout << "타입 변환 생성자 호출" << endl;
+	}
+	~Player() 
+	{
+		cout << "소멸자 호출" << endl;
+	}
+
+	/*static void* operator new(size_t t)
+	{
+		cout << "Player new!!" << endl;
+		void* ptr = std::malloc(t);
+
+		return ptr;
+	}
+
+	static void operator delete(void* ptr)
+	{
+		cout << "Player delete!!" << endl;
+		std::free(ptr);
+	}*/
+
 	void Attack()
 	{
 		if (_target != nullptr)
@@ -26,41 +56,33 @@ public:
 
 public:
 	PlayerRef _target;
+
 	int _hp;
 	int _atk;
 };
 
+//void* operator new(size_t t)
+//{
+//	cout << "new!!" << endl;
+//	void* result = std::malloc(t);
+//
+//	return result;
+//}
+//
+//void operator delete(void* ptr)
+//{
+//	cout << "delete!!" << endl;
+//	std::free(ptr);
+//}
 
 int main()
 {
+	
 	CoreGlobal::Create();
 
-	PlayerRef p1 = new Player();
-	p1->ReleaseRef();
-	p1->_hp = 10000;
-	p1->_atk = 15;
+	Player* p = xnew<Player>(100, 10);
 
-	PlayerRef p2 = new Player();
-	p2->ReleaseRef();
-	p2->_hp = 20000;
-	p2->_atk = 15;
-
-	//Shared Ptr 의 순환참조 문제
-	p2->_target = p1;
-	//p1->_target = p2;
-
-	while (true)
-	{
-		if (p1 != nullptr)
-		{
-			p2->Attack();
-			if (p1->IsDead())
-			{
-				p1 = nullptr;
-				break;
-			}
-		}
-	}
+	xdelete(p);
 
 	CoreGlobal::Delete();
 }
