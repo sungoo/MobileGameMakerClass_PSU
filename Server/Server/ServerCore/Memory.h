@@ -19,6 +19,6 @@ void xdelete(T* obj)
 	//소멸자 호출
 	obj->~T();
 
-	BaseAllocator::Release(obj);
+	xrelease(obj);
 }
 
