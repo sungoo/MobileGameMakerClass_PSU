@@ -1,6 +1,28 @@
 #pragma once
 #include "Allocator.h"
 
+class MemoryPool;
+class Memory
+{
+	enum
+	{				// 0~1024 ... 32단위 / 1024~2048 ... 128단위 / 2048~4016 ... 256단위
+		POOL_COUNT = (1024/32)+(1024/128)+(2048/256),
+		MAX_ALLOC_SIZE = 4096
+	};
+
+public:
+	Memory();
+	~Memory();
+
+	void* Allocate(int32 size);
+	void  Release (void* ptr);
+private:
+	vector<MemoryPool*> _pools; //48개의 메모리 풁
+
+	//메모리풀을 빠르게 탐색하기 위한 테이블
+	MemoryPool* _poolTable[MAX_ALLOC_SIZE + 1];
+};
+
 //가변 템플릿
 template<typename T, typename... Args>
 T* xnew(Args... args)

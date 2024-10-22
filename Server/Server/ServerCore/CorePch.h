@@ -1,16 +1,10 @@
 #pragma once
 
 #include "Types.h"
-#include <vector>
-#include <list>
-#include <unordered_map>
-#include <map>
-#include <set>
-#include <unordered_set>
 #include <algorithm>
 #include <future>
-#include <Windows.h>
 
+#include <Windows.h>
 #include <iostream>
 
 using namespace std;
@@ -19,9 +13,11 @@ using namespace std;
 #include "CoreTLS.h"
 #include "CoreGlobal.h"
 #include "CoreMacro.h"
+#include "MyContainer.h"
 
 //Multy Thread
 #include "Lock.h"
 
 //Memory
 #include "Memory.h"
+#include "MemoryPool.h"

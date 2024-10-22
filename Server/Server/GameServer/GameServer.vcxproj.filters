@@ -51,6 +51,9 @@
     <ClCompile Include="SharedandWeak.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Stomp Allocator.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

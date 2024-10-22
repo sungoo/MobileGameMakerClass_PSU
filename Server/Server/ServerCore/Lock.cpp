@@ -20,7 +20,7 @@
 void Lock::WriteLock(const char* name)
 {
 #if _DEBUG
-	CoreGlobal::Instance()->DLP()->PushLock(name);
+	CoreGlobal::Instance()->GetDeadLockProfiler()->PushLock(name);
 #endif
 
 	const uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
@@ -61,7 +61,7 @@ void Lock::WriteLock(const char* name)
 void Lock::WriteUnlock(const char* name)
 {
 #if _DEBUG
-	CoreGlobal::Instance()->DLP()->PopLock(name);
+	CoreGlobal::Instance()->GetDeadLockProfiler()->PopLock(name);
 #endif
 	//Write Lock 상태 ...-> Read..(X)
 	//Read Lock 상태 ... -> Write (X)
@@ -79,7 +79,7 @@ void Lock::WriteUnlock(const char* name)
 void Lock::ReadLock(const char* name)
 {
 #if _DEBUG
-	CoreGlobal::Instance()->DLP()->PushLock(name);
+	CoreGlobal::Instance()->GetDeadLockProfiler()->PushLock(name);
 #endif
 	//lock 건 애가 자기 자신이면 통과
 	const uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
@@ -115,7 +115,7 @@ void Lock::ReadLock(const char* name)
 void Lock::ReadUnlock(const char* name)
 {
 #if _DEBUG
-	CoreGlobal::Instance()->DLP()->PopLock(name);
+	CoreGlobal::Instance()->GetDeadLockProfiler()->PopLock(name);
 #endif
 	//Read를 동시에 두 번 풀어주면 안되는데, 그렇게 되면 CRASH
 	if ((_lockFlag.fetch_sub(1) & READ_COUNT_MASK) == 0)

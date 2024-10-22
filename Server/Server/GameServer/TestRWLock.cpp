@@ -61,10 +61,10 @@ int main()
 	CoreGlobal::Create();
 
 	for (int i = 0; i < 2; i++)
-		CoreGlobal::Instance()->TM()->Launch(ThreadWrite);
+		CoreGlobal::Instance()->GetThreadManager()->Launch(ThreadWrite);
 
 	for (int i = 0; i < 5; i++)
-		CoreGlobal::Instance()->TM()->Launch(ThreadRead);
+		CoreGlobal::Instance()->GetThreadManager()->Launch(ThreadRead);
 
 	CoreGlobal::Delete();
 }
