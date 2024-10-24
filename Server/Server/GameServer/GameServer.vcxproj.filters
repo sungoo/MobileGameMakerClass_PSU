@@ -54,6 +54,9 @@
     <ClCompile Include="Stomp Allocator.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="GameServerWithcaptions.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

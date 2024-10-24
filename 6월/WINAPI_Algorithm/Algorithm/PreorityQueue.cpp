@@ -10,9 +10,9 @@
 using namespace std;
 
 
-//¿ì¼±¼øÀ§ Å¥
-// 1. ¿ÏÀüÀÌÁøÆ®¸®
-// 2. ºÎ¸ð°¡ Ç×»ó ÀÚ½Äº¸´Ù Å©´Ù.(ÃÖ´ëÈü)
+//ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ Å¥
+// 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
+// 2. ï¿½Î¸ï¿½ ï¿½×»ï¿½ ï¿½Ú½Äºï¿½ï¿½ï¿½ Å©ï¿½ï¿½.(ï¿½Ö´ï¿½ï¿½ï¿½)
 template <typename T, typename Container = vector<T>, typename Pred = less<T>>
 class Priority_queue {
 	Container _container;
@@ -29,10 +29,10 @@ public:
 				break;
 
 			int parent = (now - 1) / 2;
-			//ÀÚ½ÄÀÌ ºÎ¸ðº¸´Ù ÀÛÀ½ => ¾È ¹Ù²Þ
+			//ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Î¸ðº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ ï¿½Ù²ï¿½
 			if (_container[parent] > _container[now]) break;
 
-			//ÀÚ½ÄÀÌ ºÎ¸ðº¸´Ù Å­
+			//ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Î¸ðº¸´ï¿½ Å­
 			std::swap(_container[now], _container[parent]);
 			now = parent;
 		}
@@ -50,18 +50,18 @@ public:
 			int leftChild = now * 2 + 1;
 			int rightChild = now * 2 + 2;
 
-			//ÀÚ½ÄÀÌ ¾ø´Â »óÈ²
+			//ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²
 			if (leftChild >= (int)_container.size()) {
 				break;
 			}
 
 			int next = now;
 
-			//leftChild, rightChild¿Í ºñ±³ÇÏ¸é¼­ ´©°¡ ´õ Å« ¼öÀÎÁö È®ÀÎ
+			//leftChild, rightChildï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸é¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			if (_container[next] < _container[leftChild]) {
 				next = leftChild;
 			}
-			//rightChild°¡ À¯È¿ÇÑÁö È®ÀÎ
+			//rightChildï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			if (rightChild < (int)_container.size() && _container[next] < _container[rightChild]) {
 				next = rightChild;
 			}
@@ -99,7 +99,7 @@ int main()
 	pq.push(500);
 	pq.push(720);
 
-	//n°³¿¡¼­ m°³ ¸¸Å­¸¸ Á¤·ÄÇÏ°í ½Í´Ù.
+	//nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ mï¿½ï¿½ ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½.
 	// => partial_sort  =>  m * log n
 	while (true)
 	{

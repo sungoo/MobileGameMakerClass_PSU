@@ -35,7 +35,7 @@ int main()
 	SOCKADDR_IN serverAddr;//IPv4
 	::memset(&serverAddr, 0, sizeof(serverAddr));//serverAddr 0으로 다 밀어버리기
 	serverAddr.sin_family = AF_INET;//IPv4
-	::inet_pton(AF_INET, "192.168.0.9", &serverAddr.sin_addr);//127.0.01 => Loop back : 자기 PC의 주소
+	::inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);//127.0.01 => Loop back : 자기 PC의 주소
 	serverAddr.sin_port = ::htons(7777); //1~1000 사이 포트는 건들면 안됨
 	//네트워크 정수 표현 => 빅엔디언
 
@@ -50,7 +50,34 @@ int main()
 	while (true)
 	{
 		//... 서버에서 들어온 데이터 분석, 혹은 클라이언트 코드 실행
+		/*this_thread::sleep_for(1s);
+
+		char sendBuffer[100] = "Hello World!";
+
+		int32 sendCode = ::send(clientSocket, sendBuffer, sizeof(sendBuffer), 0);
+		if (sendCode = ::WSAGetLastError())
+		{
+			int32 errCode = ::WSAGetLastError();
+			cout << "Send ErrorCode : " << errCode << endl;
+			return 0;
+		}
+
+		cout << "Send Data! Len : " << sizeof(sendBuffer) << endl;
+	*/
 		this_thread::sleep_for(1s);
+
+		char recvBuffer[1000];
+
+		int32 recvlen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
+		if (recvlen <= 0)
+		{
+			int32 errCode = ::WSAGetLastError();
+			cout << "Recive ErrorCode : " << errCode << endl;
+			return 0;
+		}
+
+		cout << "Recive Data : " << recvBuffer << endl;
+		cout << "ReciveLen : " << recvlen << endl;
 	}
 
 	//소켓 리소스 반환 및 윈속 종료

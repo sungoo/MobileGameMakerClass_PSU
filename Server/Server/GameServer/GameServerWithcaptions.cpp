@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 
 #include <WinSock2.h>
 #include <MSWSock.h>
@@ -73,35 +73,7 @@ int main()
 		cout << "Client Connected! Client IP = " << ipAddress << endl;
 
 		//...TODO
-		while (true)
-		{
-			char recvBuffer[1000];
 
-			this_thread::sleep_for(1s);
-
-			int32 recvlen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
-			if (recvlen <= 0)
-			{
-				int32 errCode = ::WSAGetLastError();
-				cout << "Recive ErrorCode : " << errCode << endl;
-				return 0;
-			}
-
-			cout << "Recive Data : " << recvBuffer << endl;
-			cout << "ReciveLen : " << recvlen << endl;
-
-			char sendBuffer[100] = "Server Respond! Hello!!";
-
-			int32 sendCode = ::send(clientSocket, sendBuffer, sizeof(sendBuffer), 0);
-			if (sendCode = ::WSAGetLastError())
-			{
-				int32 errCode = ::WSAGetLastError();
-				cout << "Server Send ErrorCode : " << errCode << endl;
-				return 0;
-			}
-
-			cout << "Server Send Data!" << endl;
-		}
 	}
 
 	//6. 원속 종료
