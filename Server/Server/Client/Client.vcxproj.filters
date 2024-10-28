@@ -15,6 +15,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="ClientBasic.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

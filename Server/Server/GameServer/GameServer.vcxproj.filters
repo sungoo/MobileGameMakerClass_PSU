@@ -54,7 +54,10 @@
     <ClCompile Include="Stomp Allocator.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="GameServerWithcaptions.cpp">
+    <ClCompile Include="GameServerBasic.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GameServerSocketOption.cpp">
       <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>

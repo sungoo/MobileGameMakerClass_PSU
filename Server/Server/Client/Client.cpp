@@ -50,7 +50,7 @@ int main()
 	while (true)
 	{
 		//... 서버에서 들어온 데이터 분석, 혹은 클라이언트 코드 실행
-		/*this_thread::sleep_for(1s);
+		this_thread::sleep_for(1s);
 
 		char sendBuffer[100] = "Hello World!";
 
@@ -63,7 +63,6 @@ int main()
 		}
 
 		cout << "Send Data! Len : " << sizeof(sendBuffer) << endl;
-	*/
 		this_thread::sleep_for(1s);
 
 		char recvBuffer[1000];

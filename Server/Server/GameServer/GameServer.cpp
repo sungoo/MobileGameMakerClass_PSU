@@ -8,106 +8,98 @@
 
 int main()
 {
-	//윈속 초기화(ws2_32 라이브러리 초기화)
-	//관련 정보가 wsaData에 채워짐
 	WSAData wsaData;
 	if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 		return 0;
 
-	//1. Listener Socket 만들기 => 연결 시도를 받아줄 socket 만들기
-	//AF_INET vs AF_ANET6 ... IPv4 vs IPv6
-	//SOCK_STREAM vs SOCK_DGRAM ... TCP vs UDP
-	// 0 : 자동으로 protocol 설정
-	SOCKET listener = ::socket(AF_INET, SOCK_STREAM, 0);//socket의 번호를 발급
-	if (listener == INVALID_SOCKET)
-	{
-		int32 errCode = ::WSAGetLastError();
-		cout << "Socket ErrorCode : " << errCode << endl;
+	//블로킹 소켓
+	// accept -> 접속한 클라이언트가 있을 때
+	// connect -> 서버에 접속이 성공했을 때
+	// send -> sendBuff에 요청한 데이터를 복사했을 때
+	// recv -> recvBuff에 도착한 데이터가 있고, 이를 성공적으로 복사했을 때
+	
+	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
+	if (listenSocket == INVALID_SOCKET)
 		return 0;
-	}
 
-	//2. 내가 어떻게 받아야할지... Listener에 세팅
-	SOCKADDR_IN serverAddr;//IPv4
-	::memset(&serverAddr, 0, sizeof(serverAddr));//serverAddr 0으로 다 밀어버리기
-	serverAddr.sin_family = AF_INET;//IPv4
-	serverAddr.sin_addr.s_addr = ::htonl(INADDR_ANY);//알아서 IP 주소 써줘
-	serverAddr.sin_port = ::htons(7777); //1~1000 사이 포트는 건들면 안됨
-
-	//3. Listener 세팅
-	if (::bind(listener, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
-	{
-		int32 errCode = ::WSAGetLastError();
-		cout << "Bind ErrorCode : " << errCode << endl;
+	u_long on = 1;
+	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)//논블로킹 소켓 만드는 함수
 		return 0;
-	}
 
-	//4. 연결(Listen) 준비
-	//backlog : 대기자
-	if (::listen(listener, 10) == SOCKET_ERROR)
-	{
-		int32 errCode = ::WSAGetLastError();
-		cout << "Listen ErrorCode : " << errCode << endl;
+	SOCKADDR_IN serverAddr;
+	::memset(&serverAddr, 0, sizeof(serverAddr));
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_addr.s_addr = ::htonl(INADDR_ANY);
+	serverAddr.sin_port = ::htons(7777);
+
+	if (::bind(listenSocket, (sockaddr*)(&serverAddr), sizeof(serverAddr)) == SOCKET_ERROR)
 		return 0;
-	}
 
-	//---------------연결 준비 끝-------------------
+	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)//listen 최대크기를 넘어도 에러
+		return 0;
+
+	cout << "Accept" << endl;
+
+	SOCKADDR_IN clientAddr;
+	int32 addLen = sizeof(clientAddr);
 
 	while (true)
 	{
-		//5. Accept
-		SOCKADDR_IN clientAddr;//IPv4
-		::memset(&clientAddr, 0, sizeof(clientAddr));
-		int32 addrLen = sizeof(clientAddr);
-
-		//listner에게 현제 대기중인 클라이언트를 받아서 정보 추출(client Addr)
-		SOCKET clientSocket = ::accept(listener, (SOCKADDR*)&clientAddr, &addrLen);
+		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addLen);
 		if (clientSocket == INVALID_SOCKET)
 		{
-			int32 errCode = ::WSAGetLastError();
-			cout << "Accept ErrorCode : " << errCode << endl;
-			return 0;
-		}
-		//---------손님 입장------------
-		char ipAddress[16];
-		::inet_ntop(AF_INET, &clientAddr.sin_addr, ipAddress, sizeof(ipAddress));
-		cout << "Client Connected! Client IP = " << ipAddress << endl;
+			//논블로킹 함수의 예외처리
+			if (::WSAGetLastError() == WSAEWOULDBLOCK)
+				continue;
 
-		//...TODO
+			//Error 잡는 코드
+			// => 클라이언트가 뭔가 이상하다? ... 예외처리
+			break;
+		}
+		cout << "Client Connected" << endl;	
+
+		//Recv
 		while (true)
 		{
-			char recvBuffer[1000];
+			char recvBuffer[100];//운영체제 -> 내 쪽으로 복사할 곳
+			int32 recvLen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
 
-			this_thread::sleep_for(1s);
-
-			int32 recvlen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
-			if (recvlen <= 0)
+			if (recvLen == SOCKET_ERROR)
 			{
-				int32 errCode = ::WSAGetLastError();
-				cout << "Recive ErrorCode : " << errCode << endl;
-				return 0;
+				if (::WSAGetLastError() == WSAEWOULDBLOCK)
+					continue;
+
+				//Error
+				break;
+			}
+			else if (recvLen == 0)
+			{
+				//연결 끊김
+				break;
 			}
 
-			cout << "Recive Data : " << recvBuffer << endl;
-			cout << "ReciveLen : " << recvlen << endl;
+			//송신 성공
+			cout << "Recv Data Len = " << recvLen << endl;
 
-			char sendBuffer[100] = "Server Respond! Hello!!";
-
-			int32 sendCode = ::send(clientSocket, sendBuffer, sizeof(sendBuffer), 0);
-			if (sendCode = ::WSAGetLastError())
+			//Send
+			while (true)
 			{
-				int32 errCode = ::WSAGetLastError();
-				cout << "Server Send ErrorCode : " << errCode << endl;
-				return 0;
-			}
+				char sendBuff[100] = "I am Server!!!";
+				if (::send(clientSocket, sendBuff, sizeof(sendBuff), 0) == SOCKET_ERROR)
+				{
+					if (::WSAGetLastError() == WSAEWOULDBLOCK)
+						continue;
 
-			cout << "Server Send Data!" << endl;
+					//Error
+					break;
+				}
+
+				cout << "Send Data Succeed Len = " << sizeof(sendBuff) << endl;
+			}
 		}
 	}
 
-	//6. 원속 종료
-	::closesocket(listener);
+	
 	::WSACleanup();
-
-
 	return 0;
 }

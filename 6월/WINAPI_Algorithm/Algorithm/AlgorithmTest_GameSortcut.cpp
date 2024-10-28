@@ -86,21 +86,21 @@ void BFS(vector<vector<int> > maps, Vec2 start, Vec2 end) {
         Vec2 here = q[pop];
         pop++;
 
-        //ÀÌµ¿ÇÑ Ä­ÀÌ µµÂøÁöÁ¡ÀÎ°¡
+        //ï¿½Ìµï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
         if (here == end) {
             break;
         }
 
         for (int i = 0; i < 4; i++) {
             Vec2 there = here + frontPos[i];
-            //ÀÌµ¿ÇÑ Ä­ÀÌ ¹üÀ§ ¹ÛÀÌ¸é ´Ù½Ã µ¹¸®±â
+            //ï¿½Ìµï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if ((there.y < 0 || there.y >= MAPY) || (there.x < 0 || there.x >= MAPX))
                 continue;
-            //ÀÌµ¿ÇÑ Ä­ÀÌ ÀÌµ¿ °¡´ÉÀÎ°¡
+            //ï¿½Ìµï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
             if (maps[there.y][there.x] == 0)
-                continue;//ÀÌµ¿ºÒ°¡
+                continue;//ï¿½Ìµï¿½ï¿½Ò°ï¿½
 
-            //ÀÌµ¿ÇÑ Ä­ÀÌ ÀÌ¹Ì µé·¶´ø Ä­ÀÎ°¡
+            //ï¿½Ìµï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½é·¶ï¿½ï¿½ Ä­ï¿½Î°ï¿½
             if (discovered[there.y][there.x])
                 continue;
 
@@ -115,8 +115,8 @@ void BFS(vector<vector<int> > maps, Vec2 start, Vec2 end) {
 
 int solution(vector<vector<int> > maps)
 {
-    //ÀÌµ¿°Å¸® ÃÖ¼Ú°ª ±¸ÇÏ±â
-    //¸·ÇôÀÖÀ¸¸é -1 ¸®ÅÏ
+    //ï¿½Ìµï¿½ï¿½Å¸ï¿½ ï¿½Ö¼Ú°ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1 ï¿½ï¿½ï¿½ï¿½
     int answer = 0;
     Vec2 start = Vec2(0, 0);
     Vec2 end = Vec2(maps.size()-1, maps[0].size()-1);

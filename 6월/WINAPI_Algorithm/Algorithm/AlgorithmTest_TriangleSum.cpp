@@ -9,7 +9,7 @@ vector<vector<int>> cache = vector<vector<int>>(501, vector<int>(501, -1));
 
 int DP_BottomUp(int posY, int posX)
 {
-    //±âÀú»çÇ×
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if (posY == 0 && posX == 0)
     {
         return Triang[0][0];
@@ -17,12 +17,12 @@ int DP_BottomUp(int posY, int posX)
     if (posY < 0 || posX<0 || posX>posY)
         return -1;
 
-    //¸Þ¸ðÀÌÁ¦ÀÌ¼Ç
+    //ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
     int& ref = cache[posY][posX];
     if (ref != -1)
         return ref;
 
-    //Ç®ÀÌ
+    //Ç®ï¿½ï¿½
     return ref = max(DP_BottomUp(posY - 1, posX), DP_BottomUp(posY - 1, posX - 1)) + Triang[posY][posX];
 }
 
