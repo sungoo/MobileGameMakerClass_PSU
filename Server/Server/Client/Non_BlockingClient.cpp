@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 
 // Socket 만들기
 // - ipv6
@@ -34,7 +34,7 @@ int main()
 	serverAddr.sin_family = AF_INET;//IPv4
 	::inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);//127.0.01 => Loop back : 자기 PC의 주소
 	serverAddr.sin_port = ::htons(7777); //1~1000 사이 포트는 건들면 안됨
-	
+
 	this_thread::sleep_for(1s);
 
 	//Connect

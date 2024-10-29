@@ -60,6 +60,9 @@
     <ClCompile Include="GameServerSocketOption.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Non_BlockingServer.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

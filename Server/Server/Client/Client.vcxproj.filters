@@ -18,6 +18,9 @@
     <ClCompile Include="ClientBasic.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Non_BlockingClient.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
