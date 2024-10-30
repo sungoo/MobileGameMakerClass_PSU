@@ -35,13 +35,6 @@ int main()
 	// 3) 적어도 하나의 소켓이 준비되면 리턴
 	// 4) 남은 소켓 체크해서 진행
 	//
-
-	//블로킹 소켓
-	// accept -> 접속한 클라이언트가 있을 때
-	// connect -> 서버에 접속이 성공했을 때
-	// send -> sendBuff에 요청한 데이터를 복사했을 때
-	// recv -> recvBuff에 도착한 데이터가 있고, 이를 성공적으로 복사했을 때
-	
 	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
 	if (listenSocket == INVALID_SOCKET)
 		return 0;
@@ -64,39 +57,53 @@ int main()
 
 	cout << "Accept" << endl;
 
-	//Select기반 Socket
+	//1. Select기반 Socket IO (소켓 입출력)
+	//2. WSAEventSelect 기반 Socket IO
+
+	//WSAEventSelect 기반 => WSAEventSelect가 핵심
+	//(소켓 - 이벤트객체) 네트워크 이벤트를 (이벤트 객체)로 감지
+
+	//이벤트 객체 관련 함수
+	//생성 : WSACreateEvent
+	//삭제 : WSACloseEvent
+	//(여러 이벤트들의)신호상태 감지 : WSAWaitforMultipleEvents
+	//구체적인 네트워크 이벤트 확인 : WSAEnumNetworkEvents
+	
+	// (소켓 - 이벤트객체) 연동
+	// WSAEventSelect(socket, event, netWorkEvents);
+	// -- FD_ACCEPT => accept
+	// -- FD_READ => recv
+	// -- FD_WRITE => send
+	// -- FD_CLOSE : 상대가 접속 종료
+	// -- FD_CONNECT : 상대 접속 확인
+	
+	vector<WSAEVENT> wsaEvents;
 	vector<Session> sessions;
 	sessions.reserve(100);
 
-	//소켓set
-	fd_set reads;
-	fd_set writes;
-
+	WSAEVENT listenEvent = WSACreateEvent();//listen 이벤트객체 생성
+	wsaEvents.push_back(listenEvent);
+	sessions.push_back(Session{ listenSocket });//index 0으로 연동
+	if (::WSAEventSelect(listenSocket, listenEvent, FD_ACCEPT | FD_CLOSE) == SOCKET_ERROR)//소켓, 이벤트객체 연동
+		return 0;
 
 	while (true)
 	{
-		//소켓 셋 초기화
-		FD_ZERO(&reads);
-		FD_ZERO(&writes);
+		//여러 Event 객체들의 신호상태 감지
+		int32 index = ::WSAWaitForMultipleEvents(wsaEvents.size(), wsaEvents.data(), FALSE, WSA_INFINITE, FALSE);
+		if (index == WSA_WAIT_FAILED)
+			continue;
 
-		//ListenSocket 등록
-		FD_SET(listenSocket, &reads);
+		index -= WSA_WAIT_EVENT_0;//소켓과 이벤트 객체를 1:1 대응시킨 인덱스 찾기
+								  //sessions, wsaEvents
 
-		//ClientSocket 등록
-		for (auto& session : sessions)
-		{
-			if (session.recvBytes <= session.sendBytes)
-				FD_SET(session.socket, &reads);
-			else
-				FD_SET(session.socket, &writes);
-		}
-
-		int32 retVal = ::select(0, &reads, &writes, nullptr, nullptr);
-		if (retVal == SOCKET_ERROR)
-			break;
-
+		//구체적인 네트워크 이벤트 알아내기
+		WSANETWORKEVENTS networkEvents;
+		if (::WSAEnumNetworkEvents(sessions[index].socket, wsaEvents[index], &networkEvents) == SOCKET_ERROR)
+			continue;
+		
 		//Check Listener Socket
-		if (FD_ISSET(listenSocket, &reads))
+		if (networkEvents.lNetworkEvents & FD_ACCEPT)
 		{
 			SOCKADDR_IN clientAddr;
 			int32 addrLen = sizeof(clientAddr);
@@ -105,40 +112,53 @@ int main()
 			{
 				//클라이언트 접속
 				cout << "Client Connected" << endl;
+
+				WSAEVENT clientEvent = ::WSACreateEvent();
 				sessions.push_back(Session{ clientSocket });
+				wsaEvents.push_back(clientEvent);
+
+				if (::WSAEventSelect(clientSocket, clientEvent, FD_READ | FD_WRITE | FD_CLOSE))//socket, eventObj 연동
+				{
+					return 0;
+				}
 			}
 		}
 
-		//나머지 소켓 체크
-		for (Session& session : sessions)
+		//Client Socket 체크
+		if (networkEvents.lNetworkEvents & FD_READ || networkEvents.lNetworkEvents & FD_WRITE)
 		{
-			//Read
-			if (FD_ISSET(session.socket, &reads))
+			//Error Check
+			if ((networkEvents.lNetworkEvents & FD_READ) && (networkEvents.iErrorCode[FD_READ_BIT] != 0))
+				continue;
+			if ((networkEvents.lNetworkEvents & FD_WRITE) && (networkEvents.iErrorCode[FD_WRITE_BIT] != 0))
+				continue;
+
+			Session& session = sessions[index];
+
+			//Recv
+			if (session.recvBytes == 0)
 			{
 				int32 recvLen = ::recv(session.socket, session.recvBuffer, BuffSize, 0);
-				if (recvLen <= 0)
+				if (recvLen == SOCKET_ERROR && ::WSAGetLastError() != WSAEWOULDBLOCK)
 				{
-					//TODO : Session Disconnect
+					//TODO : Disconnect
 					continue;
 				}
-				session.recvBytes = recvLen;
-				cout << "RecvSize : " << session.recvBytes << endl;
-			}
 
-			//현재 상황
-			// - client가 10개짜리 문자열을 보냈고, 10개를 받은 상황
-			// - 처음 recv 받고, 첫 send하기 시작
-			// recvBytes = 10
-			// sendBytes = 0
-			
-			//Write
-			if (FD_ISSET(session.socket, &writes))
+				if (recvLen < 0)
+					continue;
+
+				session.recvBytes = recvLen;
+				cout << "Recv Data Size = " << recvLen << endl;
+			}
+			//Send
+			if (session.recvBytes > session.sendBytes)
 			{
-				//블로킹 모드 -> 모든 데이터를 다 보낼 때 까지 대기
-				//논블로킹 모드 -> 상대방의 recvBuff에 따라, 일부만 보낼 수 있음
-				int32 sendLen = ::send(session.socket, session.recvBuffer, sizeof(session.recvBytes - session.sendBytes), 0);
-				//sendLen : 보냈을 때 그 길이
-				if (sendLen == SOCKET_ERROR)
+				int32 sendLen = ::send(
+					session.socket, 
+					&session.recvBuffer[session.sendBytes], 
+					session.recvBytes - session.sendBytes, 0);
+				if ((sendLen == SOCKET_ERROR) && (WSAGetLastError() != WSAEWOULDBLOCK))
 				{
 					//TODO : Disconnect
 					continue;
@@ -147,12 +167,18 @@ int main()
 				session.sendBytes += sendLen;
 				if (session.recvBytes == session.sendBytes)
 				{
-					session.sendBytes = 0;
+					session.recvBytes = 0;
 					session.recvBytes = 0;
 				}
 
-				cout << "SendSize : " << session.sendBytes << endl;
+				cout << "Send Data = " << sendLen << endl;
 			}
+		}
+
+		if (networkEvents.lNetworkEvents & FD_CLOSE)
+		{
+			//TODO : Remove Socet
+			//Disconnect
 		}
 	}
 
