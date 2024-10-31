@@ -55,43 +55,76 @@ int main()
 
 	cout << "connected to server!!" << endl;
 
+	// - Session
 	char sendBuff[100] = "Hello world!!";
+	//Overlapped
+	WSAEVENT wsaEvent = WSACreateEvent();
+	WSAOVERLAPPED overlapped = {};
+	overlapped.hEvent = wsaEvent;
 
 	//Send
 	while (true)
 	{
-		if (::send(clientSocket, sendBuff, sizeof(sendBuff), 0) == SOCKET_ERROR)
+		WSABUF wsaBuf;
+		wsaBuf.buf = sendBuff;
+		wsaBuf.len = sizeof(sendBuff);
+
+		DWORD sendLen = 0;
+		DWORD flags = 0;
+
+		if (::WSASend(clientSocket, &wsaBuf, 1, &sendLen, 
+			flags, &overlapped, nullptr) == SOCKET_ERROR)
 		{
-			if (::WSAGetLastError() == WSAEWOULDBLOCK)
-				continue;
-
-			//Error
-			break;
+			//WSASend 실패
+			if (::WSAGetLastError() == WSA_IO_PENDING)
+			{
+				//Pending : 보류하고 나중에 확인
+				::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
+				::WSAGetOverlappedResult(clientSocket, &overlapped, &sendLen, FALSE, &flags);
+			}
+			else
+			{
+				//TODO : 진짜 문제있는 상황
+				break;
+			}
 		}
+		cout << "Send Data! Len = " << sizeof(sendBuff) << endl;
 
-		cout << "Send Data! Len : " << sizeof(sendBuff) << endl;
+		//Recv
+		char recvBuff[1000];
+		wsaBuf.buf = recvBuff;
+		wsaBuf.len = sizeof(recvBuff);
+
+		DWORD recvLen = 0;
+		flags = 0;
+
+		if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen,
+			&flags, &overlapped, nullptr) == SOCKET_ERROR)
+		{
+			if (::WSAGetLastError() == WSA_IO_PENDING)
+			{
+				::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
+				::WSAGetOverlappedResult(clientSocket, &overlapped, &recvLen, FALSE, &flags);
+			}
+			else
+			{
+				break;
+			}
+			cout << "Data Recv! Len : " << recvLen << endl;
+
+			for (int i = 0; i < recvLen; i++)
+			{
+				if (recvBuff[i] == 0) break;
+				cout << recvBuff[i];
+			}
+			cout << endl;
+		}
 
 		this_thread::sleep_for(1s);
 	}
 
-	while (true)
-	{
-		char recvBuff[1000];
-
-		int32 recvLen = ::recv(clientSocket, recvBuff, sizeof(recvBuff), 0);
-		if (recvLen == SOCKET_ERROR)
-		{
-			if (::WSAGetLastError() == WSAEWOULDBLOCK)
-				continue;
-
-			//Error
-			break;
-		}
-
-		cout << "Recv Data Len = " << recvLen << endl;
-		break;
-	}
-
+	
+	WSACloseEvent(wsaEvent);
 	::closesocket(clientSocket);
 	::WSACleanup();
 }

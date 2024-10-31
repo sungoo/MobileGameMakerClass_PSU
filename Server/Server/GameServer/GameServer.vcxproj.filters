@@ -66,6 +66,12 @@
     <ClCompile Include="SelectBasedSocketIO.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Event_Selected Socket.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Overlapped IO_Event Based.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

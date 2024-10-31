@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 
 #include <WinSock2.h>
 #include <MSWSock.h>
@@ -66,7 +66,7 @@ int main()
 	// 2. Overlapped 함수가 성공했는지 확인
 	// 3. -> 성공했으면 결과 얻어서 처리
 	//    -> 실패했으면 사유 확인하고(Pending 상태면 그대로 다음 꺼 진행)
-	
+
 	while (true)
 	{
 		SOCKADDR_IN clientAddr;
@@ -103,7 +103,7 @@ int main()
 
 			//비동기 WSARecv
 			if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen,
-				&flags, &session.overlapped,nullptr) == SOCKET_ERROR)
+				&flags, &session.overlapped, nullptr) == SOCKET_ERROR)
 			{
 				//WSARecv 실패
 				if (::WSAGetLastError() == WSA_IO_PENDING)
@@ -117,7 +117,7 @@ int main()
 					//TODO : 진짜 문제있는 상황
 					break;
 				}
-				cout << "Data Recv! Len : " << recvLen << endl;
+				cout << "Data Recv Len" << recvLen << endl;
 
 				for (int i = 0; i < recvLen; i++)
 				{
@@ -126,31 +126,6 @@ int main()
 				}
 				cout << endl;
 			}
-
-			char sendBuff[100] = "Hello Im Server!";
-			//Send
-			wsaBuf.buf = sendBuff;
-			wsaBuf.len = sizeof(sendBuff);
-
-			DWORD sendLen = 0;
-			flags = 0;
-
-			if (::WSASend(session.socket, &wsaBuf, 1, &sendLen,
-				flags, &session.overlapped, nullptr) == SOCKET_ERROR)
-			{
-				if (::WSAGetLastError() == WSA_IO_PENDING)
-				{
-					::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
-					::WSAGetOverlappedResult(session.socket, &session.overlapped, &sendLen, FALSE, &flags);
-				}
-				else
-				{
-					break;
-				}
-			}
-			cout << "Send Data! Len = " << sizeof(sendBuff) << endl;
-
-
 			::closesocket(session.socket);
 			::WSACloseEvent(wsaEvent);
 		}
