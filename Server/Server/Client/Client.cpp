@@ -90,6 +90,7 @@ int main()
 		}
 		cout << "Send Data! Len = " << sizeof(sendBuff) << endl;
 
+
 		//Recv
 		char recvBuff[1000];
 		wsaBuf.buf = recvBuff;
@@ -108,6 +109,7 @@ int main()
 			}
 			else
 			{
+				//여기서 걸림..
 				break;
 			}
 			cout << "Data Recv! Len : " << recvLen << endl;

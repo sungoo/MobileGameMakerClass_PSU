@@ -69,7 +69,7 @@
     <ClCompile Include="Event_Selected Socket.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Overlapped IO_Event Based.cpp">
+    <ClCompile Include="Overlapped IO Server.cpp">
       <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
