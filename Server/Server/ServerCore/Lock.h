@@ -1,6 +1,6 @@
 #pragma once
 
-uint64 bitflag = 0x0000'0000;
+//uint64 bitflag = 0x0000'0000;
 
 // [WWWWWWWW] [WWWWWWWW] : Write Lock을 걸은 ThreadID 기입
 // [RRRRRRRR] [RRRRRRRR] : Read  Lock을 걸었을 때 몇 번이나 걸었는지 횟수

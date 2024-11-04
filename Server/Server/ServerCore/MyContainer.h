@@ -2,6 +2,8 @@
 
 #include "Types.h"
 #include "Allocator.h"
+#include <queue>
+#include <stack>
 #include <vector>
 #include <list>
 #include <unordered_map>

@@ -72,6 +72,9 @@
     <ClCompile Include="Overlapped IO Server.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Overlapped Callback.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

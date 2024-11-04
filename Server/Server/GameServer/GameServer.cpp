@@ -10,31 +10,81 @@ const int32 BuffSize = 1000;
 
 struct Session
 {
-	WSAOVERLAPPED overlapped = {};//WSASend, WSARecv 했을 때, 성공 실패사유 확인
-	
 	SOCKET socket = INVALID_SOCKET;
 	char recvBuffer[BuffSize] = {};
 	char sendBuffer[100] = "Hello Im Server!!";
 	int32 recvBytes = 0;
 	int32 sendBytes = 0;
-
 };
 
-//Kenel에서 recvBuff에 온 데이터들을 유저단계의 recvBuff에 성공적으로 복사했을 때 호출되는 함수
-void CALLBACK RecvCallback(DWORD error, DWORD recvLen, LPWSAOVERLAPPED overlapped, DWORD flags)
+enum IO_TYPE
 {
-	cout << "Data Recv Len : " << recvLen << endl;
+	READ,
+	WRITE,
+	ACCEPT,
+	CONNET
+	//Packet Header...추가가능
+};
 
-	Session* curSession = reinterpret_cast<Session*>(overlapped);
-	cout << curSession->recvBuffer << endl;
-}
-void CALLBACK SendCallback(DWORD error, DWORD sendLen, LPWSAOVERLAPPED overlapped, DWORD flags)
+struct OverlappedEx
 {
-	cout << "Data Send Len : " << sendLen << endl;
+	WSAOVERLAPPED overlapped = {};
+	int32 type = 0; //read, write, accept, connet...
+};
+
+//스레드 5개에 부여될 일감 => 결과 보기
+void WorkerThreadMain(HANDLE iocpHandle)
+{
+	while (true)
+	{
+		//GetQueuedCompletionStatus => 결과 처리
+		DWORD bytesTranferred = 0;//전송된 크기
+		Session* session = nullptr;
+		OverlappedEx* overlappedEx = nullptr;
+
+		//ret == true => recv 완료 상태
+		BOOL ret = ::GetQueuedCompletionStatus(iocpHandle, &bytesTranferred, /*Key*/(ULONG_PTR*)&session,
+			(LPOVERLAPPED*)overlappedEx, INFINITE);
+
+		if (ret == false || bytesTranferred == 0)
+		{
+			//연결 끊김
+			continue;
+		}
+
+		//session과 overlapped 세팅완료
+
+		//처리
+		switch (overlappedEx->type)
+		{
+		case IO_TYPE::READ:
+		{
+			cout << session->recvBuffer << endl;
+
+			WSABUF wsaBuf;
+			wsaBuf.buf = session->recvBuffer;
+			wsaBuf.len = BuffSize;
+
+			DWORD recvLen = 0;
+			DWORD flags = 0;
+			//다시 예약 걸어주기
+			::WSARecv(session->socket, &wsaBuf, 1, &recvLen, &flags, &overlappedEx->overlapped, NULL);
+
+			break;
+		}
+
+		//TODO
+
+		default:
+			break;
+		}
+	}
 }
 
 int main()
 {
+	CoreGlobal::Create();
+
 	WSAData wsaData;
 	if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 		return 0;
@@ -61,110 +111,68 @@ int main()
 
 	cout << "Accept" << endl;
 
-	// Overlapped Socket IO(비동기, 논블로킹 소켓 입출력 방식)
-	// WSASend, WSARecv
-	// (AcceptEx, ConnectEx)
-	// 1. Overlapped 함수를 건다.
-	// 2. Overlapped 함수가 성공했는지 확인
-	// 3. -> 성공했으면 결과 얻어서 처리
-	//    -> 실패했으면 사유 확인하고(Pending 상태면 그대로 다음 꺼 진행)
+	//Overlapped 모델 (Complition Routine 콜백기반) => 비동기 + 논블럭
+	// - 장점 : 비동기 + 논블럭
+	// - 단점 : 스레드마다 APC큐가 있다.
+	//			스레드를 Alertable Wait 부담
+	//			이벤트 방식 소켓 : 이벤트 = 1 : 1 대응
+	// 
+	// IOCP (Input Output Completion Port) 모델
+	// - APC큐 => Completion Port로 바뀜(*스레드마다 한개씩이 아니라, 중앙관리)
+	// - Aleratable Wait => CP 결과 처리를 GetQueuedCompletionStatus
+	// ==> 멀티스레드 환경에 매우 적합
 	
-	// Overlapped Event 기반 IO 모델의 장점
-	// 1. (비동기, 논블로킹)
-	// 
-	// 단점
-	// 1. 성능
-	//	  - session과 wsaEvent를 묶어줘야 한다.
-	//		=> 1000명의 session(client)를 위해 1000개의 wsaEvent가 필요.
-	// ...     최대 64개 만큼만 지원
-	// 결론 : 서버에 적합한 모델이 아니다.
-	// 
-	//
+	//CreateIoCompletionPort => CP 생성, / CP에 소켓 연동
+	//GetQueuedCompletionStatus => 결과 처리
+
+	vector<Session*> sessionManager;
+
+	//CP생성
+	HANDLE iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
+
+	//멀티스레드 환경 만들기
+	for (int32 i = 0; i < 5; i++)
+	{
+		TM_M->Launch([=]() {WorkerThreadMain(iocpHandle); });
+	}
+
+	//Main Thread Accept
 	while (true)
 	{
 		SOCKADDR_IN clientAddr;
 		int32 addrLen = sizeof(clientAddr);
 
-		SOCKET clientSocket;
+		//TODO : accept -> acceptEx
+		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
+		if (clientSocket == INVALID_SOCKET) continue;
 
-		//Accept 준비
-		while (true)
-		{
-			clientSocket = accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
-			if (clientSocket != INVALID_SOCKET)
-				break;
-			if (::WSAGetLastError() == WSAEWOULDBLOCK)
-				continue;
-
-			//문제 있는 상황..
-			return 0;
-		}
-		Session session = Session{ clientSocket };
-		WSAEVENT wsaEvent = ::WSACreateEvent();//WSASend , WSARecv 완료 상태 체크
-		session.overlapped.hEvent = wsaEvent;
+		Session* session = xnew<Session>();
+		session->socket = clientSocket;
+		sessionManager.push_back(session);
 
 		cout << "Client Connected!" << endl;
 
-		while (true)
-		{
-			WSABUF wsaBuf;
-			wsaBuf.buf = session.recvBuffer;
-			wsaBuf.len = BuffSize;
+		//소켓을 CP에 등록 : cp에게 소켓을 관찰해달라 요청
+		::CreateIoCompletionPort((HANDLE)clientSocket, iocpHandle, /*Key*/(ULONG_PTR)session, 0);
 
-			DWORD recvLen = 0;
-			DWORD flags = 0;
+		//Recv 예약
+		WSABUF wsaBuf;
+		wsaBuf.buf = session->recvBuffer;
+		wsaBuf.len = BuffSize;
 
-			//비동기 WSARecv
-			if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen,
-				&flags, &session.overlapped,&RecvCallback) == SOCKET_ERROR)
-			{
-				//WSARecv 실패
-				if (::WSAGetLastError() == WSA_IO_PENDING)
-				{
-					//Pending : 보류하고 나중에 확인
-					//Alertable Wait 상태로 변경
-					::SleepEx(INFINITE, TRUE);
-				}
-				else
-				{
-					//TODO : 진짜 문제있는 상황
-					break;
-				}
-				
-				for (int i = 0; i < recvLen; i++)
-				{
-					if (session.recvBuffer[i] == '\0') break;
-					cout << session.recvBuffer[i];
-				}
-				cout << endl;
-			}
+		OverlappedEx* overlappedEx = xnew<OverlappedEx>();
+		overlappedEx->type = IO_TYPE::READ;
 
-			char sendBuff[100] = "Hello Im Server!";
-			//Send
-			wsaBuf.buf = sendBuff;
-			wsaBuf.len = sizeof(sendBuff);
-
-			DWORD sendLen = 0;
-			flags = 0;
-
-			if (::WSASend(session.socket, &wsaBuf, 1, &sendLen,
-				flags, &session.overlapped, &SendCallback) == SOCKET_ERROR)
-			{
-				if (::WSAGetLastError() == WSA_IO_PENDING)
-				{
-					::SleepEx(INFINITE, TRUE);
-				}
-				else
-				{
-					break;
-				}
-			}
-			//cout << "Send Data! Len = " << sizeof(sendBuff) << endl;
-
-			::closesocket(session.socket);
-		}
+		DWORD recvLen = 0;
+		DWORD flags = 0;
+		::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &overlappedEx->overlapped, NULL);//Overlapped와 동일한 WSARecv
 	}
 
+	TM_M->Join();
+
 	::WSACleanup();
+
+	CoreGlobal::Delete();
+
 	return 0;
 }
