@@ -9,6 +9,12 @@
 
 using namespace std;
 
+//Network
+#include <WinSock2.h>
+#include <MSWSock.h>
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
+
 //CORE
 #include "CoreTLS.h"
 #include "CoreGlobal.h"

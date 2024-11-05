@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 
 #include <WinSock2.h>
 #include <MSWSock.h>
@@ -85,40 +85,64 @@ int main()
 {
 	CoreGlobal::Create();
 
-	//TODO : DELETE
+	WSAData wsaData;
+	if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
+		return 0;
 
 	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
 	if (listenSocket == INVALID_SOCKET)
 		return 0;
 
 	u_long on = 1;
-	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)
+	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)//논블로킹 소켓 만드는 함수
 		return 0;
 
-	//TODO : DELETED
+	SOCKADDR_IN serverAddr;
+	::memset(&serverAddr, 0, sizeof(serverAddr));
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_addr.s_addr = ::htonl(INADDR_ANY);
+	serverAddr.sin_port = ::htons(7777);
 
 	if (::bind(listenSocket, (sockaddr*)(&serverAddr), sizeof(serverAddr)) == SOCKET_ERROR)
 		return 0;
 
-	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
+	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)//listen 최대크기를 넘어도 에러
 		return 0;
 
 	cout << "Accept" << endl;
 
+	//Overlapped 모델 (Complition Routine 콜백기반) => 비동기 + 논블럭
+	// - 장점 : 비동기 + 논블럭
+	// - 단점 : 스레드마다 APC큐가 있다.
+	//			스레드를 Alertable Wait 부담
+	//			이벤트 방식 소켓 : 이벤트 = 1 : 1 대응
+	// 
+	// IOCP (Input Output Completion Port) 모델
+	// - APC큐 => Completion Port로 바뀜(*스레드마다 한개씩이 아니라, 중앙관리)
+	// - Aleratable Wait => CP 결과 처리를 GetQueuedCompletionStatus
+	// ==> 멀티스레드 환경에 매우 적합
+
+	//CreateIoCompletionPort => CP 생성, / CP에 소켓 연동
+	//GetQueuedCompletionStatus => 결과 처리
+
 	vector<Session*> sessionManager;
 
+	//CP생성
 	HANDLE iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
 
+	//멀티스레드 환경 만들기
 	for (int32 i = 0; i < 5; i++)
 	{
 		TM_M->Launch([=]() {WorkerThreadMain(iocpHandle); });
 	}
 
+	//Main Thread Accept
 	while (true)
 	{
 		SOCKADDR_IN clientAddr;
 		int32 addrLen = sizeof(clientAddr);
 
+		//TODO : accept -> acceptEx
 		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
 		if (clientSocket == INVALID_SOCKET) continue;
 
@@ -128,8 +152,10 @@ int main()
 
 		cout << "Client Connected!" << endl;
 
+		//소켓을 CP에 등록 : cp에게 소켓을 관찰해달라 요청
 		::CreateIoCompletionPort((HANDLE)clientSocket, iocpHandle, /*Key*/(ULONG_PTR)session, 0);
 
+		//Recv 예약
 		WSABUF wsaBuf;
 		wsaBuf.buf = session->recvBuffer;
 		wsaBuf.len = BuffSize;
