@@ -85,66 +85,31 @@ int main()
 {
 	CoreGlobal::Create();
 
-	//TODO : DELETE
+	SocketUtility::Init();
 
-	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
-	if (listenSocket == INVALID_SOCKET)
-		return 0;
+	SOCKET listenSocket = SocketUtility::CreateSocket();
+	ASSERT_CRASH(listenSocket != INVALID_SOCKET);
 
-	u_long on = 1;
-	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)
-		return 0;
+	/*u_long on = 1;
+	ASSERT_CRASH(::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET);*/
 
 	//TODO : DELETED
+	SocketUtility::BindAnyAddress(listenSocket, 7777);
 
-	if (::bind(listenSocket, (sockaddr*)(&serverAddr), sizeof(serverAddr)) == SOCKET_ERROR)
-		return 0;
+	SocketUtility::Listen(listenSocket);
 
-	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
-		return 0;
+	SOCKET clientSocket = ::accept(listenSocket, nullptr, nullptr);
 
-	cout << "Accept" << endl;
-
-	vector<Session*> sessionManager;
-
-	HANDLE iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
-
-	for (int32 i = 0; i < 5; i++)
-	{
-		TM_M->Launch([=]() {WorkerThreadMain(iocpHandle); });
-	}
+	cout << "Client Connected" << endl;
 
 	while (true)
 	{
-		SOCKADDR_IN clientAddr;
-		int32 addrLen = sizeof(clientAddr);
-
-		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
-		if (clientSocket == INVALID_SOCKET) continue;
-
-		Session* session = xnew<Session>();
-		session->socket = clientSocket;
-		sessionManager.push_back(session);
-
-		cout << "Client Connected!" << endl;
-
-		::CreateIoCompletionPort((HANDLE)clientSocket, iocpHandle, /*Key*/(ULONG_PTR)session, 0);
-
-		WSABUF wsaBuf;
-		wsaBuf.buf = session->recvBuffer;
-		wsaBuf.len = BuffSize;
-
-		OverlappedEx* overlappedEx = xnew<OverlappedEx>();
-		overlappedEx->type = IO_TYPE::READ;
-
-		DWORD recvLen = 0;
-		DWORD flags = 0;
-		::WSARecv(clientSocket, &wsaBuf, 1, &recvLen, &flags, &overlappedEx->overlapped, NULL);//Overlapped와 동일한 WSARecv
+		
 	}
 
 	TM_M->Join();
 
-	::WSACleanup();
+	SocketUtility::Clear();
 
 	CoreGlobal::Delete();
 
