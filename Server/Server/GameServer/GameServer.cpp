@@ -83,6 +83,9 @@ void WorkerThreadMain(HANDLE iocpHandle)
 
 int main()
 {
+	// IOCP
+	// 1. CP(Completion Port)에 Socket을 등록
+	//
 	CoreGlobal::Create();
 
 	SocketUtility::Init();
