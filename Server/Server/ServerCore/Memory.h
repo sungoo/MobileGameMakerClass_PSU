@@ -44,3 +44,8 @@ void xdelete(T* obj)
 	xrelease(obj);
 }
 
+template<typename T, typename...Args>
+shared_ptr<T> MakeShared(Args&&... args)
+{
+	return shared_ptr<T>{xnew<T>(forward<Args>(args)...), xdelete<T>};
+}

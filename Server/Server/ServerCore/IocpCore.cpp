@@ -16,12 +16,18 @@ IocpCore::IocpCore()
 
 IocpCore::~IocpCore()
 {
+    ::CloseHandle(_iocpHandle);
 }
 
-bool IocpCore::Register(IocpObject* iocpObj)
+bool IocpCore::Register(shared_ptr<IocpObject> iocpObj)
 {
     //현재 상황 : iocpObj가 Session임
-    return ::CreateIoCompletionPort(iocpObj->GetHandle(), _iocpHandle, reinterpret_cast<ULONG_PTR>(&iocpObj), 0);
+    // 
+    // Session을 Event에서 물고있도록..
+    // => iocpEvent에서 현재 내 세션을 멤버변수로 갖고있겠다.
+    // ==> 세션 refCount + 1
+    //                   or Listener                                  Key
+    return ::CreateIoCompletionPort(iocpObj->GetHandle(), _iocpHandle, 0, 0);
 }
 
 bool IocpCore::Dispatch(uint32 timeOutMs)
@@ -29,18 +35,20 @@ bool IocpCore::Dispatch(uint32 timeOutMs)
     //Complition Port에 있는 함수들 실행
 
     DWORD numOfBytes = 0;
-    IocpObject* iocpObject = nullptr;
+    ULONG_PTR key = 0;
+    shared_ptr<IocpObject> iocpObject = nullptr;
     IocpEvent* iocpEvent = nullptr;
 
     if (
         ::GetQueuedCompletionStatus(
             _iocpHandle,
             &numOfBytes,
-            reinterpret_cast<PULONG_PTR>(&iocpObject),
-            reinterpret_cast<LPOVERLAPPED*>(iocpEvent),
+            &key,//key
+            reinterpret_cast<LPOVERLAPPED*>(&iocpEvent),
             timeOutMs
         ))
     {
+        iocpEvent->GetOwner()->DisPatch(iocpEvent, numOfBytes);
         iocpObject->DisPatch(iocpEvent, numOfBytes);
     }
     else

@@ -33,9 +33,9 @@ public:
 		return nullptr;
 	}
 
-	ThreadManager* GetThreadManager() { return _threadManager; }
+	ThreadManager* GetThreadManager()		{ return _threadManager; }
 	DeadLockProfiler* GetDeadLockProfiler() { return _deadLockProfiler; }
-	Memory* GetMemory() { return _memory; }
+	Memory* GetMemory()						{ return _memory; }
 
 private:
 	static CoreGlobal* _instance;
