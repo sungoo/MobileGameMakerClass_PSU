@@ -11,122 +11,83 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-int main()
+#include "Serviece.h"
+
+class ServerSession : public Session
 {
-	WSAData wsaData;
-	if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
-		return 0;
-
-	SOCKET clientSocket = ::socket(AF_INET, SOCK_STREAM, 0);//socket의 번호를 발급
-	if (clientSocket == INVALID_SOCKET)
+public:
+	ServerSession()
 	{
-		int32 errCode = ::WSAGetLastError();
-		cout << "Socket ErrorCode : " << errCode << endl;
-		return 0;
+		string temp = "Hello Server!! I'm Client!!";
+		memcpy(_sendBuffer, temp.data(), temp.size());
 	}
 
-	u_long on = 1;
-	if (::ioctlsocket(clientSocket, FIONBIO, &on) == INVALID_SOCKET)//논블로킹 소켓 만드는 함수
-		return 0;
-
-	SOCKADDR_IN serverAddr;//IPv4
-	::memset(&serverAddr, 0, sizeof(serverAddr));//serverAddr 0으로 다 밀어버리기
-	serverAddr.sin_family = AF_INET;//IPv4
-	::inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);//127.0.01 => Loop back : 자기 PC의 주소
-	serverAddr.sin_port = ::htons(7777); //1~1000 사이 포트는 건들면 안됨
-	
-	this_thread::sleep_for(1s);
-
-	//Connect
-	while (true)
+	~ServerSession()
 	{
-		if (::connect(clientSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
-		{
-			// 블록상태여야 했음(연결이 아직 되지 않음)
-			if (::WSAGetLastError() == WSAEWOULDBLOCK)
-				continue;
-			// 이미 연결상태임
-			if (::WSAGetLastError() == WSAEISCONN)
-				break;
-			// Error
-			break;
-		}
+		cout << "Session Disconnected" << endl;
 	}
 
-	cout << "connected to server!!" << endl;
-
-	// - Session
-	char sendBuff[100] = "Hello world!!";
-	//Overlapped
-	WSAEVENT wsaEvent = WSACreateEvent();
-	WSAOVERLAPPED overlapped = {};
-	overlapped.hEvent = wsaEvent;
-
-	//Send
-	while (true)
+	virtual void OnConnected() override
 	{
-		WSABUF wsaBuf;
-		wsaBuf.buf = sendBuff;
-		wsaBuf.len = sizeof(sendBuff);
+		cout << "Server 에 접속 성공!!" << endl;
+		Send(reinterpret_cast<BYTE*>(_sendBuffer), 1000);
+	}
 
-		DWORD sendLen = 0;
-		DWORD flags = 0;
-
-		if (::WSASend(clientSocket, &wsaBuf, 1, &sendLen, 
-			flags, &overlapped, nullptr) == SOCKET_ERROR)
-		{
-			//WSASend 실패
-			if (::WSAGetLastError() == WSA_IO_PENDING)
-			{
-				//Pending : 보류하고 나중에 확인
-				::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
-				::WSAGetOverlappedResult(clientSocket, &overlapped, &sendLen, FALSE, &flags);
-			}
-			else
-			{
-				//TODO : 진짜 문제있는 상황
-				break;
-			}
-		}
-		cout << "Send Data! Len = " << sizeof(sendBuff) << endl;
-
-
-		//Recv
-		char recvBuff[1000];
-		wsaBuf.buf = recvBuff;
-		wsaBuf.len = sizeof(recvBuff);
-
-		DWORD recvLen = 0;
-		flags = 0;
-
-		if (::WSARecv(clientSocket, &wsaBuf, 1, &recvLen,
-			&flags, &overlapped, nullptr) == SOCKET_ERROR)
-		{
-			if (::WSAGetLastError() == WSA_IO_PENDING)
-			{
-				::WSAWaitForMultipleEvents(1, &wsaEvent, TRUE, WSA_INFINITE, FALSE);
-				::WSAGetOverlappedResult(clientSocket, &overlapped, &recvLen, FALSE, &flags);
-			}
-			else
-			{
-				//여기서 걸림..
-				break;
-			}
-			cout << "Data Recv! Len : " << recvLen << endl;
-
-			for (int i = 0; i < recvLen; i++)
-			{
-				if (recvBuff[i] == 0) break;
-				cout << recvBuff[i];
-			}
-			cout << endl;
-		}
+	virtual int32 OnRecv(BYTE* buffer, int32 len) override
+	{
+		cout << buffer << endl;
 
 		this_thread::sleep_for(1s);
+		Send(reinterpret_cast<BYTE*>(_sendBuffer), 1000);
+
+		return len;
 	}
 
+	virtual void OnSend(int32 len) override
+	{
+		cout << "Send 성공" << endl;
+	}
+
+	virtual void Disconnected() override
+	{
+		cout << "Disconnected" << endl;
+	}
+};
+
+int main()
+{
+	this_thread::sleep_for(1s);
 	
-	WSACloseEvent(wsaEvent);
-	::closesocket(clientSocket);
-	::WSACleanup();
+	CoreGlobal::Create();
+
+	shared_ptr<ClientService> service = MakeShared<ClientService>(
+		NetAddress(L"127.0.0.1", 7777),
+		MakeShared<IocpCore>(),
+		MakeShared<ServerSession>,
+		1
+	);
+
+	service->Start();
+
+	for (int i = 0; i < 5; i++)
+	{
+		TM_M->Launch([=]()
+			{
+				while (true)
+				{
+					service->GetIocpCore()->Dispatch();
+				}
+			});
+	}
+
+	while (true)
+	{
+
+	}
+
+	TM_M->Join();
+
+	//SocketUtility::Clear();
+
+	CoreGlobal::Delete();
 }

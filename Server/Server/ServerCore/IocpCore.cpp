@@ -48,7 +48,7 @@ bool IocpCore::Dispatch(uint32 timeOutMs)
             timeOutMs
         ))
     {
-        iocpEvent->GetOwner()->DisPatch(iocpEvent, numOfBytes);
+        iocpObject = iocpEvent->GetOwner();
         iocpObject->DisPatch(iocpEvent, numOfBytes);
     }
     else
@@ -61,6 +61,7 @@ bool IocpCore::Dispatch(uint32 timeOutMs)
             return false;
         default:
             //TODO : 왜 안됐는지 코드분석
+            iocpObject = iocpEvent->GetOwner();
             iocpObject->DisPatch(iocpEvent, numOfBytes);
             break;
         }

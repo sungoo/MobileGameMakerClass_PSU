@@ -6,6 +6,7 @@ class IocpObject;
 enum class EventType : uint8
 {
 	CONNECT,
+	DISCONNECT,
 	ACCEPT,
 	RECV,
 	SEND,
@@ -20,11 +21,11 @@ public:
 	void Init();
 	EventType GetType() { return _eventType; }
 
-	shared_ptr<IocpObject> GetOwner() { return _owner; }
-	void SetOwner(shared_ptr<IocpObject> owner) { _owner = owner; }
+	shared_ptr<IocpObject>  GetOwner()								{ return _owner; }
+	void					SetOwner(shared_ptr<IocpObject> owner)  { _owner = owner; }
 protected:
-	EventType _eventType;
-	shared_ptr<IocpObject> _owner = nullptr;
+	EventType				_eventType;
+	shared_ptr<IocpObject>  _owner = nullptr;
 };
 
 /// <summary>
@@ -35,6 +36,16 @@ class ConnectEvent : public IocpEvent
 {
 public:
 	ConnectEvent() :IocpEvent(EventType::CONNECT) {};
+};
+
+/// <summary>
+/// Connect
+/// </summary>
+
+class DisConnectEvent : public IocpEvent
+{
+public:
+	DisConnectEvent() :IocpEvent(EventType::DISCONNECT) {};
 };
 
 /// <summary>
@@ -50,7 +61,9 @@ public:
 	shared_ptr<Session> GetSession() { return _session; }
 
 private:
-	shared_ptr<Session> _session;
+	//Owner : Listener
+	//this : Client
+	shared_ptr<Session> _session = nullptr;
 };
 
 /// <summary>
@@ -61,6 +74,8 @@ class RecvEvent : public IocpEvent
 {
 public:
 	RecvEvent() :IocpEvent(EventType::RECV){};
+
+	//Owner : Client
 };
 
 /// <summary>
@@ -71,4 +86,6 @@ class SendEvent : public IocpEvent
 {
 public:
 	SendEvent() :IocpEvent(EventType::SEND){};
+
+	//Owner : Client
 };

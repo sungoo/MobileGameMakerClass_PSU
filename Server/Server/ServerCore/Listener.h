@@ -18,10 +18,12 @@ public:
 	void CloseSocket();
 
 	virtual HANDLE GetHandle() override;
-	virtual void DisPatch(IocpEvent* iocpEvent, int32 numOfBytes) override;
+	virtual void DisPatch(class IocpEvent* iocpEvent, int32 numOfBytes) override;
 
 	void RegisterAccept(AcceptEvent* acceptEvent);
 	void ProcessAccept(AcceptEvent* acceptEvent);
+
+	virtual void OnAccept(shared_ptr<class Session> session, IocpEvent* iocpEvent);
 
 protected:
 	SOCKET _socket = INVALID_SOCKET;

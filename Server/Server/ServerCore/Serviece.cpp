@@ -22,6 +22,7 @@ void Serviece::CloseService()
 shared_ptr<Session> Serviece::CreateSesseion()
 {
 	shared_ptr<Session> session = _sessionFactory();
+	session->SetService(shared_from_this());
 
 	if (_iocpCore->Register(session) == false)
 		return nullptr;
@@ -57,7 +58,16 @@ bool ClientService::Start()
 	if (CanStart() == false)
 		return false;
 
-	//TODO
+	const int32 sessionCount = GetMaxSessionCount();
+
+	for (int32 i = 0; i < sessionCount; i++)
+	{
+		shared_ptr<Session> session = CreateSesseion();
+		//TODO : Connect!
+		session->SetService(shared_from_this());
+		session->Connect();
+	}
+	
 	return true;
 }
 
