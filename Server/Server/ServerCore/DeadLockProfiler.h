@@ -12,7 +12,6 @@ private:
 private:
 	unordered_map<const char*, int32>	_nameToId;
 	unordered_map<int32, const char*>	_idToName;
-	stack<int32>						_lockStack;
 	//DPS 돌면서 방문하는 ThreadID 기입
 	map<int32, set<int32>>				_lockHistory; // adjacent 역할
 

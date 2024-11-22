@@ -78,7 +78,7 @@ void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 
 	DWORD byTestReceived = 0;
 
-	if (false == SocketUtility::AccepteEx(_socket, session->GetSocket(), session->_recvBuffer, 0,
+	if (false == SocketUtility::AccepteEx(_socket, session->GetSocket(), session->_recvBuffer.WritePos(), 0,
 		sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, &byTestReceived, static_cast<LPOVERLAPPED>(acceptEvent)))
 	{
 		const int32 errorCode = ::WSAGetLastError();

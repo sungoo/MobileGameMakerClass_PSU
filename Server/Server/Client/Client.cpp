@@ -13,13 +13,11 @@
 
 #include "Serviece.h"
 
-class ServerSession : public Session
+class ServerSession : public PacketSession
 {
 public:
 	ServerSession()
 	{
-		string temp = "Hello Server!! I'm Client!!";
-		memcpy(_sendBuffer, temp.data(), temp.size());
 	}
 
 	~ServerSession()
@@ -30,15 +28,23 @@ public:
 	virtual void OnConnected() override
 	{
 		cout << "Server 에 접속 성공!!" << endl;
-		Send(reinterpret_cast<BYTE*>(_sendBuffer), 1000);
+
+		/*shared_ptr<SendBuffer> sendBuf = make_shared<SendBuffer>(100);
+		string temp = "Hello Server~!! I'm Client!";
+		sendBuf->CopyData((void*)temp.data(), temp.size());
+		Send(sendBuf);*/
 	}
 
-	virtual int32 OnRecv(BYTE* buffer, int32 len) override
+	virtual int32 OnRecvPacket(BYTE* buffer, int32 len) override
 	{
-		cout << buffer << endl;
+		PacketHeader header = *((PacketHeader*)buffer);
 
-		this_thread::sleep_for(1s);
-		Send(reinterpret_cast<BYTE*>(_sendBuffer), 1000);
+		cout << "Packet ID : " << header.id << " Size : " << header.size << endl;
+
+		char recvData[100];
+		::memcpy(recvData, buffer + 4, header.size);
+
+		cout << recvData << endl;
 
 		return len;
 	}

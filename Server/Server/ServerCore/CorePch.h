@@ -30,3 +30,6 @@ using namespace std;
 //Memory
 #include "Memory.h"
 #include "MemoryPool.h"
+
+// MyNetwork
+#include "SendBuffer.h"
