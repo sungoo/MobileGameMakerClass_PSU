@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GameSession.h"
 #include "GameSessionManager.h"
+#include "ServerPacketHandler.h"
 
 GameSession::GameSession()
 {
@@ -14,25 +15,28 @@ GameSession::~GameSession()
 
 void GameSession::OnConnected()
 {
-	{//입장하면 입장해있던 모든 클라이언트에게 입장했다고 방송고지
-		shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(100);
-		string temp = "Client entered!";
-		buf->CopyData((void*)temp.data(), temp.size());
+	//{//입장하면 입장해있던 모든 클라이언트에게 입장했다고 방송고지
+	//	shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(100);
+	//	string temp = "Client entered!";
+	//	buf->CopyData((void*)temp.data(), temp.size());
 
-		G_GameSessionManager->BroadCast(buf);
-	}
-	G_GameSessionManager->Add(static_pointer_cast<GameSession>(shared_from_this()));
-	
-	shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(100);
-	string temp = "Hello Client!";
-	
-	//Packet Session
-	BYTE* buffer = buf->Buffer();
-	((PacketHeader*)buffer)->id = 1;//id = 1이면 Hello MSG
-	((PacketHeader*)buffer)->size = (sizeof(temp) + sizeof(PacketHeader));
-	//Packet Content
-	buf->CopyData_Packet((BYTE*)temp.data(), sizeof(temp));
-	G_GameSessionManager->BroadCast(buf);
+	//	G_GameSessionManager->BroadCast(buf);
+	//}
+	//G_GameSessionManager->Add(static_pointer_cast<GameSession>(shared_from_this()));
+	//
+	//shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(100);
+	//string temp = "Hello Client!";
+	//
+	////Packet Session
+	//BYTE* buffer = buf->Buffer();
+	//((PacketHeader*)buffer)->id = 1;//id = 1이면 Hello MSG
+	//((PacketHeader*)buffer)->size = (sizeof(temp) + sizeof(PacketHeader));
+	////Packet Content
+	//buf->CopyData_Packet((BYTE*)temp.data(), sizeof(temp));
+	shared_ptr<SendBuffer> sendbuffer = ServerPacketHandler::Make_S_TEST(1234, 10, 5);
+
+	G_GameSessionManager->BroadCast(sendbuffer);
+
 	G_GameSessionManager->Add(static_pointer_cast<GameSession>(shared_from_this()));
 }
 
