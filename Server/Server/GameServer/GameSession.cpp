@@ -33,8 +33,12 @@ void GameSession::OnConnected()
 	//((PacketHeader*)buffer)->size = (sizeof(temp) + sizeof(PacketHeader));
 	////Packet Content
 	//buf->CopyData_Packet((BYTE*)temp.data(), sizeof(temp));
-	shared_ptr<SendBuffer> sendbuffer = ServerPacketHandler::Make_S_TEST(1234, 10, 5);
 
+	vector<BuffData> buffs;
+	buffs.push_back({ 1, 48.0f });
+	buffs.push_back({ 2,2.0f });
+
+	shared_ptr<SendBuffer> sendbuffer = ServerPacketHandler::Make_S_TEST(1234, 10, 5, buffs);
 	G_GameSessionManager->BroadCast(sendbuffer);
 
 	G_GameSessionManager->Add(static_pointer_cast<GameSession>(shared_from_this()));

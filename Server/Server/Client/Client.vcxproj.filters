@@ -24,9 +24,15 @@
     <ClCompile Include="OverlapEventClient.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="ClientPacketHandler.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientPacketHandler.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
