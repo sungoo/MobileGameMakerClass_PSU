@@ -28,6 +28,12 @@ struct PlayerInfo_Protocol
 	int16 padding = -1;
 					// = 16 byte
 	vector<BuffData> buffs;
+	wstring name;
+	//string
+	//wstring
+
+	//아스키코드
+	//유니코드 (아스키코드 포함)
 };
 
 class ServerPacketHandler
@@ -35,6 +41,6 @@ class ServerPacketHandler
 public:
 	static void HandlePacket(BYTE* buffer, int32 len);
 
-	static shared_ptr<SendBuffer> Make_S_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs);
+	static shared_ptr<SendBuffer> Make_S_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name);
 };
 
