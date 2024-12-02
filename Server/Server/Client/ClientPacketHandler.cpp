@@ -31,40 +31,36 @@ void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
 {
 	BufferReader br(buffer, len);
 
-	PacketHeader header;
-	br >> header;
+	PlayerInfo_Protocol pkt;
+	br >> pkt;
+	//id 고정(S_TEST)
+	//size 고정(18byte)
 
-	//헤더 읽음..
-	int64 id;
-	int32 hp; 
-	int16 atk; 
-	br >> id >> hp >> atk;
+	if (pkt.IsValid() == false)
+		return;
 
-	vector<BuffData> buffs;
-	int16 buffCount = 0;
-	br >> buffCount;
-	buffs.resize(buffCount);
-
-	for (int32 i = 0; i < buffCount; i++)
+	vector<BuffData> buffDatas;
+	buffDatas.resize(pkt.buffCount);
+	for (int i = 0; i < pkt.buffCount; i++)
 	{
-		br >> buffs[i].buffId >> buffs[i].remainTime;
+		br >> buffDatas[i];
 	}
 
 	wstring name;
-	uint16 nameSize;
-	br >> nameSize;
-	name.resize(nameSize);
-
-	br.Read((void*)name.data(), nameSize*sizeof(WCHAR));
-
-	cout << "ID : " << id << " HP : " << hp << " ATK : " << atk << endl; 
-	for (auto& buff : buffs)
+	name.resize(pkt.nameCount);
+	for (int i = 0; i < pkt.nameCount; i++)
 	{
-		cout << "Buff ID : " << buff.buffId << endl;
-		cout << "Buff Remain Time : " << buff.remainTime << endl;
+		br >> name;
 	}
+
 	wcout.imbue(std::locale("kor"));
 	wcout << name << endl;
+
+	cout << "BuffCount : " << buffDatas.size() << endl;
+	for (auto buff : buffDatas)
+	{
+		cout << "Buff ID : " << buff.buffId << " / BuffRemain" << buff.remainTime << endl;
+	}
 }
 
 shared_ptr<SendBuffer> ClientPacketHandler::Make_C_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name)

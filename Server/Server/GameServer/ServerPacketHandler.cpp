@@ -38,22 +38,38 @@ shared_ptr<SendBuffer> ServerPacketHandler::Make_S_TEST(int64 id, int32 hp, int1
 	BufferWriter bw(buf->Buffer(), buf->Capacity());
 	//Header Reserve, packet 아이디 설정
 	PacketHeader* header = bw.Reserve<PacketHeader>();
-	header->id = S_TEST;
+	
+	bw << id << hp << atk;
 
-	bw << p.id << p.hp << p.atk;
-
-	//가변데이터 넣기
-	bw << (uint16)buffs.size();
-	for (auto& buff : buffs)
+	struct VectorHeader
 	{
-		bw << buff.buffId << buff.remainTime;
-	}
-	//wstring 전송
-	bw << (uint16)name.size();
-	bw.Write((void*)name.data(), name.size() * sizeof(WCHAR));
+		uint32 offset;
+		uint32 count;
+	};
 
-	//패킷 준비완료, kg 재서 출하준비
+	VectorHeader* buffHeader = bw.Reserve<VectorHeader>();
+	VectorHeader* nameHeader = bw.Reserve<VectorHeader>();
+
+	buffHeader->offset = bw.WriteSize();
+	buffHeader->count = buffs.size();
+
+	//버프 배열 작성
+	for (BuffData& data : buffs)
+	{
+		bw << data.buffId << data.remainTime;
+	}
+	
+	nameHeader->offset = bw.WriteSize();
+	nameHeader->count = name.size();
+
+	for (WCHAR c : name)
+	{
+		bw << c;
+	}
+
+	header->id = S_TEST;
 	header->size = bw.WriteSize();
+	
 	//출하준비완료
 	buf->Ready(bw.WriteSize());
 

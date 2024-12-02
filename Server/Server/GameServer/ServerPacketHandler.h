@@ -22,18 +22,36 @@ struct BuffData
 
 struct PlayerInfo_Protocol
 {
+	PacketHeader header;
+
 	int64 id; //8
 	int32 hp; //4
 	int16 atk;//2
 	int16 padding = -1;
 					// = 16 byte
-	vector<BuffData> buffs;
-	wstring name;
-	//string
-	//wstring
+	uint32 buffOffset;
+	uint32 buffCount;
 
-	//아스키코드
-	//유니코드 (아스키코드 포함)
+	uint32 nameOffset;
+	uint32 nameCount;
+
+	bool IsValid()
+	{
+		uint32 size = 0;
+		size += sizeof(PlayerInfo_Protocol);
+		size += buffCount * sizeof(BuffData);
+		size += nameCount * sizeof(WCHAR);
+
+		//기입한 크기가 실제 패킷크기랑 동일
+		if (size != header.size)
+			return false;
+
+		// 흘러넘치게 들어왔다 => 뭔가 이상함
+		if (nameOffset + nameCount * sizeof(WCHAR) > header.size)
+			return false;
+
+		return true;
+	}
 };
 
 class ServerPacketHandler
