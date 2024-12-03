@@ -1,5 +1,45 @@
 #pragma once
 
+template<typename T, typename C>
+class PacketList_Iterator
+{
+public:
+	PacketList_Iterator(C& container, uint16 index):_container(container), _index(index){}
+
+	bool operator!=(const PacketList_Iterator& other) { return _index != other._index; }
+	const T& operator*()const { return _container[_index]; }
+	T& operator*() { return _container[_index]; }
+	T* operator->() { return &_container[_index]; }
+	PacketList_Iterator& operator++() { _index++; return *this; }
+	PacketList_Iterator  operator++(int32) { PacketList_Iterator temp = *this; _index++; return temp; }
+
+private:
+	C& _container;
+	uint16 _index;
+};
+
+template <typename T>
+class PacketList
+{
+public:
+	PacketList() : _data(nullptr), _count(0) {}
+	PacketList(T* data, uint16 count) : _data(data), _count(count) {}
+
+	T& operator[](uint16 index)
+	{
+		ASSERT_CRASH(index < _count);
+		return _data[index];
+	}
+
+	uint16 size() { return _count; }
+	PacketList_Iterator<T, PacketList<T>> begin() { return PacketList_Iterator<T, PacketList<T>>(*this, 0);}
+	PacketList_Iterator<T, PacketList<T>> end(){return PacketList_Iterator<T, PacketList<T>>(*this, _count);}
+
+private:
+	T* _data;
+	uint16 _count;
+};
+
 //규약
 enum PacketID
 {
@@ -21,7 +61,7 @@ struct BuffData
 };
 
 #pragma pack(1)
-struct PlayerInfo_Protocol
+struct PlayerInfo_Packet
 {
 	PacketHeader header;
 
@@ -41,7 +81,9 @@ struct PlayerInfo_Protocol
 	bool IsValid()
 	{
 		uint32 size = 0;
-		size += sizeof(PlayerInfo_Protocol);
+		size += sizeof(PlayerInfo_Packet);
+		if (header.size < size)//그냥 이상함
+			return false;
 		size += buffCount * sizeof(BuffData);
 		size += nameCount * sizeof(WCHAR);
 
@@ -54,6 +96,18 @@ struct PlayerInfo_Protocol
 			return false;
 
 		return true;
+	}
+
+	using BuffList = PacketList<BuffData>;
+	using Name = PacketList<WCHAR>;
+
+	BuffList GetBuffList()
+	{
+		//그냥 this에 포인터 덧셈을 해버리면 PlayerInfo_Packet의 크기만큼 덧셈이 되어버려서,
+		//BYTE* 형으로 바꾸고 계산해주는게 필요하다.
+		BYTE* data = reinterpret_cast<BYTE*>(this);
+		data += buffOffset;
+		return BuffList(reinterpret_cast<BuffData*>(data), buffCount);
 	}
 };
 #pragma pack()

@@ -31,32 +31,15 @@ void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
 {
 	BufferReader br(buffer, len);
 
-	PlayerInfo_Protocol pkt;
-	br >> pkt;
-	//id 고정(S_TEST)
-	//size 고정(18byte)
+	PlayerInfo_Packet* pkt = reinterpret_cast<PlayerInfo_Packet*>(buffer);
 
-	if (pkt.IsValid() == false)
+	if (pkt->IsValid() == false)
 		return;
 
-	vector<BuffData> buffDatas;
-	buffDatas.resize(pkt.buffCount);
-	for (int i = 0; i < pkt.buffCount; i++)
-	{
-		br >> buffDatas[i];
-	}
-
-	wstring name;
-	name.resize(pkt.nameCount);
-	for (int i = 0; i < pkt.nameCount; i++)
-	{
-		br >> name;
-	}
-
-	wcout.imbue(std::locale("kor"));
-	wcout << name << endl;
+	PacketList<BuffData> buffDatas = pkt->GetBuffList();
 
 	cout << "BuffCount : " << buffDatas.size() << endl;
+	
 	for (auto buff : buffDatas)
 	{
 		cout << "Buff ID : " << buff.buffId << " / BuffRemain" << buff.remainTime << endl;
@@ -66,7 +49,7 @@ void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
 shared_ptr<SendBuffer> ClientPacketHandler::Make_C_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name)
 {
 	shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(1000);
-	PlayerInfo_Protocol p;
+	PlayerInfo_Packet p;
 	p.id = id;
 	p.hp = hp;
 	p.atk = atk;

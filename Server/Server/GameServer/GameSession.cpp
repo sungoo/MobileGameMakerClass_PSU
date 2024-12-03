@@ -51,6 +51,8 @@ int32 GameSession::OnRecvPacket(BYTE* buffer, int32 len)
 
 	cout << "Packet ID : " << header.id << " Size : " << header.size << endl;
 
+	ServerPacketHandler::HandlePacket(buffer, len);
+
 	return len;
 }
 

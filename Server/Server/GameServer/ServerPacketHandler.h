@@ -20,7 +20,7 @@ struct BuffData
 	float remainTime;
 };
 
-struct PlayerInfo_Protocol
+struct PlayerInfo_Packet
 {
 	PacketHeader header;
 
@@ -38,7 +38,7 @@ struct PlayerInfo_Protocol
 	bool IsValid()
 	{
 		uint32 size = 0;
-		size += sizeof(PlayerInfo_Protocol);
+		size += sizeof(PlayerInfo_Packet);
 		size += buffCount * sizeof(BuffData);
 		size += nameCount * sizeof(WCHAR);
 
@@ -58,6 +58,8 @@ class ServerPacketHandler
 {
 public:
 	static void HandlePacket(BYTE* buffer, int32 len);
+
+	static void Handle_S_Test(BYTE* buffer, int32 len);
 
 	static shared_ptr<SendBuffer> Make_S_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name);
 };

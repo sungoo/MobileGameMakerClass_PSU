@@ -17,19 +17,26 @@ void ServerPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 	case 0:
 		break;
 	case S_TEST:
-		//TODO
+		Handle_S_Test(buffer, len);
 		break;
 
 	default:
 		break;
 	}
 }
+
+void ServerPacketHandler::Handle_S_Test(BYTE* buffer, int32 len)
+{
+	//TODO
+	return;
+}
+
 // Player Id : 1 / hp : 100 / atk : 10 / buff : [사랑니, 1.0] [마취, 2.0]
 // => Header[4] [1, 100, 10, 2, 사랑니, 1.0, 마취, 2.0]
 shared_ptr<SendBuffer> ServerPacketHandler::Make_S_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name)
 {
 	shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(1000);
-	PlayerInfo_Protocol p;
+	PlayerInfo_Packet p;
 	p.id = id;
 	p.hp = hp;
 	p.atk = atk;
