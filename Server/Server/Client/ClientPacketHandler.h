@@ -58,6 +58,19 @@ struct BuffData
 {
 	uint32 buffId;
 	float remainTime;
+
+	//vector<int32> victims;
+	uint32 victimOffset;
+	uint32 victimCount;
+
+	bool Validate(BYTE* packetStart, uint16 packetSize, OUT uint32 size)
+	{
+		if (victimOffset + victimCount * sizeof(int32) > packetSize)
+			return false;
+
+		size += victimCount * sizeof(int32);
+		return true;
+	}
 };
 
 #pragma pack(1)
@@ -75,8 +88,8 @@ struct PlayerInfo_Packet
 	uint32 buffOffset;//배열이 시작하는 메모리 offset
 	uint32 buffCount;
 
-	uint32 nameOffset;
-	uint32 nameCount;
+	uint32 wCharOffset;
+	uint32 wCharCount;
 
 	bool IsValid()
 	{
@@ -85,14 +98,22 @@ struct PlayerInfo_Packet
 		if (header.size < size)//그냥 이상함
 			return false;
 		size += buffCount * sizeof(BuffData);
-		size += nameCount * sizeof(WCHAR);
+
+		PacketList<BuffData> buffList = GetBuffList();
+		for (int i = 0; i < buffList.size(); i++)
+		{
+			if (buffList[i].Validate(reinterpret_cast<BYTE*>(this), header.size, OUT size) == false)
+				return false;
+		}
+
+		size += wCharCount * sizeof(WCHAR);
 
 		//기입한 크기가 실제 패킷크기랑 동일
 		if (size != header.size)
 			return false;
 
 		// 흘러넘치게 들어왔다 => 뭔가 이상함
-		if (nameOffset + nameCount * sizeof(WCHAR) > header.size)
+		if (wCharOffset + wCharCount * sizeof(WCHAR) > header.size)
 			return false;
 
 		return true;
@@ -100,6 +121,7 @@ struct PlayerInfo_Packet
 
 	using BuffList = PacketList<BuffData>;
 	using Name = PacketList<WCHAR>;
+	using VictimList = PacketList<int32>;
 
 	BuffList GetBuffList()
 	{
@@ -108,6 +130,21 @@ struct PlayerInfo_Packet
 		BYTE* data = reinterpret_cast<BYTE*>(this);
 		data += buffOffset;
 		return BuffList(reinterpret_cast<BuffData*>(data), buffCount);
+	}
+
+	VictimList GetVictimList(BuffData* buff)
+	{
+		BYTE* data = reinterpret_cast<BYTE*>(this);
+		data += buff->victimOffset;
+
+		return VictimList(reinterpret_cast<int32*>(data), buff->victimCount);
+	}
+
+	Name GetWCharList()
+	{
+		WCHAR* data = reinterpret_cast<WCHAR*>(this);
+		data += wCharOffset;
+		return Name(reinterpret_cast<WCHAR*>(data), wCharCount);
 	}
 };
 #pragma pack()

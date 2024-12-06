@@ -43,7 +43,17 @@ void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
 	for (auto buff : buffDatas)
 	{
 		cout << "Buff ID : " << buff.buffId << " / BuffRemain" << buff.remainTime << endl;
+	
+		PlayerInfo_Packet::VictimList victims = pkt->GetVictimList(&buff);
+		cout << "victim count : " << buff.victimCount << endl;
+		for (auto& victim : victims)
+		{
+			cout << "Victim : " << victim << endl;
+		}
 	}
+
+	PacketList<WCHAR> wCharList = pkt->GetWCharList();
+	wcout << (WCHAR)wCharList[0] << endl;
 }
 
 shared_ptr<SendBuffer> ClientPacketHandler::Make_C_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name)
