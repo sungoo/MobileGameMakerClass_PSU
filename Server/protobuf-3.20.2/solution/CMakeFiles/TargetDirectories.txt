@@ -1,6 +1,0 @@
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/libprotobuf-lite.dir
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/libprotobuf.dir
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/libprotoc.dir
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/protoc.dir
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/ALL_BUILD.dir
-E:/박성우/Server/protobuf-3.20.2/solution/CMakeFiles/ZERO_CHECK.dir
