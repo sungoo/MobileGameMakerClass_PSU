@@ -2,6 +2,7 @@
 #include "ClientPacketHandler.h"
 #include "BufferReader.h"
 #include "BufferWriter.h"
+#include "Protocol.pb.h"
 
 void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 {
@@ -14,8 +15,8 @@ void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 	{
 	case 0:
 		break;
-	case S_TEST:
-		Handle_C_Test(buffer, len);
+	case C_PLAYER_INFO:
+		Handle_S_PlayerInfo(buffer, len);
 		break;
 
 	default:
@@ -27,9 +28,9 @@ void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 // 
 // 
 // Player Id : 1 / hp : 100 / atk : 10 / buff : [사랑니, 1.0] [마취, 2.0]
-void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
+void ClientPacketHandler::Handle_S_PlayerInfo(BYTE* buffer, int32 len)
 {
-	BufferReader br(buffer, len);
+	/*BufferReader br(buffer, len);
 
 	PlayerInfo_Packet* pkt = reinterpret_cast<PlayerInfo_Packet*>(buffer);
 
@@ -53,12 +54,32 @@ void ClientPacketHandler::Handle_C_Test(BYTE* buffer, int32 len)
 	}
 
 	PacketList<WCHAR> wCharList = pkt->GetWCharList();
-	wcout << (WCHAR)wCharList[0] << endl;
+	wcout << (WCHAR)wCharList[0] << endl;*/
+
+	Protocol::S_PlayerInfo pkt;
+
+	pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader));
+
+	cout << "ID : " << pkt.id() << " / HP : " << pkt.hp() << " / ATK : " << pkt.atk() << endl;
+	cout << "Buffs Size : " << pkt.buffs_size() << endl;
+
+	for (auto& buff : pkt.buffs())
+	{
+		cout << "Buff ID : " << buff.buffid() << endl;
+		cout << "Remain Time : " << buff.remaintime() << endl;
+		cout << "Victims Size : " << buff.victims_size() << endl;
+
+		for (auto& victim : buff.victims())
+		{
+			cout << "Victim ID : " << victim << endl;
+		}
+		cout << endl;
+	}
 }
 
 shared_ptr<SendBuffer> ClientPacketHandler::Make_C_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name)
 {
-	shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(1000);
+	/*shared_ptr<SendBuffer> buf = make_shared<SendBuffer>(1000);
 	PlayerInfo_Packet p;
 	p.id = id;
 	p.hp = hp;
@@ -67,11 +88,11 @@ shared_ptr<SendBuffer> ClientPacketHandler::Make_C_TEST(int64 id, int32 hp, int1
 	BufferWriter bw(buf->Buffer(), buf->Capacity());
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
-	header->id = S_TEST;
+	header->id = S_SERVER_INFO;
 	header->size = (sizeof(p) + sizeof(PacketHeader));
 	bw << p;
 
-	buf->Ready(bw.WriteSize());
+	buf->Ready(bw.WriteSize());*/
 
-	return buf;
+	return nullptr;
 }

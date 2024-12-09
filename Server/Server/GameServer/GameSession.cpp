@@ -2,6 +2,7 @@
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "ServerPacketHandler.h"
+#include "../../protoc-3.20.2-win64/bin/Protocol.pb.h"
 
 GameSession::GameSession()
 {
@@ -23,7 +24,9 @@ void GameSession::OnConnected()
 	///////////////////////
 	///   Packet 제작   ///
 	///////////////////////
-
+	
+	//Custom Packet Serialize
+	/*
 	PKT_S_TEST_WRITE pkt_writer(1234, 10, 5);
 	auto buffList = pkt_writer.ReserveBuffList(buffs.size());
 	auto victimList0 = pkt_writer.ReserveVictimList(&buffList[0], 2);
@@ -49,9 +52,34 @@ void GameSession::OnConnected()
 	{
 		wCharList[i] = name[i];
 	}
+	*/
 
-	//shared_ptr<SendBuffer> sendbuffer = ServerPacketHandler::Make_S_TEST(1234, 10, 5, buffs, name);
-	G_GameSessionManager->BroadCast(pkt_writer.Ready());
+	Protocol::S_PlayerInfo pkt;
+	
+	pkt.set_id(1234);
+	pkt.set_hp(10);
+	pkt.set_atk(5);
+
+	{
+		auto buff = pkt.add_buffs();
+		buff->set_buffid(241203);
+		buff->set_remaintime(6);
+
+		buff->add_victims(100);
+		buff->add_victims(101);
+	}
+	{
+		auto buff = pkt.add_buffs();
+		buff->set_buffid(240528);
+		buff->set_remaintime(23);
+
+		buff->add_victims(614);
+		buff->add_victims(612);
+		buff->add_victims(1209);
+		buff->add_victims(1212);
+	}
+	shared_ptr<SendBuffer> sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+	G_GameSessionManager->BroadCast(sendBuffer);
 
 	G_GameSessionManager->Add(static_pointer_cast<GameSession>(shared_from_this()));
 }

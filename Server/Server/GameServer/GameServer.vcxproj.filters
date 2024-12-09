@@ -87,6 +87,7 @@
     <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Protocol.pb.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -107,5 +108,6 @@
     <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="Protocol.pb.h" />
   </ItemGroup>
 </Project>

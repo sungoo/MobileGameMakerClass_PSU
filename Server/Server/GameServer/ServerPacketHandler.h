@@ -1,11 +1,13 @@
 #pragma once
 #include "BufferWriter.h"
+#include "Protocol.pb.h"
 
 //규약
 enum PacketID
 {
 	NONE,
-	S_TEST = 1,
+	S_PLAYER_INFO = 1,
+	C_PLAYER_INFO = 2,
 };
 
 ///////////////////////////////
@@ -109,7 +111,26 @@ public:
 
 	static void Handle_S_Test(BYTE* buffer, int32 len);
 
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::S_PlayerInfo& pkt);
 };
+
+template<typename T>
+shared_ptr<SendBuffer> _MakeSendBuffer(T& pkt, uint16 pktId)
+{
+	//공용 header 만들기
+	const uint16 dataSize = static_cast<uint16>(pkt.ByteSizeLong());
+	const uint16 packetSize = dataSize + sizeof(PacketHeader);
+
+	shared_ptr<SendBuffer> sendBuffer = make_shared<SendBuffer>(packetSize);
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
+	header->id = pktId;
+	header->size = packetSize;
+
+	ASSERT_CRASH(pkt.SerializeToArray(&(header[1]), dataSize));
+
+	sendBuffer->Ready(packetSize);
+	return sendBuffer;
+}
 
 class PKT_S_TEST_WRITE
 {
@@ -120,7 +141,7 @@ public:
 		_bw = BufferWriter(_sendBuffer->Buffer(), _sendBuffer->Capacity());
 
 		_pkt = _bw.Reserve<PlayerInfo_Packet>();
-		_pkt->header.id = S_TEST;
+		_pkt->header.id = S_PLAYER_INFO;
 		_pkt->header.size = 0;//TODO
 
 		_pkt->id = id;
