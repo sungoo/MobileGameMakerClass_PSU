@@ -1,4 +1,5 @@
 #pragma once
+#include "Protocol.pb.h"
 
 template<typename T, typename C>
 class PacketList_Iterator
@@ -155,11 +156,28 @@ struct PlayerInfo_Packet
 class ClientPacketHandler
 {
 public://Packet형태로 들어왔을 때 -> Recv했을 때 처리 방법
-	static void HandlePacket(BYTE* buffer, int32 len);
+	static void HandlePacket(shared_ptr<PacketSession> session, BYTE* buffer, int32 len);
 
-	static void Handle_S_PlayerInfo(BYTE* buffer, int32 len);
+	static void Handle_S_PlayerInfo(shared_ptr<PacketSession> session, BYTE* buffer, int32 len);
 
 	//Packet형태로 Sendbuffer 만들기
-	static shared_ptr<SendBuffer> Make_C_TEST(int64 id, int32 hp, int16 atk, vector<BuffData> buffs, wstring name);
+	static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::C_PlayerInfo& pkt);
 };
 
+template<typename T>
+shared_ptr<SendBuffer> _MakeSendBuffer(T& pkt, uint16 pktId)
+{
+	//공용 header 만들기
+	const uint16 dataSize = static_cast<uint16>(pkt.ByteSizeLong());
+	const uint16 packetSize = dataSize + sizeof(PacketHeader);
+
+	shared_ptr<SendBuffer> sendBuffer = make_shared<SendBuffer>(packetSize);
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
+	header->id = pktId;
+	header->size = packetSize;
+
+	ASSERT_CRASH(pkt.SerializeToArray(&(header[1]), dataSize));
+
+	sendBuffer->Ready(packetSize);
+	return sendBuffer;
+}

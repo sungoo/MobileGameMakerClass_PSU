@@ -6,14 +6,14 @@
 #include "Lock.h"
 #include "RefCounting.h"
 
-using PlayerRef = shared_ptr<class Player>;
+using PlayerRef = shared_ptr<class ChatPlayer>;
 using InventoryRef = shared_ptr<class Inventory>;
 
-class Player
+class ChatPlayer
 {
 public:
-	Player() {}
-	~Player() {}
+	ChatPlayer() {}
+	~ChatPlayer() {}
 
 	void Attack()
 	{
@@ -52,7 +52,7 @@ public:
 	}
 public:
 	//Player& _owner;
-	weak_ptr<Player> _owner;
+	weak_ptr<ChatPlayer> _owner;
 };
 
 
@@ -71,7 +71,7 @@ int main()
 
 	CoreGlobal::Create();
 
-	PlayerRef p = make_shared<Player>();
+	PlayerRef p = make_shared<ChatPlayer>();
 	InventoryRef inven = make_shared<Inventory>(p);
 	p->_inven = inven;
 	// => 순환참조

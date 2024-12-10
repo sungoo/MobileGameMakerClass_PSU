@@ -6,23 +6,23 @@
 #include "Lock.h"
 #include "RefCounting.h"
 
-using PlayerRef = shared_ptr<class Player>;
+using PlayerRef = shared_ptr<class ChatPlayer>;
 using InventoryRef = shared_ptr<class Inventory>;
 
-class Player
+class ChatPlayer
 {
 public:
-	Player()
+	ChatPlayer()
 		:_hp(0), _atk(0)
 	{
 		cout << "생성자 호출" << endl;
 	}
-	Player(int hp, int atk)
+	ChatPlayer(int hp, int atk)
 		: _hp(hp), _atk(atk)
 	{
 		cout << "타입 변환 생성자 호출" << endl;
 	}
-	~Player()
+	~ChatPlayer()
 	{
 		cout << "소멸자 호출" << endl;
 	}
@@ -61,7 +61,7 @@ public:
 	int _atk;
 };
 
-class Knight : public Player
+class Knight : public ChatPlayer
 {
 public:
 	int _stamina = 0;
@@ -85,7 +85,7 @@ int main()
 	CoreGlobal::Create();
 
 #pragma region 가상메모리와 운영체제
-	Player* p = new Player();
+	ChatPlayer* p = new ChatPlayer();
 
 	//허상 포인터(Dangling Pointer)
 	p->_atk = 10;
@@ -99,7 +99,7 @@ int main()
 	//가상 메모리
 	p = nullptr;
 
-	p = new Player();
+	p = new ChatPlayer();
 
 	//------------다른 프로그램-------------
 	//int64* temp = (int64*)(p);
@@ -133,13 +133,13 @@ int main()
 	//[[p2]100									]
 	//[										[p2]]100 (x)
 	//test
-	Knight* k = reinterpret_cast<Knight*>(new Player());
+	Knight* k = reinterpret_cast<Knight*>(new ChatPlayer());
 	// k->_stamina = 100; => 메모리 오버플로우
 	//std::new / delete Allocator 상속 구조에서 메모리 오버플로우를 허용하지 않음
 
 	delete k;
 
-	Knight* p2 = reinterpret_cast<Knight*>(xnew<Player>());
+	Knight* p2 = reinterpret_cast<Knight*>(xnew<ChatPlayer>());
 	p2->_hp = 100;//메모리 오버플로우 막음
 
 	xdelete(p2);

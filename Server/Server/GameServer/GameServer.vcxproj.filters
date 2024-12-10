@@ -7,6 +7,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{64b2db64-d6ae-4b04-8e68-407c0b13342d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{d414d27b-7dcb-4e2c-8579-6e65bea5d10d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -88,6 +91,12 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc" />
+    <ClCompile Include="Room.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatPlayer.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -109,5 +118,11 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h" />
+    <ClInclude Include="Room.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatPlayer.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
