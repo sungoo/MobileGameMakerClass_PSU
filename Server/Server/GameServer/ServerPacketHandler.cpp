@@ -3,7 +3,7 @@
 #include "BufferReader.h"
 #include "GameSession.h"
 #include "ChatPlayer.h"
-
+#include "Room.h"
 
 void ServerPacketHandler::HandlePacket(shared_ptr<PacketSession> session, BYTE* buffer, int32 len)
 {
@@ -43,7 +43,9 @@ void ServerPacketHandler::Handle_C_PlayerInfo(shared_ptr<PacketSession> session,
 	//TODO : newPlayer->name
 	newPlayer->_ownerSession = gameSession;
 
-	gameSession->_players.push_back(newPlayer);
+	gameSession->_curPlayer = newPlayer;
+
+	G_Room.Enter(newPlayer);
 
 	return;
 }
