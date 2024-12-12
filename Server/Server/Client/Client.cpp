@@ -46,9 +46,19 @@ int main()
 			});
 	}
 
+	//Main Thread
 	while (true)
 	{
+		//현재 방에 입장했나
+		string sendMsg;
 
+		cin >> sendMsg;
+
+		Protocol::C_ChatMsg pkt;
+		pkt.set_id(0);
+		pkt.set_msg(u8"Hello!!");
+
+		service->BroadCast(ClientPacketHandler::MakeSendBuffer(pkt));
 	}
 
 	TM_M->Join();

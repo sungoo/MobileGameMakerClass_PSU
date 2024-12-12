@@ -4,6 +4,7 @@
 #include "IocpCore.h"
 #include "Listener.h"
 #include "Session.h"
+#include "SendBuffer.h"
 #include <functional>
 
 using SessionFactory = function<shared_ptr<Session>(void)>;
@@ -38,6 +39,8 @@ public:
 	NetAddress GetNetAddress() { return _netAddress; }
 	shared_ptr<IocpCore>& GetIocpCore() { return _iocpCore; }
 
+	//Send
+	void BroadCast(shared_ptr<class SendBuffer> buffer);
 protected:
 	USE_LOCK;
 

@@ -44,6 +44,15 @@ void Serviece::ReleaseSession(shared_ptr<Session> session)
 	_sessionCount--;
 }
 
+void Serviece::BroadCast(shared_ptr<SendBuffer> buffer)
+{
+	WRITE_LOCK;
+	for (const auto& session : _sessions)
+	{
+		session->Send(buffer);
+	}
+}
+
 ClientService::ClientService(NetAddress target, shared_ptr<IocpCore> core, SessionFactory factory, int32 maxSessionCount)
 	:Serviece(ServiceType::CLIENT, target, core, factory, maxSessionCount)
 {
