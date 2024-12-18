@@ -6,6 +6,6 @@ public:
 	string name;
 	uint32 hp;
 	uint16 atk;
-	weak_ptr<class GetNamedPipeClientSessionId> _ownerSession;
+	weak_ptr<class GameSession> _ownerSession;
 };
 

@@ -2,7 +2,7 @@
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "ServerPacketHandler.h"
-#include "../../protoc-3.20.2-win64/bin/Protocol.pb.h"
+#include "Protocol.pb.h"
 
 GameSession::GameSession()
 {

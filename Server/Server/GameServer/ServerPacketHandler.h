@@ -46,62 +46,62 @@ shared_ptr<SendBuffer> _MakeSendBuffer(T& pkt, uint16 pktId)
 	return sendBuffer;
 }
 
-class PKT_S_TEST_WRITE
-{
-public:
-	PKT_S_TEST_WRITE(int64 id, int32 hp, int16 atk)
-	{
-		_sendBuffer = make_shared<SendBuffer>(1000);
-		_bw = BufferWriter(_sendBuffer->Buffer(), _sendBuffer->Capacity());
-
-		_pkt = _bw.Reserve<PlayerInfo_Packet>();
-		_pkt->header.id = S_PLAYER_INFO;
-		_pkt->header.size = 0;//TODO
-
-		_pkt->id = id;
-		_pkt->hp = hp;
-		_pkt->atk = atk;
-
-		_pkt->buffCount = 0;
-		_pkt->buffOffset = 0;
-		_pkt->wCharCount = 0;
-		_pkt->wCharOffset = 0;
-	}
-
-	PacketList<BuffData> ReserveBuffList(uint16 buffCount)
-	{
-		BuffData* buffListBegin = _bw.Reserve<BuffData>(buffCount);
-		_pkt->buffOffset = (uint64)buffListBegin - (uint64)_pkt;
-		_pkt->buffCount = buffCount;
-		return PacketList<BuffData>(buffListBegin, buffCount);
-	}
-
-	PacketList<int32> ReserveVictimList(BuffData* buff, uint16 victimCount)
-	{
-		int32* victimBegin = _bw.Reserve<int32>(victimCount);
-		buff->victimOffset = (uint64)victimBegin - (uint64)_pkt;
-		buff->victimCount = victimCount;
-		return PacketList<int32>(victimBegin, victimCount);
-	}
-
-	PacketList<WCHAR> ReserveWCHARList(uint16 wCharCount)
-	{
-		WCHAR* strBegin = _bw.Reserve<WCHAR>(wCharCount);
-		_pkt->wCharOffset = (uint64)strBegin - (uint64)_pkt;
-		_pkt->wCharCount = wCharCount;
-		return PacketList<WCHAR>(strBegin, wCharCount);
-	}
-
-	shared_ptr<SendBuffer> Ready()
-	{
-		_pkt->header.size = _bw.WriteSize();
-		_sendBuffer->Ready(_bw.WriteSize());
-
-		return _sendBuffer;
-	}
-
-private:
-	PlayerInfo_Packet* _pkt = nullptr;
-	shared_ptr<SendBuffer> _sendBuffer;
-	BufferWriter _bw;
-};
+//class PKT_S_TEST_WRITE
+//{
+//public:
+//	PKT_S_TEST_WRITE(int64 id, int32 hp, int16 atk)
+//	{
+//		_sendBuffer = make_shared<SendBuffer>(1000);
+//		_bw = BufferWriter(_sendBuffer->Buffer(), _sendBuffer->Capacity());
+//
+//		_pkt = _bw.Reserve<PlayerInfo_Packet>();
+//		_pkt->header.id = S_PLAYER_INFO;
+//		_pkt->header.size = 0;//TODO
+//
+//		_pkt->id = id;
+//		_pkt->hp = hp;
+//		_pkt->atk = atk;
+//
+//		_pkt->buffCount = 0;
+//		_pkt->buffOffset = 0;
+//		_pkt->wCharCount = 0;
+//		_pkt->wCharOffset = 0;
+//	}
+//
+//	PacketList<BuffData> ReserveBuffList(uint16 buffCount)
+//	{
+//		BuffData* buffListBegin = _bw.Reserve<BuffData>(buffCount);
+//		_pkt->buffOffset = (uint64)buffListBegin - (uint64)_pkt;
+//		_pkt->buffCount = buffCount;
+//		return PacketList<BuffData>(buffListBegin, buffCount);
+//	}
+//
+//	PacketList<int32> ReserveVictimList(BuffData* buff, uint16 victimCount)
+//	{
+//		int32* victimBegin = _bw.Reserve<int32>(victimCount);
+//		buff->victimOffset = (uint64)victimBegin - (uint64)_pkt;
+//		buff->victimCount = victimCount;
+//		return PacketList<int32>(victimBegin, victimCount);
+//	}
+//
+//	PacketList<WCHAR> ReserveWCHARList(uint16 wCharCount)
+//	{
+//		WCHAR* strBegin = _bw.Reserve<WCHAR>(wCharCount);
+//		_pkt->wCharOffset = (uint64)strBegin - (uint64)_pkt;
+//		_pkt->wCharCount = wCharCount;
+//		return PacketList<WCHAR>(strBegin, wCharCount);
+//	}
+//
+//	shared_ptr<SendBuffer> Ready()
+//	{
+//		_pkt->header.size = _bw.WriteSize();
+//		_sendBuffer->Ready(_bw.WriteSize());
+//
+//		return _sendBuffer;
+//	}
+//
+//private:
+//	PlayerInfo_Packet* _pkt = nullptr;
+//	shared_ptr<SendBuffer> _sendBuffer;
+//	BufferWriter _bw;
+//};

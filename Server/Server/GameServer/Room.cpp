@@ -21,12 +21,13 @@ void Room::BroadCast(shared_ptr<SendBuffer> sendBuff)
 
 	for (auto& p : _playerTable)
 	{
-		p.second.lock()->_ownerSession.lock()->Send(sendBuff);
+		p.second->_ownerSession.lock()->Send(sendBuff);
 	}
 }
 
 string Room::GetPlayerName(uint64 id)
 {
-	if (_playerTable.count(id) == 0) { return string("알 수 없는 아이디"); }
-	return _playerTable[id].lock()->name;
+	if (_playerTable.size() == 0)return "";
+	if (_playerTable.count(id) == 0) { return string("Cannot Find ID"); }
+	return _playerTable[id]->name;
 }

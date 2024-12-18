@@ -45,20 +45,26 @@ int main()
 				}
 			});
 	}
+	//5초 대기 : 서버에 EnterRoom하기 전에 메시지 패킷을 보내면 안된다.
+	//=>5초 안에 PlayerInfo pkt를 날려줘야한다.
+	this_thread::sleep_for(60s);
 
-	//Main Thread
+	cout << "메세지를 입력하세요. : ";
+
+	//main
 	while (true)
 	{
-		//현재 방에 입장했나
 		string sendMsg;
 
-		cin >> sendMsg;
+		//cin >> sendMsg; // block, 동기
+		std::getline(std::cin, sendMsg);// non-block, 비동기
 
-		Protocol::C_ChatMsg pkt;
-		pkt.set_id(0);
-		pkt.set_msg(u8"Hello!!");
+		Protocol::C_ChatMsg sendbuf;
+		sendbuf.set_id(G_Player.id);
+		sendbuf.set_msg(sendMsg);
 
-		service->BroadCast(ClientPacketHandler::MakeSendBuffer(pkt));
+		auto sendbuffer = ClientPacketHandler::MakeSendBuffer(sendbuf);
+		service->BroadCast(sendbuffer);//client에서 broadcast해도 server밖에 없음
 	}
 
 	TM_M->Join();

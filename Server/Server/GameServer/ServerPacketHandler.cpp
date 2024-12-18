@@ -38,17 +38,25 @@ void ServerPacketHandler::Handle_C_PlayerInfo(shared_ptr<PacketSession> session,
 
 	pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader));
 	cout << "클라이언트가 보낸 정보" << endl;
-	cout << "ID : " << pkt.id() << " / HP : " << pkt.hp() << " / ATK : " << pkt.atk() << endl;
+	cout << "Name : " << pkt.name() << endl;
+	cout << "ID : " << pkt.id() << endl;
+	cout << "HP : " << pkt.hp() << endl;
+	cout << "ATK : " << pkt.atk() << endl;
 
 	shared_ptr<ChatPlayer> newPlayer = make_shared<ChatPlayer>();
+	newPlayer->name = pkt.name();
 	newPlayer->playerId = pkt.id();
 	newPlayer->hp = pkt.hp();
 	newPlayer->atk = pkt.atk();
 	newPlayer->_ownerSession = gameSession;
 
 	gameSession->_curPlayer = newPlayer;
+	G_Room->Enter(newPlayer);
 
-	G_Room.Enter(newPlayer);
+	Protocol::S_EnterRoom sendPkt;
+	sendPkt.set_success(true);
+
+	session->Send(MakeSendBuffer(sendPkt));
 
 	return;
 }
@@ -62,11 +70,13 @@ void ServerPacketHandler::Handle_C_ChatMsg(shared_ptr<PacketSession> session, BY
 
 	uint64 id = pkt.id();
 	string msg = pkt.msg();
+	
 
 	Protocol::S_ChatMsg sendPkt;
 	sendPkt.set_msg(msg);
 
 	string name = G_Room->GetPlayerName(id);
+	if (name == "")return;
 
 	sendPkt.set_name(name);
 

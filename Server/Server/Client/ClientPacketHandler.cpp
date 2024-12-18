@@ -3,6 +3,7 @@
 #include "BufferReader.h"
 #include "BufferWriter.h"
 #include "Protocol.pb.h"
+#include "ServerSession.h"
 
 void ClientPacketHandler::HandlePacket(shared_ptr<PacketSession> session, BYTE* buffer, int32 len)
 {
@@ -32,10 +33,6 @@ void ClientPacketHandler::HandlePacket(shared_ptr<PacketSession> session, BYTE* 
 	}
 }
 
-// => Header[4] [1, 100, 10, 2, 사랑니, 1.0, 마취, 2.0]
-// 
-// 
-// Player Id : 1 / hp : 100 / atk : 10 / buff : [사랑니, 1.0] [마취, 2.0]
 void ClientPacketHandler::Handle_S_PlayerInfo(shared_ptr<PacketSession> session, BYTE* buffer, int32 len)
 {
 	Protocol::S_PlayerInfo pkt;
@@ -85,6 +82,7 @@ void ClientPacketHandler::Handle_S_ChatMsg(shared_ptr<PacketSession> session, BY
 	string msg = pkt.msg();
 
 	cout << name << ": " << msg << endl;
+
 }
 
 shared_ptr<SendBuffer> ClientPacketHandler::MakeSendBuffer(Protocol::C_PlayerInfo& pkt)

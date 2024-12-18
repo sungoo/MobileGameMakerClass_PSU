@@ -13,5 +13,5 @@ public:
 private:
 	USE_LOCK;
 
-	HashTable<uint64, weak_ptr<ChatPlayer>> _playerTable;
+	HashTable<uint64, shared_ptr<ChatPlayer>> _playerTable;
 };
